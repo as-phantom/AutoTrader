@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-autotrader-dev-161308-authRole",
+      "UnauthRoleArn": "arn:aws:iam::696793232669:role/amplify-autotrader-dev-161308-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::696793232669:role/amplify-autotrader-dev-161308-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-autotrader-dev-161308-deployment",
+      "UnauthRoleName": "amplify-autotrader-dev-161308-unauthRole",
+      "StackName": "amplify-autotrader-dev-161308",
+      "StackId": "arn:aws:cloudformation:us-east-1:696793232669:stack/amplify-autotrader-dev-161308/0f990df0-f201-11eb-b7aa-0a13a71c396d",
+      "AmplifyAppId": "dgt60e5dw3l70"
+    }
+  }
+}
