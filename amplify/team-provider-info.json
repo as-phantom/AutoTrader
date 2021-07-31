@@ -10,6 +10,12 @@
       "StackName": "amplify-autotrader-dev-161308",
       "StackId": "arn:aws:cloudformation:us-east-1:696793232669:stack/amplify-autotrader-dev-161308/0f990df0-f201-11eb-b7aa-0a13a71c396d",
       "AmplifyAppId": "dgt60e5dw3l70"
+    },
+    "categories": {
+      "auth": {
+        "autotrader80210f4a": {},
+        "autotrader2f7dc68f": {}
+      }
     }
   }
 }
