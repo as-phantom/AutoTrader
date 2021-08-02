@@ -12,53 +12,53 @@ enum FuelType {
 }
 
 type User @model {
-  id: ID!
-  email: String!
-  picture: String!
-  lastName: String!
-  firstName: String!
-  ads: [Ad] @connection(keyName: "byUser", fields: ["id"])
-  ratings: [Rating] @connection(keyName: "byUser", fields: ["id"])
   favorites: [Favorite] @connection(keyName: "byUser", fields: ["id"])
+  ratings: [Rating] @connection(keyName: "byUser", fields: ["id"])
+  ads: [Ad] @connection(keyName: "byUser", fields: ["id"])
+  firstName: String!
+  lastName: String!
+  picture: String!
+  email: String!
+  id: ID!
 }
 
 type Ad @model @key(name: "byUser", fields: ["userID"]) {
-  id: ID!
-  year: Int!
-  userID: ID!
-  price: Float!
   brand: String!
   model: String!
   color: String!
   engine: Float!
-  fuelType: FuelType!
-  description: String!
-  transmissionType: TransmissionType!
-  user: User @connection(fields: ["userID"])
-  ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
+  price: Float!
+  userID: ID!
+  year: Int!
+  id: ID!
   pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
+  ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
+  user: User @connection(fields: ["userID"])
+  transmissionType: TransmissionType!
+  description: String!
+  fuelType: FuelType!
 }
 
 type Picture @model @key(name: "byAd", fields: ["adID"]) {
-  id: ID!
-  adID: ID!
-  url: String!
   ad: Ad @connection(fields: ["adID"])
+  url: String!
+  adID: ID!
+  id: ID!
 }
 
 type Favorite @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd", fields: ["adID"]) {
-  id: ID!
-  adID: ID!
-  userID: ID!
-  ad: Ad @connection(fields: ["adID"])
   user: User @connection(fields: ["userID"])
+  ad: Ad @connection(fields: ["adID"])
+  userID: ID!
+  adID: ID!
+  id: ID!
 }
 
 type Rating @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd", fields: ["adID"]) {
-  id: ID!
-  adID: ID!
-  userID: ID!
-  rating: Int!
-  ad: Ad @connection(fields: ["adID"])
   user: User @connection(fields: ["userID"])
+  ad: Ad @connection(fields: ["adID"])
+  rating: Int!
+  userID: ID!
+  adID: ID!
+  id: ID!
 }
