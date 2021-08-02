@@ -1,0 +1,30 @@
+@import 'mixins';
+@import 'variables';
+
+:host {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  @include card();
+  width: 280px;
+
+  button {
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+    padding: $spacing32px;
+    font-size: 14px;
+  }
+
+  .social {
+    display: flex;
+    justify-content: space-around;
+  }
+}

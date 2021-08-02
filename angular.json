@@ -36,6 +36,9 @@
               "crypto-js/lib-typedarrays",
               "isomorphic-unfetch"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/styles"]
+            },
             "outputPath": "dist/AutoTrader",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -1,0 +1,10 @@
+<div class="container">
+  <button mat-raised-button color="primary" type="button" (click)="federatedLogin()">Login with email</button>
+
+  <p>or a social provider</p>
+
+  <div class="social">
+    <app-social-fab-icon [socialType]="socialType.FACEBOOK" (click)="facebookLogin()"></app-social-fab-icon>
+    <app-social-fab-icon [socialType]="socialType.GOOGLE" (click)="googleLogin()"></app-social-fab-icon>
+  </div>
+</div>

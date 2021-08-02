@@ -63,10 +63,12 @@ import 'zone.js'; // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 
+// https://docs.amplify.aws/start/getting-started/setup/q/integration/angular#create-a-new-angular-app
+// Angular 6+ Support
 (window as any).global = window;
 (window as any).process = {
   env: { DEBUG: undefined },
 };
-
+// Internet Explorer 11 (IE11) Support:
 import 'core-js/es/typed-array';
 import 'core-js/es/object';

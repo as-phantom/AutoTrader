@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth } from 'aws-amplify';
-
-import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import { AuthService } from './modules/core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +9,9 @@ import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 export class AppComponent {
   title = 'AutoTrader';
 
-  ngOnInit() {
-    Auth.currentAuthenticatedUser().then(console.log).catch(console.error);
-  }
+  constructor(private readonly authService: AuthService) {}
 
-  public googleLogin(): void {
-    Auth.federatedSignIn({
-      provider: CognitoHostedUIIdentityProvider.Google,
-    });
-  }
-
-  public facebookLogin(): void {
-    Auth.federatedSignIn({
-      provider: CognitoHostedUIIdentityProvider.Facebook,
-    });
+  public ngOnInit(): void {
+    this.authService.storeCurrentAuthenticatedUser();
   }
 }

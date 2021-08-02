@@ -1,0 +1,52 @@
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  picture: String!
+  ads: [Ad] @connection(keyName: "byUser", fields: ["id"])
+}
+
+enum TransmissionType {
+  MANUAL
+  AUTOMATIC
+}
+
+enum FuelType {
+  DIESEL
+  PETROL
+  LPG
+  CNG
+  ELECTRIC
+}
+
+type Ad @model @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  brand: String!
+  model: String!
+  price: Float!
+  description: String!
+  year: Int!
+  color: String!
+  engine: Float!
+  transmissionType: TransmissionType!
+  fuelType: FuelType!
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
+}
+
+type Picture @model @key(name: "byAd", fields: ["adID"]) {
+  id: ID!
+  url: String!
+  adID: ID!
+  ad: Ad @connection(fields: ["adID"])
+}
+
+type Favorite @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd", fields: ["adID"]) {
+  id: ID!
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  adID: ID!
+  ad: Ad @connection(fields: ["adID"])
+}
