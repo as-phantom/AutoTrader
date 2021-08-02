@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './modules/core/core.module';
 // AWS
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { AmplifyService } from 'aws-amplify-angular';
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
 // Store
@@ -28,6 +29,7 @@ Amplify.configure(aws_exports);
     AmplifyUIAngularModule,
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
+        // we are using the @ngrx/store runtime checks in order to avoid mistakes
         strictStateImmutability: true,
         strictActionImmutability: true,
         strictStateSerializability: true,
@@ -38,7 +40,7 @@ Amplify.configure(aws_exports);
     }),
     EffectsModule.forRoot(effects),
   ],
-  providers: [],
+  providers: [AmplifyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
