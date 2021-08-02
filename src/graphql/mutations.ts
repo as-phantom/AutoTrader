@@ -2,19 +2,51 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -25,19 +57,51 @@ export const createBlog = /* GraphQL */ `
     }
   }
 `;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    updateBlog(input: $input, condition: $condition) {
+    updateUser(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -48,19 +112,51 @@ export const updateBlog = /* GraphQL */ `
     }
   }
 `;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    deleteBlog(input: $input, condition: $condition) {
+    deleteUser(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -71,29 +167,54 @@ export const deleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
-  ) {
-    createPost(input: $input, condition: $condition) {
+export const createAd = /* GraphQL */ `
+  mutation CreateAd($input: CreateAdInput!, $condition: ModelAdConditionInput) {
+    createAd(input: $input, condition: $condition) {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -104,29 +225,54 @@ export const createPost = /* GraphQL */ `
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
-  ) {
-    updatePost(input: $input, condition: $condition) {
+export const updateAd = /* GraphQL */ `
+  mutation UpdateAd($input: UpdateAdInput!, $condition: ModelAdConditionInput) {
+    updateAd(input: $input, condition: $condition) {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -137,29 +283,54 @@ export const updatePost = /* GraphQL */ `
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
-  ) {
-    deletePost(input: $input, condition: $condition) {
+export const deleteAd = /* GraphQL */ `
+  mutation DeleteAd($input: DeleteAdInput!, $condition: ModelAdConditionInput) {
+    deleteAd(input: $input, condition: $condition) {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -170,91 +341,508 @@ export const deletePost = /* GraphQL */ `
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createPicture = /* GraphQL */ `
+  mutation CreatePicture(
+    $input: CreatePictureInput!
+    $condition: ModelPictureConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createPicture(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
       createdAt
       updatedAt
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updatePicture = /* GraphQL */ `
+  mutation UpdatePicture(
+    $input: UpdatePictureInput!
+    $condition: ModelPictureConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updatePicture(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deletePicture = /* GraphQL */ `
+  mutation DeletePicture(
+    $input: DeletePictureInput!
+    $condition: ModelPictureConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deletePicture(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createFavorite = /* GraphQL */ `
+  mutation CreateFavorite(
+    $input: CreateFavoriteInput!
+    $condition: ModelFavoriteConditionInput
+  ) {
+    createFavorite(input: $input, condition: $condition) {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateFavorite = /* GraphQL */ `
+  mutation UpdateFavorite(
+    $input: UpdateFavoriteInput!
+    $condition: ModelFavoriteConditionInput
+  ) {
+    updateFavorite(input: $input, condition: $condition) {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteFavorite = /* GraphQL */ `
+  mutation DeleteFavorite(
+    $input: DeleteFavoriteInput!
+    $condition: ModelFavoriteConditionInput
+  ) {
+    deleteFavorite(input: $input, condition: $condition) {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createRating = /* GraphQL */ `
+  mutation CreateRating(
+    $input: CreateRatingInput!
+    $condition: ModelRatingConditionInput
+  ) {
+    createRating(input: $input, condition: $condition) {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateRating = /* GraphQL */ `
+  mutation UpdateRating(
+    $input: UpdateRatingInput!
+    $condition: ModelRatingConditionInput
+  ) {
+    updateRating(input: $input, condition: $condition) {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteRating = /* GraphQL */ `
+  mutation DeleteRating(
+    $input: DeleteRatingInput!
+    $condition: ModelRatingConditionInput
+  ) {
+    deleteRating(input: $input, condition: $condition) {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

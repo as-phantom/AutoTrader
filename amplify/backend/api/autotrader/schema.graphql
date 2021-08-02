@@ -1,20 +1,64 @@
-type Blog @model {
-  id: ID!
-  name: String!
-  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+enum TransmissionType {
+  AUTOMATIC
+  MANUAL
 }
 
-type Post @model @key(name: "byBlog", fields: ["blogID"]) {
-  id: ID!
-  title: String!
-  blogID: ID!
-  blog: Blog @connection(fields: ["blogID"])
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+enum FuelType {
+  ELECTRIC
+  PETROL
+  DIESEL
+  CNG
+  LPG
 }
 
-type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+type User @model {
   id: ID!
-  postID: ID!
-  post: Post @connection(fields: ["postID"])
-  content: String!
+  email: String!
+  picture: String!
+  lastName: String!
+  firstName: String!
+  ads: [Ad] @connection(keyName: "byUser", fields: ["id"])
+  ratings: [Rating] @connection(keyName: "byUser", fields: ["id"])
+  favorites: [Favorite] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type Ad @model @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  year: Int!
+  userID: ID!
+  price: Float!
+  brand: String!
+  model: String!
+  color: String!
+  engine: Float!
+  fuelType: FuelType!
+  description: String!
+  transmissionType: TransmissionType!
+  user: User @connection(fields: ["userID"])
+  ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
+  pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
+}
+
+type Picture @model @key(name: "byAd", fields: ["adID"]) {
+  id: ID!
+  adID: ID!
+  url: String!
+  ad: Ad @connection(fields: ["adID"])
+}
+
+type Favorite @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd", fields: ["adID"]) {
+  id: ID!
+  adID: ID!
+  userID: ID!
+  ad: Ad @connection(fields: ["adID"])
+  user: User @connection(fields: ["userID"])
+}
+
+type Rating @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd", fields: ["adID"]) {
+  id: ID!
+  adID: ID!
+  userID: ID!
+  rating: Int!
+  ad: Ad @connection(fields: ["adID"])
+  user: User @connection(fields: ["userID"])
 }

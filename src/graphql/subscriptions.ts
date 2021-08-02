@@ -2,16 +2,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -22,16 +54,48 @@ export const onCreateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -42,16 +106,48 @@ export const onUpdateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -62,26 +158,54 @@ export const onDeleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onCreateAd = /* GraphQL */ `
+  subscription OnCreateAd {
+    onCreateAd {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -92,26 +216,54 @@ export const onCreatePost = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdateAd = /* GraphQL */ `
+  subscription OnUpdateAd {
+    onUpdateAd {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -122,26 +274,54 @@ export const onUpdatePost = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeleteAd = /* GraphQL */ `
+  subscription OnDeleteAd {
+    onDeleteAd {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -152,82 +332,481 @@ export const onDeletePost = /* GraphQL */ `
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreatePicture = /* GraphQL */ `
+  subscription OnCreatePicture {
+    onCreatePicture {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdatePicture = /* GraphQL */ `
+  subscription OnUpdatePicture {
+    onUpdatePicture {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeletePicture = /* GraphQL */ `
+  subscription OnDeletePicture {
+    onDeletePicture {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateFavorite = /* GraphQL */ `
+  subscription OnCreateFavorite {
+    onCreateFavorite {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateFavorite = /* GraphQL */ `
+  subscription OnUpdateFavorite {
+    onUpdateFavorite {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteFavorite = /* GraphQL */ `
+  subscription OnDeleteFavorite {
+    onDeleteFavorite {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateRating = /* GraphQL */ `
+  subscription OnCreateRating {
+    onCreateRating {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateRating = /* GraphQL */ `
+  subscription OnUpdateRating {
+    onUpdateRating {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteRating = /* GraphQL */ `
+  subscription OnDeleteRating {
+    onDeleteRating {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

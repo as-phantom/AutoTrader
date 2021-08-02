@@ -2,16 +2,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
-      name
-      posts {
+      email
+      picture
+      lastName
+      firstName
+      ads {
         items {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      ratings {
+        items {
+          id
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      favorites {
+        items {
+          id
+          adID
+          userID
           createdAt
           updatedAt
         }
@@ -22,17 +54,26 @@ export const getBlog = /* GraphQL */ `
     }
   }
 `;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
@@ -42,26 +83,54 @@ export const listBlogs = /* GraphQL */ `
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getAd = /* GraphQL */ `
+  query GetAd($id: ID!) {
+    getAd(id: $id) {
       id
-      title
-      blogID
-      blog {
+      year
+      userID
+      price
+      brand
+      model
+      color
+      engine
+      fuelType
+      description
+      transmissionType
+      user {
         id
-        name
-        posts {
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      ratings {
         items {
           id
-          postID
-          content
+          adID
+          userID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      pictures {
+        items {
+          id
+          adID
+          url
           createdAt
           updatedAt
         }
@@ -72,24 +141,34 @@ export const getPost = /* GraphQL */ `
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+export const listAds = /* GraphQL */ `
+  query ListAds($filter: ModelAdFilterInput, $limit: Int, $nextToken: String) {
+    listAds(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
@@ -99,51 +178,277 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getPicture = /* GraphQL */ `
+  query GetPicture($id: ID!) {
+    getPicture(id: $id) {
       id
-      postID
-      post {
+      adID
+      url
+      ad {
         id
-        title
-        blogID
-        blog {
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
           id
-          name
+          email
+          picture
+          lastName
+          firstName
           createdAt
           updatedAt
         }
-        comments {
+        ratings {
+          nextToken
+        }
+        pictures {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
       createdAt
       updatedAt
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listPictures = /* GraphQL */ `
+  query ListPictures(
+    $filter: ModelPictureFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPictures(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        postID
-        post {
+        adID
+        url
+        ad {
           id
-          title
-          blogID
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
           createdAt
           updatedAt
         }
-        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getFavorite = /* GraphQL */ `
+  query GetFavorite($id: ID!) {
+    getFavorite(id: $id) {
+      id
+      adID
+      userID
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listFavorites = /* GraphQL */ `
+  query ListFavorites(
+    $filter: ModelFavoriteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFavorites(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        adID
+        userID
+        ad {
+          id
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getRating = /* GraphQL */ `
+  query GetRating($id: ID!) {
+    getRating(id: $id) {
+      id
+      adID
+      userID
+      rating
+      ad {
+        id
+        year
+        userID
+        price
+        brand
+        model
+        color
+        engine
+        fuelType
+        description
+        transmissionType
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
+        ratings {
+          nextToken
+        }
+        pictures {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      user {
+        id
+        email
+        picture
+        lastName
+        firstName
+        ads {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        favorites {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listRatings = /* GraphQL */ `
+  query ListRatings(
+    $filter: ModelRatingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listRatings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        adID
+        userID
+        rating
+        ad {
+          id
+          year
+          userID
+          price
+          brand
+          model
+          color
+          engine
+          fuelType
+          description
+          transmissionType
+          createdAt
+          updatedAt
+        }
+        user {
+          id
+          email
+          picture
+          lastName
+          firstName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
