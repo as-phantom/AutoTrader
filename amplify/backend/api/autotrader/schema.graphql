@@ -1,12 +1,3 @@
-type User @model {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  email: String!
-  picture: String!
-  ads: [Ad] @connection(keyName: "byUser", fields: ["id"])
-}
-
 enum TransmissionType {
   MANUAL
   AUTOMATIC
@@ -18,6 +9,17 @@ enum FuelType {
   LPG
   CNG
   ELECTRIC
+}
+
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  picture: String!
+  ads: [Ad] @connection(keyName: "byUser", fields: ["id"])
+  ratings: [Rating] @connection(keyName: "byUser", fields: ["id"])
+  favorites: [Favorite] @connection(keyName: "byUser", fields: ["id"])
 }
 
 type Ad @model @key(name: "byUser", fields: ["userID"]) {
@@ -34,6 +36,7 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) {
   userID: ID!
   user: User @connection(fields: ["userID"])
   pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
+  ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
 }
 
 type Picture @model @key(name: "byAd", fields: ["adID"]) {
@@ -49,4 +52,13 @@ type Favorite @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd",
   user: User @connection(fields: ["userID"])
   adID: ID!
   ad: Ad @connection(fields: ["adID"])
+}
+
+type Rating @model @key(name: "byUser", fields: ["userID"]) @key(name: "byAd", fields: ["adID"]) {
+  id: ID!
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  adID: ID!
+  ad: Ad @connection(fields: ["adID"])
+  rating: Int!
 }
