@@ -12,7 +12,7 @@ export class AuthService {
     try {
       const currentAuthenticatedUser: any = await Auth.currentAuthenticatedUser();
 
-      // Need to deep copy the object because of @ngrx/store freeze error
+      // Need to deep copy the object because of @ngrx/store freeze error 
       this.authFacade.setCurrentAuthenticatedUser(JSON.parse(JSON.stringify(currentAuthenticatedUser)));
     } catch (e) {
       this.authFacade.setCurrentAuthenticatedUser(undefined);

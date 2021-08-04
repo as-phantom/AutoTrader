@@ -19,7 +19,7 @@ export class StorageService {
 
     try {
       await Storage.put(file.name, file, {
-        contentType: file.type, // contentType is optional
+        contentType: file.type, // ContentType is optional
       });
     } catch (error) {
       console.log('Error uploading file: ', error);

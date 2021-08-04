@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private readonly authService: AuthService) {}
 
   public ngOnInit(): void {
+    // Store the cognito user
     this.authService.storeCurrentAuthenticatedUser();
   }
 }

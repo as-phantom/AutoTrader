@@ -12,32 +12,32 @@ export class AuthGuard implements CanActivate {
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.authFacade.currentAuthenticatedUser$.pipe(
       map((currentAuthenticatedUser) => {
-        // user is not logged in
+        // User is not logged in
         if (!currentAuthenticatedUser) {
-          // tries to access a protected route
+          // Tries to access a protected route
           if (!state.url.startsWith('/auth')) {
             this.authFacade.setRedirectUrl(state.url);
 
-            // navigate to /auth
+            // Navigate to /auth
             this.router.navigate(['/auth']);
 
-            // dont allow access
+            // Dont allow access
             return false;
           } else {
-            // tries to access /auth
+            // Tries to access /auth
             return true;
           }
         } else {
-          // user is logged in
+          // User is logged in
 
           if (state.url.startsWith('/auth')) {
-            // redirect back the to route the user came from
+            // Redirect back the to route the user came from
             this.router.navigate([this.router.url]);
 
-            // if user tries to access /auth - dont allow it
+            // If user tries to access /auth - dont allow it
             return false;
           } else {
-            // allow access to other protected routes
+            // Allow access to other protected routes
             return true;
           }
         }
