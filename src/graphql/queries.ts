@@ -6,23 +6,11 @@ export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
-      email
-      picture
-      lastName
-      firstName
-      ads {
+      favorites {
         items {
           id
-          year
           userID
-          price
-          brand
-          model
-          color
-          engine
-          fuelType
-          description
-          transmissionType
+          adID
           createdAt
           updatedAt
         }
@@ -31,24 +19,38 @@ export const getUser = /* GraphQL */ `
       ratings {
         items {
           id
-          adID
           userID
+          adID
           rating
           createdAt
           updatedAt
         }
         nextToken
       }
-      favorites {
+      ads {
         items {
           id
-          adID
+          brand
+          model
+          color
+          engine
+          price
           userID
+          year
+          transmissionType
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
         nextToken
       }
+      firstName
+      lastName
+      picture
+      email
+      cognitoID
       createdAt
       updatedAt
     }
@@ -63,19 +65,20 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        email
-        picture
-        lastName
-        firstName
-        ads {
+        favorites {
           nextToken
         }
         ratings {
           nextToken
         }
-        favorites {
+        ads {
           nextToken
         }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
         createdAt
         updatedAt
       }
@@ -87,45 +90,32 @@ export const getAd = /* GraphQL */ `
   query GetAd($id: ID!) {
     getAd(id: $id) {
       id
-      year
-      userID
-      price
       brand
       model
       color
       engine
-      fuelType
-      description
-      transmissionType
+      price
+      userID
       user {
         id
-        email
-        picture
-        lastName
-        firstName
-        ads {
+        favorites {
           nextToken
         }
         ratings {
           nextToken
         }
-        favorites {
+        ads {
           nextToken
         }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
         createdAt
         updatedAt
       }
-      ratings {
-        items {
-          id
-          adID
-          userID
-          rating
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      year
       pictures {
         items {
           id
@@ -136,6 +126,21 @@ export const getAd = /* GraphQL */ `
         }
         nextToken
       }
+      ratings {
+        items {
+          id
+          userID
+          adID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      transmissionType
+      description
+      fuelType
+      phone
       createdAt
       updatedAt
     }
@@ -146,31 +151,33 @@ export const listAds = /* GraphQL */ `
     listAds(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
+        }
+        year
+        pictures {
+          nextToken
         }
         ratings {
           nextToken
         }
-        pictures {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
@@ -183,37 +190,39 @@ export const getPicture = /* GraphQL */ `
     getPicture(id: $id) {
       id
       adID
-      url
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
+        }
+        year
+        pictures {
+          nextToken
         }
         ratings {
           nextToken
         }
-        pictures {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      url
       createdAt
       updatedAt
     }
@@ -229,22 +238,23 @@ export const listPictures = /* GraphQL */ `
       items {
         id
         adID
-        url
         ad {
           id
-          year
-          userID
-          price
           brand
           model
           color
           engine
-          fuelType
-          description
+          price
+          userID
+          year
           transmissionType
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
+        url
         createdAt
         updatedAt
       }
@@ -256,53 +266,56 @@ export const getFavorite = /* GraphQL */ `
   query GetFavorite($id: ID!) {
     getFavorite(id: $id) {
       id
-      adID
       userID
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
@@ -320,29 +333,31 @@ export const listFavorites = /* GraphQL */ `
     listFavorites(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        adID
         userID
+        user {
+          id
+          firstName
+          lastName
+          picture
+          email
+          cognitoID
+          createdAt
+          updatedAt
+        }
+        adID
         ad {
           id
-          year
-          userID
-          price
           brand
           model
           color
           engine
-          fuelType
-          description
+          price
+          userID
+          year
           transmissionType
-          createdAt
-          updatedAt
-        }
-        user {
-          id
-          email
-          picture
-          lastName
-          firstName
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
@@ -357,57 +372,60 @@ export const getRating = /* GraphQL */ `
   query GetRating($id: ID!) {
     getRating(id: $id) {
       id
-      adID
       userID
-      rating
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      rating
       createdAt
       updatedAt
     }
@@ -422,33 +440,35 @@ export const listRatings = /* GraphQL */ `
     listRatings(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        adID
         userID
-        rating
+        user {
+          id
+          firstName
+          lastName
+          picture
+          email
+          cognitoID
+          createdAt
+          updatedAt
+        }
+        adID
         ad {
           id
-          year
-          userID
-          price
           brand
           model
           color
           engine
-          fuelType
-          description
+          price
+          userID
+          year
           transmissionType
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
-        user {
-          id
-          email
-          picture
-          lastName
-          firstName
-          createdAt
-          updatedAt
-        }
+        rating
         createdAt
         updatedAt
       }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 3000",
+    "server": "ng serve --port 3000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -30,6 +30,7 @@
     "@ngrx/store": "^12.3.0",
     "aws-amplify": "^4.2.2",
     "aws-amplify-angular": "^6.0.8",
+    "graphql-tag": "^2.12.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

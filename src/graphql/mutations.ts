@@ -9,23 +9,11 @@ export const createUser = /* GraphQL */ `
   ) {
     createUser(input: $input, condition: $condition) {
       id
-      email
-      picture
-      lastName
-      firstName
-      ads {
+      favorites {
         items {
           id
-          year
           userID
-          price
-          brand
-          model
-          color
-          engine
-          fuelType
-          description
-          transmissionType
+          adID
           createdAt
           updatedAt
         }
@@ -34,24 +22,38 @@ export const createUser = /* GraphQL */ `
       ratings {
         items {
           id
-          adID
           userID
+          adID
           rating
           createdAt
           updatedAt
         }
         nextToken
       }
-      favorites {
+      ads {
         items {
           id
-          adID
+          brand
+          model
+          color
+          engine
+          price
           userID
+          year
+          transmissionType
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
         nextToken
       }
+      firstName
+      lastName
+      picture
+      email
+      cognitoID
       createdAt
       updatedAt
     }
@@ -64,23 +66,11 @@ export const updateUser = /* GraphQL */ `
   ) {
     updateUser(input: $input, condition: $condition) {
       id
-      email
-      picture
-      lastName
-      firstName
-      ads {
+      favorites {
         items {
           id
-          year
           userID
-          price
-          brand
-          model
-          color
-          engine
-          fuelType
-          description
-          transmissionType
+          adID
           createdAt
           updatedAt
         }
@@ -89,24 +79,38 @@ export const updateUser = /* GraphQL */ `
       ratings {
         items {
           id
-          adID
           userID
+          adID
           rating
           createdAt
           updatedAt
         }
         nextToken
       }
-      favorites {
+      ads {
         items {
           id
-          adID
+          brand
+          model
+          color
+          engine
+          price
           userID
+          year
+          transmissionType
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
         nextToken
       }
+      firstName
+      lastName
+      picture
+      email
+      cognitoID
       createdAt
       updatedAt
     }
@@ -119,23 +123,11 @@ export const deleteUser = /* GraphQL */ `
   ) {
     deleteUser(input: $input, condition: $condition) {
       id
-      email
-      picture
-      lastName
-      firstName
-      ads {
+      favorites {
         items {
           id
-          year
           userID
-          price
-          brand
-          model
-          color
-          engine
-          fuelType
-          description
-          transmissionType
+          adID
           createdAt
           updatedAt
         }
@@ -144,24 +136,38 @@ export const deleteUser = /* GraphQL */ `
       ratings {
         items {
           id
-          adID
           userID
+          adID
           rating
           createdAt
           updatedAt
         }
         nextToken
       }
-      favorites {
+      ads {
         items {
           id
-          adID
+          brand
+          model
+          color
+          engine
+          price
           userID
+          year
+          transmissionType
+          description
+          fuelType
+          phone
           createdAt
           updatedAt
         }
         nextToken
       }
+      firstName
+      lastName
+      picture
+      email
+      cognitoID
       createdAt
       updatedAt
     }
@@ -171,45 +177,32 @@ export const createAd = /* GraphQL */ `
   mutation CreateAd($input: CreateAdInput!, $condition: ModelAdConditionInput) {
     createAd(input: $input, condition: $condition) {
       id
-      year
-      userID
-      price
       brand
       model
       color
       engine
-      fuelType
-      description
-      transmissionType
+      price
+      userID
       user {
         id
-        email
-        picture
-        lastName
-        firstName
-        ads {
+        favorites {
           nextToken
         }
         ratings {
           nextToken
         }
-        favorites {
+        ads {
           nextToken
         }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
         createdAt
         updatedAt
       }
-      ratings {
-        items {
-          id
-          adID
-          userID
-          rating
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      year
       pictures {
         items {
           id
@@ -220,6 +213,21 @@ export const createAd = /* GraphQL */ `
         }
         nextToken
       }
+      ratings {
+        items {
+          id
+          userID
+          adID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      transmissionType
+      description
+      fuelType
+      phone
       createdAt
       updatedAt
     }
@@ -229,45 +237,32 @@ export const updateAd = /* GraphQL */ `
   mutation UpdateAd($input: UpdateAdInput!, $condition: ModelAdConditionInput) {
     updateAd(input: $input, condition: $condition) {
       id
-      year
-      userID
-      price
       brand
       model
       color
       engine
-      fuelType
-      description
-      transmissionType
+      price
+      userID
       user {
         id
-        email
-        picture
-        lastName
-        firstName
-        ads {
+        favorites {
           nextToken
         }
         ratings {
           nextToken
         }
-        favorites {
+        ads {
           nextToken
         }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
         createdAt
         updatedAt
       }
-      ratings {
-        items {
-          id
-          adID
-          userID
-          rating
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      year
       pictures {
         items {
           id
@@ -278,6 +273,21 @@ export const updateAd = /* GraphQL */ `
         }
         nextToken
       }
+      ratings {
+        items {
+          id
+          userID
+          adID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      transmissionType
+      description
+      fuelType
+      phone
       createdAt
       updatedAt
     }
@@ -287,45 +297,32 @@ export const deleteAd = /* GraphQL */ `
   mutation DeleteAd($input: DeleteAdInput!, $condition: ModelAdConditionInput) {
     deleteAd(input: $input, condition: $condition) {
       id
-      year
-      userID
-      price
       brand
       model
       color
       engine
-      fuelType
-      description
-      transmissionType
+      price
+      userID
       user {
         id
-        email
-        picture
-        lastName
-        firstName
-        ads {
+        favorites {
           nextToken
         }
         ratings {
           nextToken
         }
-        favorites {
+        ads {
           nextToken
         }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
         createdAt
         updatedAt
       }
-      ratings {
-        items {
-          id
-          adID
-          userID
-          rating
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      year
       pictures {
         items {
           id
@@ -336,6 +333,21 @@ export const deleteAd = /* GraphQL */ `
         }
         nextToken
       }
+      ratings {
+        items {
+          id
+          userID
+          adID
+          rating
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      transmissionType
+      description
+      fuelType
+      phone
       createdAt
       updatedAt
     }
@@ -349,37 +361,39 @@ export const createPicture = /* GraphQL */ `
     createPicture(input: $input, condition: $condition) {
       id
       adID
-      url
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
+        }
+        year
+        pictures {
+          nextToken
         }
         ratings {
           nextToken
         }
-        pictures {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      url
       createdAt
       updatedAt
     }
@@ -393,37 +407,39 @@ export const updatePicture = /* GraphQL */ `
     updatePicture(input: $input, condition: $condition) {
       id
       adID
-      url
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
+        }
+        year
+        pictures {
+          nextToken
         }
         ratings {
           nextToken
         }
-        pictures {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      url
       createdAt
       updatedAt
     }
@@ -437,37 +453,39 @@ export const deletePicture = /* GraphQL */ `
     deletePicture(input: $input, condition: $condition) {
       id
       adID
-      url
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
+        }
+        year
+        pictures {
+          nextToken
         }
         ratings {
           nextToken
         }
-        pictures {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      url
       createdAt
       updatedAt
     }
@@ -480,53 +498,56 @@ export const createFavorite = /* GraphQL */ `
   ) {
     createFavorite(input: $input, condition: $condition) {
       id
-      adID
       userID
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
@@ -542,53 +563,56 @@ export const updateFavorite = /* GraphQL */ `
   ) {
     updateFavorite(input: $input, condition: $condition) {
       id
-      adID
       userID
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
@@ -604,53 +628,56 @@ export const deleteFavorite = /* GraphQL */ `
   ) {
     deleteFavorite(input: $input, condition: $condition) {
       id
-      adID
       userID
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
@@ -666,57 +693,60 @@ export const createRating = /* GraphQL */ `
   ) {
     createRating(input: $input, condition: $condition) {
       id
-      adID
       userID
-      rating
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      rating
       createdAt
       updatedAt
     }
@@ -729,57 +759,60 @@ export const updateRating = /* GraphQL */ `
   ) {
     updateRating(input: $input, condition: $condition) {
       id
-      adID
       userID
-      rating
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      rating
       createdAt
       updatedAt
     }
@@ -792,57 +825,60 @@ export const deleteRating = /* GraphQL */ `
   ) {
     deleteRating(input: $input, condition: $condition) {
       id
-      adID
       userID
-      rating
+      user {
+        id
+        favorites {
+          nextToken
+        }
+        ratings {
+          nextToken
+        }
+        ads {
+          nextToken
+        }
+        firstName
+        lastName
+        picture
+        email
+        cognitoID
+        createdAt
+        updatedAt
+      }
+      adID
       ad {
         id
-        year
-        userID
-        price
         brand
         model
         color
         engine
-        fuelType
-        description
-        transmissionType
+        price
+        userID
         user {
           id
-          email
-          picture
-          lastName
           firstName
+          lastName
+          picture
+          email
+          cognitoID
           createdAt
           updatedAt
         }
-        ratings {
-          nextToken
-        }
+        year
         pictures {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      user {
-        id
-        email
-        picture
-        lastName
-        firstName
-        ads {
-          nextToken
-        }
         ratings {
           nextToken
         }
-        favorites {
-          nextToken
-        }
+        transmissionType
+        description
+        fuelType
+        phone
         createdAt
         updatedAt
       }
+      rating
       createdAt
       updatedAt
     }
