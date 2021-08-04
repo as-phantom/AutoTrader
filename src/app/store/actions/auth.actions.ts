@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { User } from '../../../API';
 
 export const SET_CURRENT_AUTHENTICATED_USER = '[AUTH] SET_CURRENT_AUTHENTICATED_USER';
 
@@ -13,3 +14,6 @@ export const setRedirectUrlAction = createAction(
   SET_REDIRECT_URL,
   props<{ payload: { redirectUrl: string | undefined } }>()
 );
+
+export const SET_USER = '[AUTH] SET_USER';
+export const setUserAction = createAction(SET_USER, props<{ payload: { user: User } }>());

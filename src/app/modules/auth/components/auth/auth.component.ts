@@ -11,7 +11,7 @@ import { SocialType } from '../../../shared/enums/socialType.enum';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+  styleUrls: ['./auth.component.sass'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];

@@ -13,3 +13,4 @@ const getAuthState = (state: State) => state.auth;
 
 export const getCurrentAuthenticatedUser = createSelector(getAuthState, fromAuth.getCurrentAuthenticatedUser);
 export const getRedirectUrl = createSelector(getAuthState, fromAuth.getRedirectUrl);
+export const getUser = createSelector(getAuthState, fromAuth.getUser);

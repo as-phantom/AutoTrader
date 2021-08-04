@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { User } from '../../../API';
 import * as AuthActions from '../actions/auth.actions';
 import * as fromRoot from '../reducers';
 
@@ -9,6 +10,7 @@ import * as fromRoot from '../reducers';
 export class AuthFacade {
   public readonly currentAuthenticatedUser$ = this.store.select(fromRoot.getCurrentAuthenticatedUser);
   public readonly redirectUrl$ = this.store.select(fromRoot.getRedirectUrl);
+  public readonly user$ = this.store.select(fromRoot.getUser);
 
   constructor(private readonly store: Store<fromRoot.State>) {}
 
@@ -18,5 +20,9 @@ export class AuthFacade {
 
   public setRedirectUrl(redirectUrl: string | undefined): void {
     this.store.dispatch(AuthActions.setRedirectUrlAction({ payload: { redirectUrl } }));
+  }
+
+  public setUser(user: User): void {
+    this.store.dispatch(AuthActions.setUserAction({ payload: { user } }));
   }
 }

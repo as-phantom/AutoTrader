@@ -1,0 +1,71 @@
+header
+  display: flex
+  justify-content: space-between
+  padding: 8px 16px
+  min-height: 42px
+
+.profile
+  display: flex
+  align-items: center
+  cursor: pointer
+  position: relative
+
+  span
+    font-size: 14px
+    font-weight: bold
+    padding-right: 12px
+
+  img
+    border-radius: 50%
+    width: 42px
+    height: 42px
+    object-fit: contain
+
+  .material-icons
+    font-size: 20px
+    padding-left: 8px
+
+  .dropdown-menu
+    position: absolute
+    top: 42px
+    left: 0
+    right: 0
+    padding-top: 12px
+    display: none
+
+    .dropdown-menu-content
+      box-shadow: 0 2px 8px 0 rgb(0 0 0 / 15%)
+      border-radius: 8px
+
+      .dropdown-menu-item
+        font-size: 14px
+        padding: 0 12px
+        line-height: 32px
+        user-select: none
+
+        &:first-child
+          padding-top: 4px
+          border-radius: 8px 8px 0 0
+
+        &:last-child
+          padding-bottom: 4px
+          border-radius: 0 0 8px 8px
+
+  &:focus,
+  &:focus-within
+
+    .dropdown-menu
+      display: block
+
+.sign-in
+  display: flex
+  flex-direction: column
+  align-items: center
+  cursor: pointer
+  user-select: none
+
+  .material-icons
+    font-size: 20px
+
+  span
+    font-size: 14px

@@ -1,0 +1,14 @@
+<input
+  type="file"
+  (dragenter)="onDragEnter()"
+  (dragleave)="onDragLeave()"
+  (drop)="onDrop()"
+  (input)="onInput($event)"
+/>
+
+<div class="image-upload" [style.background-image]="backgroundImageUrl" [class.file-dragged-over]="fileDraggedOver">
+  <div class="drop-here">
+    <i class="material-icons material-icons-outlined">image</i>
+    <span>Click to upload an image or drag and drop it here</span>
+  </div>
+</div>

@@ -1,1 +1,25 @@
-<p>header works!</p>
+<header>
+  <img src="assets/svg/AutoTraderLogo.svg" alt="AutoTrader Logo" />
+
+  <ng-container *ngIf="user$ | async as user; else guestTemplate">
+    <div class="profile" tabindex="0">
+      <span>{{ getUserName(user) }}</span>
+      <img src="{{ user.picture }}" alt="Profile image" />
+      <i class="material-icons">keyboard_arrow_down</i>
+
+      <div class="dropdown-menu">
+        <div class="dropdown-menu-content">
+          <div class="dropdown-menu-item" tabindex="1" mat-ripple routerLink="/profile">Profile</div>
+          <div class="dropdown-menu-item" tabindex="2" mat-ripple (click)="logout()">Logout</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #guestTemplate>
+    <div class="sign-in" routerLink="/auth">
+      <i class="material-icons material-icons-outlined">account_circle</i>
+      <span>Sign In</span>
+    </div>
+  </ng-template>
+</header>
