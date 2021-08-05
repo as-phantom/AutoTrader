@@ -9,7 +9,6 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
-    canActivate: [IsAuthGuard],
   },
   {
     path: 'auth',
