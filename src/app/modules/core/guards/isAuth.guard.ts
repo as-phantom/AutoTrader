@@ -16,6 +16,7 @@ export class IsAuthGuard implements CanActivate {
         if (currentAuthenticatedUser) {
           return true;
         } else {
+          this.authFacade.setRedirectUrl(state.url)
           this.router.navigate(['/auth']);
           return false;
         }

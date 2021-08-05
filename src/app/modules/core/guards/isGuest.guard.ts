@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthFacade } from '../../../store/facades/auth.facade';
 
@@ -9,12 +9,11 @@ import { AuthFacade } from '../../../store/facades/auth.facade';
 export class IsGuestGuard implements CanActivate {
   constructor(private readonly router: Router, private readonly authFacade: AuthFacade) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate() {
     return this.authFacade.currentAuthenticatedUser$.pipe(
       map((currentAuthenticatedUser) => {
         // User is guest
         if (!currentAuthenticatedUser) {
-          this.authFacade.setRedirectUrl(state.url);
           return true;
         } else {
           // If user is authenticated reload the page to indicate that the app is not frozen
