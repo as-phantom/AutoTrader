@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
+    loadChildren: () => import('./modules/core/core.module').then((m) => m.CoreModule),
     canActivate: [AuthGuard],
   },
   {
