@@ -6,7 +6,7 @@ import { SocialType } from '../../enums/socialType.enum';
 @Component({
   selector: 'app-social-fab-icon',
   templateUrl: './social-fab-icon.component.html',
-  styleUrls: ['./social-fab-icon.component.scss'],
+  styleUrls: ['./social-fab-icon.component.sass'],
 })
 export class SocialFabIconComponent implements OnInit {
   @Input() public socialType: SocialType | undefined;

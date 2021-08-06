@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SocialFabIconComponent } from './components/social-fab-icon/social-fab-icon.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-const COMPONENTS = [SocialFabIconComponent];
+const COMPONENTS = [SocialFabIconComponent, LoadingComponent];
 
 @NgModule({
-  imports: [CommonModule, FontAwesomeModule, MatRippleModule],
+  imports: [CommonModule, FontAwesomeModule, MatRippleModule, MatProgressSpinnerModule],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
 })

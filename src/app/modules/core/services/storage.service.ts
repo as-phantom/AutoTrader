@@ -9,17 +9,10 @@ import aws_exports from 'src/aws-exports';
 export class StorageService {
   constructor() {}
 
-  public async uploadFileToS3(file: File): Promise<string | undefined> {
-    let url: string | undefined;
-
-    try {
-      const response = await Storage.put(file.name, file, { contentType: file.type }); // Content type is optional
-      const { key } = response as Object & { key: string };
-
-      url = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${key}`;
-    } catch (error) {
-      console.error('Error uploading file: ', error);
-    }
+  public async uploadFileToS3(file: File): Promise<string> {
+    const response = await Storage.put(file.name, file, { contentType: file.type }); // Content type is optional
+    const { key } = response as Object & { key: string };
+    const url = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${key}`;
 
     return url;
   }

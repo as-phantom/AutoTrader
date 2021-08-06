@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MainRoutingModule } from './main-routing.module';
-import { FindVehicleComponent } from './components/find-vehicle/find-vehicle.component';
+import { FindAdComponent } from './components/find-ad/find-ad.component';
 import { LatestOffersComponent } from './components/latest-offers/latest-offers.component';
 import { PlaceAdComponent } from './components/place-ad/place-ad.component';
+import { HomeComponent } from './components/home/home.component';
+
+const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, PlaceAdComponent];
 
 @NgModule({
-  declarations: [FindVehicleComponent, LatestOffersComponent, PlaceAdComponent],
+  declarations: [...COMPONENTS],
   imports: [CommonModule, MainRoutingModule],
 })
 export class MainModule {}

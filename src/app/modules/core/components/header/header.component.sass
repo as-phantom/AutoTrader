@@ -1,8 +1,19 @@
+@import 'mixins'
+@import 'variables'
+
 header
   display: flex
   justify-content: space-between
   padding: 8px 16px
   min-height: 42px
+  position: sticky
+  top: 0
+  z-index: 2
+  background: $white
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%)
+
+  .logo
+    cursor: pointer
 
 .profile
   display: flex
@@ -12,14 +23,14 @@ header
 
   span
     font-size: 14px
-    font-weight: bold
+    font-weight: 500
     padding-right: 12px
 
   img
     border-radius: 50%
     width: 42px
     height: 42px
-    object-fit: contain
+    object-fit: cover
 
   .material-icons
     font-size: 20px
@@ -34,8 +45,7 @@ header
     display: none
 
     .dropdown-menu-content
-      box-shadow: 0 2px 8px 0 rgb(0 0 0 / 15%)
-      border-radius: 8px
+      @include card()
 
       .dropdown-menu-item
         font-size: 14px
@@ -45,15 +55,14 @@ header
 
         &:first-child
           padding-top: 4px
-          border-radius: 8px 8px 0 0
+          border-radius: $cardBorderRadius $cardBorderRadius 0 0
 
         &:last-child
           padding-bottom: 4px
-          border-radius: 0 0 8px 8px
+          border-radius: 0 0 $cardBorderRadius $cardBorderRadius
 
   &:focus,
   &:focus-within
-
     .dropdown-menu
       display: block
 

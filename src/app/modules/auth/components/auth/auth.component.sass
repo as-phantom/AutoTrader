@@ -1,25 +1,32 @@
-@import 'mixins'
-@import 'variables'
+@use '../../../../../assets/styles/mixins.sass'
+@use '../../../../../assets/styles/variables.sass'
 
 :host
   width: 100vw
   height: 100vh
   display: flex
+  font-size: 1rem
   align-items: center
   justify-content: center
 
 .container
-  @include card()
+  @include mixins.card()
   width: 280px
 
   button
     width: 100%
+    font-weight: bold
+
+    &:hover
+      background: transparent
+      color: #4267B2
+      transition: 0.3s
 
   p
     text-align: center
-    padding: $spacing32px
-    font-size: 14px
+    padding: variables.$spacing32px
 
   .social
     display: flex
+    height: 5rem
     justify-content: space-around

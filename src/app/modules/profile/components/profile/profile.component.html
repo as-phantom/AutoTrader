@@ -1,10 +1,29 @@
 <ng-container *ngIf="user$ | async as user">
-  <form [formGroup]="formGroup">
-    <app-image-upload [image]="user.picture" (imageUploaded)="onImageUploaded($event, user)"></app-image-upload>
+  <ng-container *ngIf="!loading; else loadingTemplate">
+    <form [formGroup]="formGroup">
+      <app-image-upload></app-image-upload>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Favorite food</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi" />
-    </mat-form-field>
-  </form>
+      <div class="fields">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" name="firstName" formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" name="lastName" formControlName="lastName" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid" (click)="onSave(user)">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <app-loading></app-loading>
+  </ng-template>
 </ng-container>

@@ -1,52 +1,65 @@
-@import 'variables'
+@use '../../../../../assets/styles/mixins.sass' 
+@use '../../../../../assets/styles/variables.sass'
+
+$size: 180px
 
 :host
-   display: inline-flex
-   position: relative
+    display: inline-flex
+    position: relative
+
+@mixin fileDraggedOver
+    background-image: unset !important
+
+    .drop-here
+        display: flex
 
 .image-upload
-   width: 120px
-   height: 120px
-   box-shadow: 0 2px 8px rgb(0 0 0 / 15%)
-   border-radius: 8px
-   background-size: cover
-   background-repeat: no-repeat
-   position: relative
+    @include mixins.card()
+    width: $size
+    height: $size
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    position: relative
 
-   .drop-here
-      position: absolute
-      inset: 0
-      background: white
-      border-radius: 8px
-      display: none
-      flex-direction: column
-      text-align: center
-      justify-content: center
-      padding: 8px
+    .spinner
+        position: absolute
+        inset: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        background: white
+        border-radius: variables.$cardBorderRadius
 
-      .material-icons
-         font-size: 20px
+    .drop-here
+        position: absolute
+        inset: 0
+        background: white
+        border-radius: variables.$cardBorderRadius
+        display: none
+        flex-direction: column
+        text-align: center
+        justify-content: center
+        padding: 8px
 
-      span
-         font-size: 12px
-         padding-top: 4px
+    .material-icons
+        font-size: 20px
 
-   &.file-dragged-over
-      background-image: unset !important
+    span
+        font-size: 12px
+        padding-top: 4px
 
-      .drop-here
-         display: flex
+    &.file-dragged-over
+        @include fileDraggedOver()
 
 input
-   opacity: 0
-   position: absolute
-   z-index: 1
-   inset: 0
-   width: 100%
-   cursor: pointer
+    opacity: 0
+    position: absolute
+    z-index: 1
+    inset: 0
+    width: $size
+    height: $size
+    cursor: pointer
 
-   &:hover ~ .image-upload
-      background-image: unset !important
-
-      .drop-here
-         display: flex
+    &:hover ~ .image-upload
+        @include fileDraggedOver()

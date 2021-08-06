@@ -1,5 +1,5 @@
 <header>
-  <img src="assets/svg/AutoTraderLogo.svg" alt="AutoTrader Logo" />
+  <img class="logo" src="assets/svg/AutoTraderLogo.svg" alt="AutoTrader Logo" routerLink="/" />
 
   <ng-container *ngIf="user$ | async as user; else guestTemplate">
     <div class="profile" tabindex="0">

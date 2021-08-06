@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import API from '@aws-amplify/api';
+import { FormControl, FormGroup } from '@angular/forms';
+import { API } from 'aws-amplify';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import aws_exports from 'src/aws-exports';
+import { tap } from 'rxjs/operators';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
-import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,39 +13,56 @@ import { StorageService } from '../../services/storage.service';
   styleUrls: ['./profile.component.sass'],
 })
 export class ProfileComponent implements OnInit {
-  public readonly formGroup: FormGroup = new FormGroup({});
+  public readonly formGroup: FormGroup = new FormGroup({
+    firstName: new FormControl('', []),
+    lastName: new FormControl('', []),
+  });
   public user$: Observable<User | undefined> | undefined;
+  public loading: boolean = false;
 
-  constructor(private readonly authFacade: AuthFacade, private readonly storageService: StorageService) {}
+  constructor(private readonly authFacade: AuthFacade) {}
 
   public ngOnInit(): void {
-    this.user$ = this.authFacade.user$;
+    this.user$ = this.authFacade.user$.pipe(
+      tap((user) => {
+        this.initForm(user);
+      })
+    );
   }
 
-  public async onImageUploaded(file: File, user: User): Promise<void> {
-    let { id, picture } = user;
+  public async onSave(user: User): Promise<void> {
+    this.loading = true;
 
-    if (picture && picture.includes(aws_exports.aws_user_files_s3_bucket)) {
-      const publicFolder: string = '/public/';
-      const key: string = picture.substr(picture.indexOf(publicFolder)).replace(publicFolder, '');
+    await this.updateUser(user);
 
-      console.log(await this.storageService.deleteFileFromS3(key));
-    }
+    this.loading = false;
+  }
 
-    picture = (await this.storageService.uploadFileToS3(file)) as string;
+  private initForm(user: User | undefined): void {
+    this.formGroup.controls.firstName.setValue(user?.firstName);
+    this.formGroup.controls.lastName.setValue(user?.lastName);
+  }
+
+  private async updateUser(user: User): Promise<void> {
+    const { id } = user;
+
+    const firstName: string = this.formGroup.controls.firstName.value;
+    const lastName: string = this.formGroup.controls.lastName.value;
 
     const response = await API.graphql({
       query: gql`
         mutation UpdateUser($input: UpdateUserInput!) {
           updateUser(input: $input) {
-            picture
+            firstName
+            lastName
           }
         }
       `,
       variables: {
         input: {
           id,
-          picture,
+          firstName,
+          lastName,
         },
       },
     });
@@ -56,11 +71,9 @@ export class ProfileComponent implements OnInit {
       data: { updateUser },
     } = response as { data: { updateUser: User } };
 
-    this.authFacade.user$
-      .pipe(
-        take(1),
-        map((user) => ({ ...user, picture: updateUser.picture } as User))
-      )
-      .subscribe((user) => this.authFacade.setUser(user));
+    this.authFacade.setUser({
+      ...user,
+      ...updateUser,
+    });
   }
 }

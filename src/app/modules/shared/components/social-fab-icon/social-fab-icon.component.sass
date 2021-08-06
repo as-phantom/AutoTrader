@@ -1,0 +1,21 @@
+@use '../../../../../assets/styles/variables.sass'
+
+:host
+  display: flex
+  cursor: pointer
+
+  &:not(:hover)
+    fa-icon
+      &:last-child
+        color: variables.$white !important
+
+  &:hover
+    fa-icon
+      &:first-child
+        color: variables.$white !important
+
+fa-icon
+  transition: color 0.3s ease
+
+// Do NOT format - SASS Formatter cause wrong indentation
+
