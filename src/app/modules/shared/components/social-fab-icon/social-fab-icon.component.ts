@@ -1,19 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faFacebookF, faGooglePlusG, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { SocialType } from '../../enums/socialType.enum';
+import { SocialType } from '../../../core/enums/socialType.enum';
 
 @Component({
   selector: 'app-social-fab-icon',
   templateUrl: './social-fab-icon.component.html',
   styleUrls: ['./social-fab-icon.component.sass'],
 })
-export class SocialFabIconComponent implements OnInit {
+export class SocialFabIconComponent {
   @Input() public socialType: SocialType | undefined;
 
   constructor() {}
-
-  public ngOnInit() {}
 
   public get faCircleIcon(): IconDefinition {
     return faCircle;

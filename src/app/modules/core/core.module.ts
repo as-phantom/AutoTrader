@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SharedModule } from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const COMPONENTS = [HeaderComponent, FooterComponent, NotFoundComponent];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, MatRippleModule],
+  imports: [CommonModule, RouterModule, MatRippleModule, SharedModule, FontAwesomeModule],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
 })

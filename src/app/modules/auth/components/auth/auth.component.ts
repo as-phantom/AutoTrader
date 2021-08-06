@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { filter, switchMap, take } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
-import { SocialType } from '../../../shared/enums/socialType.enum';
+import { SocialType } from '../../../core/enums/socialType.enum';
 
 @Component({
   selector: 'app-auth',
