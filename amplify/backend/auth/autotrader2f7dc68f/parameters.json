@@ -60,5 +60,5 @@
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"],\"LogoutURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"],\"LogoutURLs\":[\"https://innerpulse.github.io/AutoTrader/\"]}"
 }
