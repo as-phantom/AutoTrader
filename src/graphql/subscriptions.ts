@@ -41,6 +41,11 @@ export const onCreateUser = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }
@@ -95,6 +100,11 @@ export const onUpdateUser = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }
@@ -149,6 +159,11 @@ export const onDeleteUser = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }
@@ -219,6 +234,11 @@ export const onCreateAd = /* GraphQL */ `
       description
       fuelType
       phone
+      picture
+      condition
+      longitude
+      latitude
+      region
       createdAt
       updatedAt
     }
@@ -279,6 +299,11 @@ export const onUpdateAd = /* GraphQL */ `
       description
       fuelType
       phone
+      picture
+      condition
+      longitude
+      latitude
+      region
       createdAt
       updatedAt
     }
@@ -339,6 +364,11 @@ export const onDeleteAd = /* GraphQL */ `
       description
       fuelType
       phone
+      picture
+      condition
+      longitude
+      latitude
+      region
       createdAt
       updatedAt
     }
@@ -378,6 +408,11 @@ export const onCreatePicture = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -421,6 +456,11 @@ export const onUpdatePicture = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -464,6 +504,11 @@ export const onDeletePicture = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -527,6 +572,11 @@ export const onCreateFavorite = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -589,6 +639,11 @@ export const onUpdateFavorite = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -651,6 +706,11 @@ export const onDeleteFavorite = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -713,6 +773,11 @@ export const onCreateRating = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -776,6 +841,11 @@ export const onUpdateRating = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -839,6 +909,11 @@ export const onDeleteRating = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }

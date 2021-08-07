@@ -41,6 +41,11 @@ export const getUser = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }
@@ -141,6 +146,11 @@ export const getAd = /* GraphQL */ `
       description
       fuelType
       phone
+      picture
+      condition
+      longitude
+      latitude
+      region
       createdAt
       updatedAt
     }
@@ -178,6 +188,11 @@ export const listAds = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -219,6 +234,11 @@ export const getPicture = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -251,6 +271,11 @@ export const listPictures = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }
@@ -316,6 +341,11 @@ export const getFavorite = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -358,6 +388,11 @@ export const listFavorites = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }
@@ -422,6 +457,11 @@ export const getRating = /* GraphQL */ `
         description
         fuelType
         phone
+        picture
+        condition
+        longitude
+        latitude
+        region
         createdAt
         updatedAt
       }
@@ -465,6 +505,11 @@ export const listRatings = /* GraphQL */ `
           description
           fuelType
           phone
+          picture
+          condition
+          longitude
+          latitude
+          region
           createdAt
           updatedAt
         }

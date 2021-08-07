@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "autotrader2f7dc68f_identitypool_2f7dc68f",
+    "identityPoolName": "autotrader9706040f_identitypool_9706040f",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "autotr2f7dc68f",
-    "userPoolName": "autotrader2f7dc68f_userpool_2f7dc68f",
+    "resourceNameTruncated": "autotr9706040f",
+    "userPoolName": "autotrader9706040f_userpool_9706040f",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "autotr2f7dc68f_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "autotr9706040f_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "2f7dc68f",
-    "resourceName": "autotrader2f7dc68f",
+    "sharedId": "9706040f",
+    "resourceName": "autotrader9706040f",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -50,15 +50,15 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "autotrader2f7dc68f-2f7dc68f",
+    "hostedUIDomainName": "autotrader9706040f-9706040f",
     "authProvidersUserPool": [
         "Facebook",
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\",\"http://localhost:3000/auth/\"],\"LogoutURLs\":[\"https://innerpulse.github.io/AutoTrader/\",\"http://localhost:3000/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"],\"LogoutURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"]}"
+    "dependsOn": []
 }
