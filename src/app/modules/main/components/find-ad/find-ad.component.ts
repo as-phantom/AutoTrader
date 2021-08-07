@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-find-ad',
@@ -7,23 +7,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./find-ad.component.sass'],
 })
 export class FindAdComponent {
-  public searchForm: FormGroup;
   public submitted: boolean = false;
   public isFormValid: boolean = false;
 
-  constructor(public search: FormBuilder) {
-    this.searchForm = this.search.group({
-      make: [''],
-      model: [''],
-      region: [''],
-      minPrice: [''],
-      maxPrice: [''],
-      condition: [''],
-    });
-  }
+  public readonly formGroup: FormGroup = new FormGroup({
+    make: new FormControl('', []),
+    model: new FormControl('', []),
+    region: new FormControl('', []),
+    minPrice: new FormControl('', []),
+    maxPrice: new FormControl('', []),
+    condition: new FormControl('', []),
+  });
+
+  constructor() {}
 
   onSubmit() {
-    console.log(this.searchForm.value);
+    console.log(this.formGroup.value);
 
     // this.submitted = true;
   }

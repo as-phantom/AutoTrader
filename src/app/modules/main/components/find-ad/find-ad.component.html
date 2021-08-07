@@ -2,7 +2,7 @@
   <section class="form-section">
     <h4>Find your perfect car</h4>
 
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
         <mat-label>Region</mat-label>
         <input formControlName="region" matInput #first />
@@ -25,7 +25,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Model</mat-label>
-        <mat-select formControlName="model"> 
+        <mat-select formControlName="model">
           <!-- <option *ngFor="let model of model" value={{ model }}>{{ model }}</option> -->
         </mat-select>
       </mat-form-field>
