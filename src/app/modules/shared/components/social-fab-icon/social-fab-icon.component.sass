@@ -4,7 +4,10 @@
   display: flex
   cursor: pointer
   align-items: center
-  border-radius: 50%
+
+  fa-stack
+    width: 2em
+    border-radius: 50%
 
   &:not(:hover)
     fa-icon
@@ -18,6 +21,9 @@
 
 fa-icon
   transition: color 0.3s ease
+
+  ::ng-deep svg 
+    width: 2em !important
 
 // Do NOT format - SASS Formatter cause wrong indentation
 
