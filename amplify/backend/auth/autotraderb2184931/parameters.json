@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "autotrader3a12f814_identitypool_3a12f814",
+    "identityPoolName": "autotraderb2184931_identitypool_b2184931",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "autotr3a12f814",
-    "userPoolName": "autotrader3a12f814_userpool_3a12f814",
+    "resourceNameTruncated": "autotrb2184931",
+    "userPoolName": "autotraderb2184931_userpool_b2184931",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "autotr3a12f814_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "autotrb2184931_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "3a12f814",
-    "resourceName": "autotrader3a12f814",
+    "sharedId": "b2184931",
+    "resourceName": "autotraderb2184931",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -50,7 +50,7 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "autotrader3a12f814-3a12f814",
+    "hostedUIDomainName": "autotraderb2184931-b2184931",
     "authProvidersUserPool": [
         "Facebook",
         "Google"

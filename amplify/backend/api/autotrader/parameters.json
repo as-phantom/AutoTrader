@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "autotrader",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authautotraderb2184931",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
