@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-autotrader-dev-180521-authRole",
-      "UnauthRoleArn": "arn:aws:iam::696793232669:role/amplify-autotrader-dev-180521-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::696793232669:role/amplify-autotrader-dev-180521-authRole",
+      "AuthRoleName": "amplify-autotrader-dev-213653-authRole",
+      "UnauthRoleArn": "arn:aws:iam::696793232669:role/amplify-autotrader-dev-213653-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::696793232669:role/amplify-autotrader-dev-213653-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-autotrader-dev-180521-deployment",
-      "UnauthRoleName": "amplify-autotrader-dev-180521-unauthRole",
-      "StackName": "amplify-autotrader-dev-180521",
-      "StackId": "arn:aws:cloudformation:us-east-1:696793232669:stack/amplify-autotrader-dev-180521/e4e498f0-f790-11eb-bf6d-0a1b80b6a4c7",
-      "AmplifyAppId": "d1uunp4xj4y5y3"
+      "DeploymentBucketName": "amplify-autotrader-dev-213653-deployment",
+      "UnauthRoleName": "amplify-autotrader-dev-213653-unauthRole",
+      "StackName": "amplify-autotrader-dev-213653",
+      "StackId": "arn:aws:cloudformation:us-east-1:696793232669:stack/amplify-autotrader-dev-213653/725279b0-f7ae-11eb-87ae-0ef76ddd227b",
+      "AmplifyAppId": "d1049ol2zxp76z"
     },
     "categories": {
       "auth": {
-        "autotrader9706040f": {}
+        "autotrader3a12f814": {}
       }
     }
   }

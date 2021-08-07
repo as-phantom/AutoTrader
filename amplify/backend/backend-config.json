@@ -1,33 +1,10 @@
 {
   "auth": {
-    "autotrader9706040f": {
+    "autotrader3a12f814": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false
-    }
-  },
-  "storage": {
-    "images": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation"
-    }
-  },
-  "api": {
-    "autotrader": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authautotrader9706040f"
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
     }
   }
 }
