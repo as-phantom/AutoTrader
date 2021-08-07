@@ -15,7 +15,7 @@ export class AuthService {
       .pipe(filter((currentAuthenticatedUser) => Boolean(currentAuthenticatedUser)))
       .subscribe(async (currentAuthenticatedUser) => {
         let {
-          attributes: { sub: cognitoID, email, name: firstName, picture, family_name: lastName },
+          attributes: { sub: cognitoID, email, given_name: firstName, picture, family_name: lastName },
           username,
         } = currentAuthenticatedUser;
 
