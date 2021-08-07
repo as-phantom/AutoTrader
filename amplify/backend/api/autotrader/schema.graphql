@@ -3,6 +3,11 @@ enum TransmissionType {
   MANUAL
 }
 
+enum Condition {
+  NEW
+  USED
+}
+
 enum FuelType {
   ELECTRIC
   PETROL
@@ -39,6 +44,11 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) {
   description: String!
   fuelType: FuelType!
   phone: String!
+  picture: String!
+  condition: Condition!
+  longitude: Float!
+  latitude: Float!
+  region: String!
 }
 
 type Picture @model @key(name: "byAd", fields: ["adID"]) {
