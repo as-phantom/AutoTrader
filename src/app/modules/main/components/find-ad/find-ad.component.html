@@ -1,8 +1,8 @@
 <div class="container">
   <section class="form-section">
-    <h4>Find your perfect car</h4>
-
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <h4>Find your perfect car</h4>
+
       <mat-form-field appearance="fill">
         <mat-label>Region</mat-label>
         <input formControlName="region" matInput #first />
