@@ -13,8 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SortRegionsPipe } from './pipes/sort-regions.pipe';
 
-const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, PlaceAdComponent];
+const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, PlaceAdComponent, SortRegionsPipe];
 
 @NgModule({
   declarations: [...COMPONENTS],
