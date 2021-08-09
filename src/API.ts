@@ -2,24 +2,16 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateUserInput = {
+export type CreateRegionInput = {
   id?: string | null,
-  firstName?: string | null,
-  lastName?: string | null,
-  picture?: string | null,
-  email: string,
-  cognitoID: string,
+  name: string,
 };
 
-export type ModelUserConditionInput = {
-  firstName?: ModelStringInput | null,
-  lastName?: ModelStringInput | null,
-  picture?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  cognitoID?: ModelIDInput | null,
-  and?: Array< ModelUserConditionInput | null > | null,
-  or?: Array< ModelUserConditionInput | null > | null,
-  not?: ModelUserConditionInput | null,
+export type ModelRegionConditionInput = {
+  name?: ModelStringInput | null,
+  and?: Array< ModelRegionConditionInput | null > | null,
+  or?: Array< ModelRegionConditionInput | null > | null,
+  not?: ModelRegionConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -62,20 +54,46 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
+export type Region = {
+  __typename: "Region",
+  id: string,
+  name: string,
+  ads?: ModelAdConnection | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type ModelAdConnection = {
+  __typename: "ModelAdConnection",
+  items?:  Array<Ad | null > | null,
+  nextToken?: string | null,
+};
+
+export type Ad = {
+  __typename: "Ad",
+  id: string,
+  brand: string,
+  model: string,
+  color: string,
+  engine: number,
+  price: number,
+  year: number,
+  userID: string,
+  user?: User | null,
+  regionID: string,
+  region: Region,
+  pictures?: ModelPictureConnection | null,
+  ratings?: ModelRatingConnection | null,
+  transmissionType: TransmissionType,
+  description: string,
+  fuelType: FuelType,
+  phone: string,
+  picture: string,
+  condition: Condition,
+  longitude: number,
+  latitude: number,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type User = {
@@ -110,28 +128,20 @@ export type Favorite = {
   updatedAt: string,
 };
 
-export type Ad = {
-  __typename: "Ad",
+export type ModelRatingConnection = {
+  __typename: "ModelRatingConnection",
+  items?:  Array<Rating | null > | null,
+  nextToken?: string | null,
+};
+
+export type Rating = {
+  __typename: "Rating",
   id: string,
-  brand: string,
-  model: string,
-  color: string,
-  engine: number,
-  price: number,
   userID: string,
   user?: User | null,
-  year: number,
-  pictures?: ModelPictureConnection | null,
-  ratings?: ModelRatingConnection | null,
-  transmissionType: TransmissionType,
-  description: string,
-  fuelType: FuelType,
-  phone: string,
-  picture: string,
-  condition: Condition,
-  longitude: number,
-  latitude: number,
-  region: string,
+  adID: string,
+  ad?: Ad | null,
+  rating: number,
   createdAt: string,
   updatedAt: string,
 };
@@ -148,24 +158,6 @@ export type Picture = {
   adID: string,
   ad?: Ad | null,
   url: string,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type ModelRatingConnection = {
-  __typename: "ModelRatingConnection",
-  items?:  Array<Rating | null > | null,
-  nextToken?: string | null,
-};
-
-export type Rating = {
-  __typename: "Rating",
-  id: string,
-  userID: string,
-  user?: User | null,
-  adID: string,
-  ad?: Ad | null,
-  rating: number,
   createdAt: string,
   updatedAt: string,
 };
@@ -191,10 +183,49 @@ export enum Condition {
 }
 
 
-export type ModelAdConnection = {
-  __typename: "ModelAdConnection",
-  items?:  Array<Ad | null > | null,
-  nextToken?: string | null,
+export type UpdateRegionInput = {
+  id: string,
+  name?: string | null,
+};
+
+export type DeleteRegionInput = {
+  id: string,
+};
+
+export type CreateUserInput = {
+  id?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+  picture?: string | null,
+  email: string,
+  cognitoID: string,
+};
+
+export type ModelUserConditionInput = {
+  firstName?: ModelStringInput | null,
+  lastName?: ModelStringInput | null,
+  picture?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  cognitoID?: ModelIDInput | null,
+  and?: Array< ModelUserConditionInput | null > | null,
+  or?: Array< ModelUserConditionInput | null > | null,
+  not?: ModelUserConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type UpdateUserInput = {
@@ -217,8 +248,9 @@ export type CreateAdInput = {
   color: string,
   engine: number,
   price: number,
-  userID: string,
   year: number,
+  userID: string,
+  regionID: string,
   transmissionType: TransmissionType,
   description: string,
   fuelType: FuelType,
@@ -227,7 +259,6 @@ export type CreateAdInput = {
   condition: Condition,
   longitude: number,
   latitude: number,
-  region: string,
 };
 
 export type ModelAdConditionInput = {
@@ -236,8 +267,9 @@ export type ModelAdConditionInput = {
   color?: ModelStringInput | null,
   engine?: ModelFloatInput | null,
   price?: ModelFloatInput | null,
-  userID?: ModelIDInput | null,
   year?: ModelIntInput | null,
+  userID?: ModelIDInput | null,
+  regionID?: ModelIDInput | null,
   transmissionType?: ModelTransmissionTypeInput | null,
   description?: ModelStringInput | null,
   fuelType?: ModelFuelTypeInput | null,
@@ -246,7 +278,6 @@ export type ModelAdConditionInput = {
   condition?: ModelConditionInput | null,
   longitude?: ModelFloatInput | null,
   latitude?: ModelFloatInput | null,
-  region?: ModelStringInput | null,
   and?: Array< ModelAdConditionInput | null > | null,
   or?: Array< ModelAdConditionInput | null > | null,
   not?: ModelAdConditionInput | null,
@@ -298,8 +329,9 @@ export type UpdateAdInput = {
   color?: string | null,
   engine?: number | null,
   price?: number | null,
-  userID?: string | null,
   year?: number | null,
+  userID?: string | null,
+  regionID?: string | null,
   transmissionType?: TransmissionType | null,
   description?: string | null,
   fuelType?: FuelType | null,
@@ -308,7 +340,6 @@ export type UpdateAdInput = {
   condition?: Condition | null,
   longitude?: number | null,
   latitude?: number | null,
-  region?: string | null,
 };
 
 export type DeleteAdInput = {
@@ -390,6 +421,20 @@ export type DeleteRatingInput = {
   id: string,
 };
 
+export type ModelRegionFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  and?: Array< ModelRegionFilterInput | null > | null,
+  or?: Array< ModelRegionFilterInput | null > | null,
+  not?: ModelRegionFilterInput | null,
+};
+
+export type ModelRegionConnection = {
+  __typename: "ModelRegionConnection",
+  items?:  Array<Region | null > | null,
+  nextToken?: string | null,
+};
+
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   firstName?: ModelStringInput | null,
@@ -415,8 +460,9 @@ export type ModelAdFilterInput = {
   color?: ModelStringInput | null,
   engine?: ModelFloatInput | null,
   price?: ModelFloatInput | null,
-  userID?: ModelIDInput | null,
   year?: ModelIntInput | null,
+  userID?: ModelIDInput | null,
+  regionID?: ModelIDInput | null,
   transmissionType?: ModelTransmissionTypeInput | null,
   description?: ModelStringInput | null,
   fuelType?: ModelFuelTypeInput | null,
@@ -425,7 +471,6 @@ export type ModelAdFilterInput = {
   condition?: ModelConditionInput | null,
   longitude?: ModelFloatInput | null,
   latitude?: ModelFloatInput | null,
-  region?: ModelStringInput | null,
   and?: Array< ModelAdFilterInput | null > | null,
   or?: Array< ModelAdFilterInput | null > | null,
   not?: ModelAdFilterInput | null,
@@ -457,6 +502,129 @@ export type ModelRatingFilterInput = {
   and?: Array< ModelRatingFilterInput | null > | null,
   or?: Array< ModelRatingFilterInput | null > | null,
   not?: ModelRatingFilterInput | null,
+};
+
+export type CreateRegionMutationVariables = {
+  input: CreateRegionInput,
+  condition?: ModelRegionConditionInput | null,
+};
+
+export type CreateRegionMutation = {
+  createRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateRegionMutationVariables = {
+  input: UpdateRegionInput,
+  condition?: ModelRegionConditionInput | null,
+};
+
+export type UpdateRegionMutation = {
+  updateRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteRegionMutationVariables = {
+  input: DeleteRegionInput,
+  condition?: ModelRegionConditionInput | null,
+};
+
+export type DeleteRegionMutation = {
+  deleteRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateUserMutationVariables = {
@@ -503,8 +671,9 @@ export type CreateUserMutation = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -513,7 +682,6 @@ export type CreateUserMutation = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -573,8 +741,9 @@ export type UpdateUserMutation = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -583,7 +752,6 @@ export type UpdateUserMutation = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -643,8 +811,9 @@ export type DeleteUserMutation = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -653,7 +822,6 @@ export type DeleteUserMutation = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -683,6 +851,7 @@ export type CreateAdMutation = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -707,7 +876,18 @@ export type CreateAdMutation = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -741,7 +921,6 @@ export type CreateAdMutation = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -761,6 +940,7 @@ export type UpdateAdMutation = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -785,7 +965,18 @@ export type UpdateAdMutation = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -819,7 +1010,6 @@ export type UpdateAdMutation = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -839,6 +1029,7 @@ export type DeleteAdMutation = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -863,7 +1054,18 @@ export type DeleteAdMutation = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -897,7 +1099,6 @@ export type DeleteAdMutation = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -921,6 +1122,7 @@ export type CreatePictureMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -933,7 +1135,14 @@ export type CreatePictureMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -950,7 +1159,6 @@ export type CreatePictureMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -978,6 +1186,7 @@ export type UpdatePictureMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -990,7 +1199,14 @@ export type UpdatePictureMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1007,7 +1223,6 @@ export type UpdatePictureMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1035,6 +1250,7 @@ export type DeletePictureMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1047,7 +1263,14 @@ export type DeletePictureMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1064,7 +1287,6 @@ export type DeletePictureMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1116,6 +1338,7 @@ export type CreateFavoriteMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1128,7 +1351,14 @@ export type CreateFavoriteMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1145,7 +1375,6 @@ export type CreateFavoriteMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1196,6 +1425,7 @@ export type UpdateFavoriteMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1208,7 +1438,14 @@ export type UpdateFavoriteMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1225,7 +1462,6 @@ export type UpdateFavoriteMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1276,6 +1512,7 @@ export type DeleteFavoriteMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1288,7 +1525,14 @@ export type DeleteFavoriteMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1305,7 +1549,6 @@ export type DeleteFavoriteMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1356,6 +1599,7 @@ export type CreateRatingMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1368,7 +1612,14 @@ export type CreateRatingMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1385,7 +1636,6 @@ export type CreateRatingMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1437,6 +1687,7 @@ export type UpdateRatingMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1449,7 +1700,14 @@ export type UpdateRatingMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1466,7 +1724,6 @@ export type UpdateRatingMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1518,6 +1775,7 @@ export type DeleteRatingMutation = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1530,7 +1788,14 @@ export type DeleteRatingMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1547,13 +1812,76 @@ export type DeleteRatingMutation = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
     rating: number,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type GetRegionQueryVariables = {
+  id: string,
+};
+
+export type GetRegionQuery = {
+  getRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListRegionsQueryVariables = {
+  filter?: ModelRegionFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListRegionsQuery = {
+  listRegions?:  {
+    __typename: "ModelRegionConnection",
+    items?:  Array< {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
   } | null,
 };
 
@@ -1600,8 +1928,9 @@ export type GetUserQuery = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -1610,7 +1939,6 @@ export type GetUserQuery = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -1675,6 +2003,7 @@ export type GetAdQuery = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -1699,7 +2028,18 @@ export type GetAdQuery = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -1733,7 +2073,6 @@ export type GetAdQuery = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1756,6 +2095,7 @@ export type ListAdsQuery = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1768,7 +2108,14 @@ export type ListAdsQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1785,7 +2132,6 @@ export type ListAdsQuery = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1810,6 +2156,7 @@ export type GetPictureQuery = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1822,7 +2169,14 @@ export type GetPictureQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1839,7 +2193,6 @@ export type GetPictureQuery = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1870,8 +2223,9 @@ export type ListPicturesQuery = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -1880,7 +2234,6 @@ export type ListPicturesQuery = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1933,6 +2286,7 @@ export type GetFavoriteQuery = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -1945,7 +2299,14 @@ export type GetFavoriteQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1962,7 +2323,6 @@ export type GetFavoriteQuery = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2004,8 +2364,9 @@ export type ListFavoritesQuery = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -2014,7 +2375,6 @@ export type ListFavoritesQuery = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -2066,6 +2426,7 @@ export type GetRatingQuery = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2078,7 +2439,14 @@ export type GetRatingQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2095,7 +2463,6 @@ export type GetRatingQuery = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2138,8 +2505,9 @@ export type ListRatingsQuery = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -2148,7 +2516,6 @@ export type ListRatingsQuery = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -2157,6 +2524,114 @@ export type ListRatingsQuery = {
       updatedAt: string,
     } | null > | null,
     nextToken?: string | null,
+  } | null,
+};
+
+export type OnCreateRegionSubscription = {
+  onCreateRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateRegionSubscription = {
+  onUpdateRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteRegionSubscription = {
+  onDeleteRegion?:  {
+    __typename: "Region",
+    id: string,
+    name: string,
+    ads?:  {
+      __typename: "ModelAdConnection",
+      items?:  Array< {
+        __typename: "Ad",
+        id: string,
+        brand: string,
+        model: string,
+        color: string,
+        engine: number,
+        price: number,
+        year: number,
+        userID: string,
+        regionID: string,
+        transmissionType: TransmissionType,
+        description: string,
+        fuelType: FuelType,
+        phone: string,
+        picture: string,
+        condition: Condition,
+        longitude: number,
+        latitude: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -2199,8 +2674,9 @@ export type OnCreateUserSubscription = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -2209,7 +2685,6 @@ export type OnCreateUserSubscription = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -2264,8 +2739,9 @@ export type OnUpdateUserSubscription = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -2274,7 +2750,6 @@ export type OnUpdateUserSubscription = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -2329,8 +2804,9 @@ export type OnDeleteUserSubscription = {
         color: string,
         engine: number,
         price: number,
-        userID: string,
         year: number,
+        userID: string,
+        regionID: string,
         transmissionType: TransmissionType,
         description: string,
         fuelType: FuelType,
@@ -2339,7 +2815,6 @@ export type OnDeleteUserSubscription = {
         condition: Condition,
         longitude: number,
         latitude: number,
-        region: string,
         createdAt: string,
         updatedAt: string,
       } | null > | null,
@@ -2364,6 +2839,7 @@ export type OnCreateAdSubscription = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -2388,7 +2864,18 @@ export type OnCreateAdSubscription = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -2422,7 +2909,6 @@ export type OnCreateAdSubscription = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -2437,6 +2923,7 @@ export type OnUpdateAdSubscription = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -2461,7 +2948,18 @@ export type OnUpdateAdSubscription = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -2495,7 +2993,6 @@ export type OnUpdateAdSubscription = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -2510,6 +3007,7 @@ export type OnDeleteAdSubscription = {
     color: string,
     engine: number,
     price: number,
+    year: number,
     userID: string,
     user?:  {
       __typename: "User",
@@ -2534,7 +3032,18 @@ export type OnDeleteAdSubscription = {
       createdAt: string,
       updatedAt: string,
     } | null,
-    year: number,
+    regionID: string,
+    region:  {
+      __typename: "Region",
+      id: string,
+      name: string,
+      ads?:  {
+        __typename: "ModelAdConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -2568,7 +3077,6 @@ export type OnDeleteAdSubscription = {
     condition: Condition,
     longitude: number,
     latitude: number,
-    region: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -2587,6 +3095,7 @@ export type OnCreatePictureSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2599,7 +3108,14 @@ export type OnCreatePictureSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2616,7 +3132,6 @@ export type OnCreatePictureSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2639,6 +3154,7 @@ export type OnUpdatePictureSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2651,7 +3167,14 @@ export type OnUpdatePictureSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2668,7 +3191,6 @@ export type OnUpdatePictureSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2691,6 +3213,7 @@ export type OnDeletePictureSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2703,7 +3226,14 @@ export type OnDeletePictureSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2720,7 +3250,6 @@ export type OnDeletePictureSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2767,6 +3296,7 @@ export type OnCreateFavoriteSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2779,7 +3309,14 @@ export type OnCreateFavoriteSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2796,7 +3333,6 @@ export type OnCreateFavoriteSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2842,6 +3378,7 @@ export type OnUpdateFavoriteSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2854,7 +3391,14 @@ export type OnUpdateFavoriteSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2871,7 +3415,6 @@ export type OnUpdateFavoriteSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2917,6 +3460,7 @@ export type OnDeleteFavoriteSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -2929,7 +3473,14 @@ export type OnDeleteFavoriteSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2946,7 +3497,6 @@ export type OnDeleteFavoriteSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2992,6 +3542,7 @@ export type OnCreateRatingSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -3004,7 +3555,14 @@ export type OnCreateRatingSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3021,7 +3579,6 @@ export type OnCreateRatingSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -3068,6 +3625,7 @@ export type OnUpdateRatingSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -3080,7 +3638,14 @@ export type OnUpdateRatingSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3097,7 +3662,6 @@ export type OnUpdateRatingSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -3144,6 +3708,7 @@ export type OnDeleteRatingSubscription = {
       color: string,
       engine: number,
       price: number,
+      year: number,
       userID: string,
       user?:  {
         __typename: "User",
@@ -3156,7 +3721,14 @@ export type OnDeleteRatingSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
-      year: number,
+      regionID: string,
+      region:  {
+        __typename: "Region",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3173,7 +3745,6 @@ export type OnDeleteRatingSubscription = {
       condition: Condition,
       longitude: number,
       latitude: number,
-      region: string,
       createdAt: string,
       updatedAt: string,
     } | null,

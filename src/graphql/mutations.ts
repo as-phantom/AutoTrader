@@ -2,6 +2,117 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createRegion = /* GraphQL */ `
+  mutation CreateRegion(
+    $input: CreateRegionInput!
+    $condition: ModelRegionConditionInput
+  ) {
+    createRegion(input: $input, condition: $condition) {
+      id
+      name
+      ads {
+        items {
+          id
+          brand
+          model
+          color
+          engine
+          price
+          year
+          userID
+          regionID
+          transmissionType
+          description
+          fuelType
+          phone
+          picture
+          condition
+          longitude
+          latitude
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateRegion = /* GraphQL */ `
+  mutation UpdateRegion(
+    $input: UpdateRegionInput!
+    $condition: ModelRegionConditionInput
+  ) {
+    updateRegion(input: $input, condition: $condition) {
+      id
+      name
+      ads {
+        items {
+          id
+          brand
+          model
+          color
+          engine
+          price
+          year
+          userID
+          regionID
+          transmissionType
+          description
+          fuelType
+          phone
+          picture
+          condition
+          longitude
+          latitude
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteRegion = /* GraphQL */ `
+  mutation DeleteRegion(
+    $input: DeleteRegionInput!
+    $condition: ModelRegionConditionInput
+  ) {
+    deleteRegion(input: $input, condition: $condition) {
+      id
+      name
+      ads {
+        items {
+          id
+          brand
+          model
+          color
+          engine
+          price
+          year
+          userID
+          regionID
+          transmissionType
+          description
+          fuelType
+          phone
+          picture
+          condition
+          longitude
+          latitude
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -38,8 +149,9 @@ export const createUser = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -48,7 +160,6 @@ export const createUser = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
@@ -100,8 +211,9 @@ export const updateUser = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -110,7 +222,6 @@ export const updateUser = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
@@ -162,8 +273,9 @@ export const deleteUser = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -172,7 +284,6 @@ export const deleteUser = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
@@ -197,6 +308,7 @@ export const createAd = /* GraphQL */ `
       color
       engine
       price
+      year
       userID
       user {
         id
@@ -217,7 +329,16 @@ export const createAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      year
+      regionID
+      region {
+        id
+        name
+        ads {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       pictures {
         items {
           id
@@ -247,7 +368,6 @@ export const createAd = /* GraphQL */ `
       condition
       longitude
       latitude
-      region
       createdAt
       updatedAt
     }
@@ -262,6 +382,7 @@ export const updateAd = /* GraphQL */ `
       color
       engine
       price
+      year
       userID
       user {
         id
@@ -282,7 +403,16 @@ export const updateAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      year
+      regionID
+      region {
+        id
+        name
+        ads {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       pictures {
         items {
           id
@@ -312,7 +442,6 @@ export const updateAd = /* GraphQL */ `
       condition
       longitude
       latitude
-      region
       createdAt
       updatedAt
     }
@@ -327,6 +456,7 @@ export const deleteAd = /* GraphQL */ `
       color
       engine
       price
+      year
       userID
       user {
         id
@@ -347,7 +477,16 @@ export const deleteAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      year
+      regionID
+      region {
+        id
+        name
+        ads {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       pictures {
         items {
           id
@@ -377,7 +516,6 @@ export const deleteAd = /* GraphQL */ `
       condition
       longitude
       latitude
-      region
       createdAt
       updatedAt
     }
@@ -398,6 +536,7 @@ export const createPicture = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -409,7 +548,13 @@ export const createPicture = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -424,7 +569,6 @@ export const createPicture = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -449,6 +593,7 @@ export const updatePicture = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -460,7 +605,13 @@ export const updatePicture = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -475,7 +626,6 @@ export const updatePicture = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -500,6 +650,7 @@ export const deletePicture = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -511,7 +662,13 @@ export const deletePicture = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -526,7 +683,6 @@ export const deletePicture = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -571,6 +727,7 @@ export const createFavorite = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -582,7 +739,13 @@ export const createFavorite = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -597,7 +760,6 @@ export const createFavorite = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -641,6 +803,7 @@ export const updateFavorite = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -652,7 +815,13 @@ export const updateFavorite = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -667,7 +836,6 @@ export const updateFavorite = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -711,6 +879,7 @@ export const deleteFavorite = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -722,7 +891,13 @@ export const deleteFavorite = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -737,7 +912,6 @@ export const deleteFavorite = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -781,6 +955,7 @@ export const createRating = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -792,7 +967,13 @@ export const createRating = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -807,7 +988,6 @@ export const createRating = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -852,6 +1032,7 @@ export const updateRating = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -863,7 +1044,13 @@ export const updateRating = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -878,7 +1065,6 @@ export const updateRating = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -923,6 +1109,7 @@ export const deleteRating = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -934,7 +1121,13 @@ export const deleteRating = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -949,7 +1142,6 @@ export const deleteRating = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }

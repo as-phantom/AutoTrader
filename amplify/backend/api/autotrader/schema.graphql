@@ -16,6 +16,12 @@ enum FuelType {
   LPG
 }
 
+type Region @model {
+  id: ID!
+  name: String!
+  ads: [Ad] @connection(keyName: "byRegion", fields: ["id"])
+}
+
 type User @model {
   id: ID!
   favorites: [Favorite] @connection(keyName: "byUser", fields: ["id"])
@@ -28,16 +34,18 @@ type User @model {
   cognitoID: ID!
 }
 
-type Ad @model @key(name: "byUser", fields: ["userID"]) {
+type Ad @model @key(name: "byUser", fields: ["userID"]) @key(name: "byRegion", fields: ["regionID"]) {
   id: ID!
   brand: String!
   model: String!
   color: String!
   engine: Float!
   price: Float!
+  year: Int!
   userID: ID!
   user: User @connection(fields: ["userID"])
-  year: Int!
+  regionID: ID!
+  region: Region! @connection(fields: ["regionID"])
   pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
   ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
   transmissionType: TransmissionType!
@@ -48,7 +56,6 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) {
   condition: Condition!
   longitude: Float!
   latitude: Float!
-  region: String!
 }
 
 type Picture @model @key(name: "byAd", fields: ["adID"]) {

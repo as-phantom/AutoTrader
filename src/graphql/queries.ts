@@ -2,6 +2,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getRegion = /* GraphQL */ `
+  query GetRegion($id: ID!) {
+    getRegion(id: $id) {
+      id
+      name
+      ads {
+        items {
+          id
+          brand
+          model
+          color
+          engine
+          price
+          year
+          userID
+          regionID
+          transmissionType
+          description
+          fuelType
+          phone
+          picture
+          condition
+          longitude
+          latitude
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listRegions = /* GraphQL */ `
+  query ListRegions(
+    $filter: ModelRegionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listRegions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        ads {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -35,8 +89,9 @@ export const getUser = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -45,7 +100,6 @@ export const getUser = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
@@ -100,6 +154,7 @@ export const getAd = /* GraphQL */ `
       color
       engine
       price
+      year
       userID
       user {
         id
@@ -120,7 +175,16 @@ export const getAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      year
+      regionID
+      region {
+        id
+        name
+        ads {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       pictures {
         items {
           id
@@ -150,7 +214,6 @@ export const getAd = /* GraphQL */ `
       condition
       longitude
       latitude
-      region
       createdAt
       updatedAt
     }
@@ -166,6 +229,7 @@ export const listAds = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -177,7 +241,13 @@ export const listAds = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -192,7 +262,6 @@ export const listAds = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -212,6 +281,7 @@ export const getPicture = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -223,7 +293,13 @@ export const getPicture = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -238,7 +314,6 @@ export const getPicture = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -265,8 +340,9 @@ export const listPictures = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -275,7 +351,6 @@ export const listPictures = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
@@ -319,6 +394,7 @@ export const getFavorite = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -330,7 +406,13 @@ export const getFavorite = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -345,7 +427,6 @@ export const getFavorite = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -382,8 +463,9 @@ export const listFavorites = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -392,7 +474,6 @@ export const listFavorites = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
@@ -435,6 +516,7 @@ export const getRating = /* GraphQL */ `
         color
         engine
         price
+        year
         userID
         user {
           id
@@ -446,7 +528,13 @@ export const getRating = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        year
+        regionID
+        region {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         pictures {
           nextToken
         }
@@ -461,7 +549,6 @@ export const getRating = /* GraphQL */ `
         condition
         longitude
         latitude
-        region
         createdAt
         updatedAt
       }
@@ -499,8 +586,9 @@ export const listRatings = /* GraphQL */ `
           color
           engine
           price
-          userID
           year
+          userID
+          regionID
           transmissionType
           description
           fuelType
@@ -509,7 +597,6 @@ export const listRatings = /* GraphQL */ `
           condition
           longitude
           latitude
-          region
           createdAt
           updatedAt
         }
