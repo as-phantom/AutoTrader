@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Region } from 'src/API';
+import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
 @Component({
   selector: 'app-find-ad',
@@ -14,6 +16,7 @@ export class FindAdComponent implements OnInit {
   public isFormValid: boolean = false;
 
   public makes: string[] | [] = [];
+  public regions$: Observable<Region[] | undefined> | undefined;
 
   public get faQuestionCircle(): IconDefinition {
     return faQuestionCircle;
@@ -28,7 +31,7 @@ export class FindAdComponent implements OnInit {
     condition: new FormControl('', []),
   });
 
-  constructor() {}
+  constructor(private readonly regionsFacade: RegionsFacade) {}
 
   public onHoverInfo(): void {
     this.showInfoBox = true;
@@ -42,7 +45,9 @@ export class FindAdComponent implements OnInit {
     // this.submitted = true;
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.regions$ = this.regionsFacade.regions$.pipe();
+  }
 }
 
 // 1 fetch all records, filter only two properties (make & model)
