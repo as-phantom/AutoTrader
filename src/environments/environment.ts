@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   defaultRedirectUrl: '/',
+  defaultAppSyncPaginationLimit: 10,
+  defaultAppSyncMaxPaginationLimit: 100,
 };
 
 /*
