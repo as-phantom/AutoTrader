@@ -10,11 +10,21 @@
 
 .container
   @include mixins.card()
-  width: 280px
+  width: 20rem
+  height: 25rem
+  text-align: center
+  border-radius: 15px
+
+  h1
+    font-size: 2rem
+    padding: 30px 0 15%
+    color: #222b5ea6
 
   button
-    width: 100%
     font-weight: bold
+    width: 90%
+    border-radius: 10px
+    margin-bottom: 10%
 
     &:hover
       background: transparent
@@ -22,10 +32,16 @@
       transition: 0.3s
 
   p
-    padding: 2rem 0 1rem
+    font-size: .9rem
+    padding: 1.5rem 0 1rem
     text-align: center
+    color: #222b5ea6
+    font-weight: 600
+    letter-spacing: 0.6px
 
   .social
     display: flex
-    height: 5rem
-    justify-content: space-around
+    height: 4rem
+    padding-left: 10%
+    width: 80%
+    justify-content: space-evenly
