@@ -10,17 +10,18 @@ export const initialState: RegionsState = { regions: undefined };
 
 export const regionsReducer = createReducer<RegionsState>(
   initialState,
-  on(RegionsActions.loadRegionsAction, (state) => {
-    return {
-      ...state,
-      regions: undefined,
-    };
-  }),
   on(RegionsActions.loadRegionsSuccessAction, (state, { payload: { regions } }) => {
-    return {
-      ...state,
-      regions,
-    };
+    if (state.regions) {
+      return {
+        ...state,
+        regions: [...state.regions, ...regions],
+      };
+    } else {
+      return {
+        ...state,
+        regions,
+      };
+    }
   })
 );
 

@@ -11,7 +11,7 @@ export class RegionsFacade {
 
   constructor(private readonly store: Store<fromRoot.State>) {}
 
-  public loadRegions(): void {
-    this.store.dispatch(RegionsActions.loadRegionsAction());
+  public loadRegions(limit: number, nextToken: string | null): void {
+    this.store.dispatch(RegionsActions.loadRegionsAction({ payload: { limit, nextToken } }));
   }
 }
