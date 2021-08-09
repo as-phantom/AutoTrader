@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, PlaceAdComponent];
 
@@ -25,6 +26,7 @@ const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, Place
     MatOptionModule,
     ReactiveFormsModule,
     MatSelectModule,
+    FontAwesomeModule,
   ],
 })
 export class MainModule {}

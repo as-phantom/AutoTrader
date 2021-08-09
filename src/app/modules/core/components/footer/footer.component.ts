@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faFacebook, faGoogle, faYoutube, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faYoutube, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

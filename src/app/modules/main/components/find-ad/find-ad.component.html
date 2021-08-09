@@ -1,11 +1,24 @@
 <div class="container">
+  <h6 *ngIf="showInfoBox" class="infoBox">
+    Keep in mind that the only available Makes and Models to choose from will be the one that match the existing Ads.
+  </h6>
   <section class="form-section">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-      <h4>Find your perfect car</h4>
+      <div class="title">
+        <h4>Find your perfect car</h4>
+        <fa-icon
+          class="fa-icon"
+          [icon]="faQuestionCircle"
+          (mouseover)="onHoverInfo()"
+          (mouseleave)="onLeaveInfo()"
+        ></fa-icon>
+      </div>
 
       <mat-form-field appearance="fill">
         <mat-label>Region</mat-label>
-        <input formControlName="region" matInput #first />
+        <mat-select formControlName="region">
+          <!-- <mat-option *ngFor="let region of regions" value="{{ region }}">{{ region }}</mat-option> -->
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -19,7 +32,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Make</mat-label>
         <mat-select formControlName="make">
-          <!-- <mat-option *ngFor="let make of makes" value={{make}} >{{ make }}</mat-option> -->
+          <mat-option *ngFor="let make of makes" value="{{ make }}">{{ make }}</mat-option>
         </mat-select>
       </mat-form-field>
 

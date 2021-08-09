@@ -1,28 +1,53 @@
 @use '../../../../../assets/styles/variables.sass'
 
-:host
-   width: 85%
-   display: flex
-   justify-content: center
-
 .form-section
    width: 50%
 
+.infoBox
+   font-size: 0.8rem
+   border-radius: 10px
+   text-align: center
+   margin-left: 23rem
+   max-width: 24rem
+   background: #c2c4d2
+   position: fixed
+   top: 13% !important
+   padding: 10px
+   color: #423f3f
+
 .container
    background-image: url('../../../../../assets/images/form-background.png')
-   padding: 1.5rem
+   padding: 50px
    border-radius: 15px
    background-position: bottom center
    background-size: cover
 
    form
+      max-width: 60rem
       display: block
       text-align: center
+      background: white
+      border-radius: 10px
+      min-height: 23rem
 
-      h4
-         font-weight: 500
-         padding: 20px 50px
-         text-align: center
+      .title
+         display: flex
+         align-items: center
+
+         h4
+            font-weight: 500
+            padding: 20px 15px 22px 15%
+            text-align: center
+            font-size: 1.5rem
+            letter-spacing: 1px
+            color: #222b5e91
+
+         fa-icon
+            font-size: 1.1rem
+            color: #525879
+
+            &:hover ::ng-deep svg
+               cursor: help
 
    .btn
       width: 10rem
@@ -31,7 +56,7 @@
       padding: 0 20px 0
       color: white
       border: none
-      transition: .2s
+      transition: .25s
       font-weight: 100
       font-size: 1.5rem
       letter-spacing: 2px
