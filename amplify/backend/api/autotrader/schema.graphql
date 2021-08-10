@@ -42,6 +42,7 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) @key(name: "byRegion", f
   engine: Float!
   price: Float!
   year: Int!
+  mileage: Int!
   userID: ID!
   user: User @connection(fields: ["userID"])
   regionID: ID!

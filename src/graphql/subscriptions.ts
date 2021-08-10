@@ -16,6 +16,7 @@ export const onCreateRegion = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -50,6 +51,7 @@ export const onUpdateRegion = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -84,6 +86,7 @@ export const onDeleteRegion = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -138,6 +141,7 @@ export const onCreateUser = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -197,6 +201,7 @@ export const onUpdateUser = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -256,6 +261,7 @@ export const onDeleteUser = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -291,6 +297,7 @@ export const onCreateAd = /* GraphQL */ `
       engine
       price
       year
+      mileage
       userID
       user {
         id
@@ -365,6 +372,7 @@ export const onUpdateAd = /* GraphQL */ `
       engine
       price
       year
+      mileage
       userID
       user {
         id
@@ -439,6 +447,7 @@ export const onDeleteAd = /* GraphQL */ `
       engine
       price
       year
+      mileage
       userID
       user {
         id
@@ -516,6 +525,7 @@ export const onCreatePicture = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -570,6 +580,7 @@ export const onUpdatePicture = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -624,6 +635,7 @@ export const onDeletePicture = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -698,6 +710,7 @@ export const onCreateFavorite = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -771,6 +784,7 @@ export const onUpdateFavorite = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -844,6 +858,7 @@ export const onDeleteFavorite = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -917,6 +932,7 @@ export const onCreateRating = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -991,6 +1007,7 @@ export const onUpdateRating = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -1065,6 +1082,7 @@ export const onDeleteRating = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id

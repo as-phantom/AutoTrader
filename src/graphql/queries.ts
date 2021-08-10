@@ -16,6 +16,7 @@ export const getRegion = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -90,6 +91,7 @@ export const getUser = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -155,6 +157,7 @@ export const getAd = /* GraphQL */ `
       engine
       price
       year
+      mileage
       userID
       user {
         id
@@ -230,6 +233,7 @@ export const listAds = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -282,6 +286,7 @@ export const getPicture = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -341,6 +346,7 @@ export const listPictures = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -395,6 +401,7 @@ export const getFavorite = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -464,6 +471,7 @@ export const listFavorites = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
@@ -517,6 +525,7 @@ export const getRating = /* GraphQL */ `
         engine
         price
         year
+        mileage
         userID
         user {
           id
@@ -587,6 +596,7 @@ export const listRatings = /* GraphQL */ `
           engine
           price
           year
+          mileage
           userID
           regionID
           transmissionType
