@@ -1,1 +1,26 @@
-<p>place-ad works!</p>
+<section class="form-section">
+  <div class="title">
+    <h2>Place an advert on Auto Trader</h2>
+    <h4>Get the price you deserve</h4>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Region</mat-label>
+      <mat-select formControlName="region">
+        <mat-option *ngFor="let region of regions$ | async | sortRegions" value="{{ region.id }}">{{
+          region.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Year</mat-label>
+      <input formControlName="year" matInput />
+    </mat-form-field>
+
+    <!-- <button type="submit" class="btn" [disabled]="isFormValid">Submit</button> -->
+    <button type="submit" class="btn btn-success">Create</button>
+  </form>
+</section>
+<section class="image-section"></section>
