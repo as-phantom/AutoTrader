@@ -14,6 +14,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SortRegionsPipe } from './pipes/sort-regions.pipe';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, PlaceAdComponent, SortRegionsPipe];
 
@@ -28,6 +29,7 @@ const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, Place
     ReactiveFormsModule,
     MatSelectModule,
     FontAwesomeModule,
+    IvyCarouselModule,
   ],
 })
 export class MainModule {}

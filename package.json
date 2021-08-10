@@ -29,6 +29,7 @@
     "@ngrx/effects": "^12.3.0",
     "@ngrx/store": "^12.3.0",
     "angular-cli-ghpages": "^1.0.0-rc.2",
+    "angular-responsive-carousel": "^2.1.2",
     "aws-amplify": "^4.2.2",
     "aws-amplify-angular": "^6.0.8",
     "graphql-tag": "^2.12.5",
