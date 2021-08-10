@@ -6,6 +6,7 @@ import { LatestOffersComponent } from './components/latest-offers/latest-offers.
 import { PlaceAdComponent } from './components/place-ad/place-ad.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatRippleModule } from '@angular/material/core';
 
 // Materials
 import { MatInputModule } from '@angular/material/input';
@@ -30,6 +31,7 @@ const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, Place
     MatSelectModule,
     FontAwesomeModule,
     IvyCarouselModule,
+    MatRippleModule,
   ],
 })
 export class MainModule {}
