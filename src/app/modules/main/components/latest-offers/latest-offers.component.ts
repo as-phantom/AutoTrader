@@ -16,16 +16,9 @@ export class LatestOffersComponent implements OnInit {
     },
 
     { path: 'https://www.motoreport.de/wp-content/uploads/2019/05/audi-e-tron-GT-810x456.jpg' },
-    {
-      path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5LFTIvCxBgqgUzkuBgACRrgMH_Ub5-ncbOhOBTirZH2v_Yr6Ict5u8nNdTAYJd1yjPII&usqp=CAU',
-    },
 
     {
       path: 'https://i.auto-bild.de/ir_img/2/6/6/1/3/7/9/Audi-Functions-on-Demand-Fahrzeugfunktionen-zum-nachbuchen-474x316-864346a3a01476b0.jpg',
-    },
-
-    {
-      path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGxax6slujYgOYRHleJZMXxGriNe-14A1KFMTYCmDB72oMhFTZOV8CaqKj9wk_trSWio&usqp=CAU',
     },
 
     { path: 'https://www.motoreport.de/wp-content/uploads/2019/05/audi-e-tron-GT-810x456.jpg' },
@@ -40,7 +33,6 @@ export class LatestOffersComponent implements OnInit {
   public transitionDuration: number = 500;
   public width: number = (screen.width | 0) - 550;
   public height: number = window.innerHeight * 0.25;
-  public arrowsTheme: any = 'dark';
   public arrowsOutside: boolean = true;
   public transitionTimingFunction: any = 'linear';
 
