@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "autotraderb2184931_identitypool_b2184931",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "autotrb2184931",
-    "userPoolName": "autotraderb2184931_userpool_b2184931",
+    "identityPoolName": "autotradera7d24705_identitypool_a7d24705",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "autotra7d24705",
+    "userPoolName": "autotradera7d24705_userpool_a7d24705",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "autotrb2184931_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "autotra7d24705_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "b2184931",
-    "resourceName": "autotraderb2184931",
+    "sharedId": "a7d24705",
+    "resourceName": "autotradera7d24705a7d24705",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -48,17 +48,42 @@
             "Arn"
         ]
     },
-    "useDefault": "defaultSocial",
+    "useDefault": "manual",
+    "thirdPartyAuth": true,
+    "authProviders": [
+        "graph.facebook.com",
+        "accounts.google.com"
+    ],
+    "userPoolGroups": false,
+    "adminQueries": true,
+    "triggers": "{\n  \"CustomMessage\": [\n    \"verification-link\"\n  ]\n}",
     "hostedUI": true,
-    "hostedUIDomainName": "autotraderb2184931-b2184931",
+    "hostedUIDomainName": "autotradera7d24705-a7d24705",
     "authProvidersUserPool": [
         "Facebook",
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/auth/\"],\"LogoutURLs\":[\"http://localhost:3000/auth/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
+    "verificationBucketName": "autotradera7d24705a7d24705verificationbucket",
     "usernameCaseSensitive": false,
-    "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"],\"LogoutURLs\":[\"https://innerpulse.github.io/AutoTrader/auth/\"]}"
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"CustomMessage\",\n    \"lambdaFunctionName\": \"autotradera7d24705a7d24705CustomMessage\"\n  }\n]",
+    "breakCircularDependency": true,
+    "permissions": [],
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "autotradera7d24705a7d24705CustomMessage",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ]
 }

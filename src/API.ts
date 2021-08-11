@@ -83,6 +83,7 @@ export type Ad = {
   user?: User | null,
   regionID: string,
   region: Region,
+  favorites?: ModelFavoriteConnection | null,
   pictures?: ModelPictureConnection | null,
   ratings?: ModelRatingConnection | null,
   transmissionType: TransmissionType,
@@ -900,6 +901,18 @@ export type CreateAdMutation = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -990,6 +1003,18 @@ export type UpdateAdMutation = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -1080,6 +1105,18 @@ export type DeleteAdMutation = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -1158,6 +1195,10 @@ export type CreatePictureMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1223,6 +1264,10 @@ export type UpdatePictureMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1288,6 +1333,10 @@ export type DeletePictureMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1377,6 +1426,10 @@ export type CreateFavoriteMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1465,6 +1518,10 @@ export type UpdateFavoriteMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1553,6 +1610,10 @@ export type DeleteFavoriteMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1641,6 +1702,10 @@ export type CreateRatingMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1730,6 +1795,10 @@ export type UpdateRatingMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -1819,6 +1888,10 @@ export type DeleteRatingMutation = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2066,6 +2139,18 @@ export type GetAdQuery = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -2143,6 +2228,10 @@ export type ListAdsQuery = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2205,6 +2294,10 @@ export type GetPictureQuery = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2337,6 +2430,10 @@ export type GetFavoriteQuery = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2479,6 +2576,10 @@ export type GetRatingQuery = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -2916,6 +3017,18 @@ export type OnCreateAdSubscription = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -3001,6 +3114,18 @@ export type OnUpdateAdSubscription = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -3086,6 +3211,18 @@ export type OnDeleteAdSubscription = {
       createdAt: string,
       updatedAt: string,
     },
+    favorites?:  {
+      __typename: "ModelFavoriteConnection",
+      items?:  Array< {
+        __typename: "Favorite",
+        id: string,
+        userID: string,
+        adID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     pictures?:  {
       __typename: "ModelPictureConnection",
       items?:  Array< {
@@ -3159,6 +3296,10 @@ export type OnCreatePictureSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3219,6 +3360,10 @@ export type OnUpdatePictureSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3279,6 +3424,10 @@ export type OnDeletePictureSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3363,6 +3512,10 @@ export type OnCreateFavoriteSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3446,6 +3599,10 @@ export type OnUpdateFavoriteSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3529,6 +3686,10 @@ export type OnDeleteFavoriteSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3612,6 +3773,10 @@ export type OnCreateRatingSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3696,6 +3861,10 @@ export type OnUpdateRatingSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,
@@ -3780,6 +3949,10 @@ export type OnDeleteRatingSubscription = {
         createdAt: string,
         updatedAt: string,
       },
+      favorites?:  {
+        __typename: "ModelFavoriteConnection",
+        nextToken?: string | null,
+      } | null,
       pictures?:  {
         __typename: "ModelPictureConnection",
         nextToken?: string | null,

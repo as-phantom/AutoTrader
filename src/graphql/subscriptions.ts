@@ -328,6 +328,16 @@ export const onCreateAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      favorites {
+        items {
+          id
+          userID
+          adID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       pictures {
         items {
           id
@@ -402,6 +412,16 @@ export const onUpdateAd = /* GraphQL */ `
         }
         createdAt
         updatedAt
+      }
+      favorites {
+        items {
+          id
+          userID
+          adID
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       pictures {
         items {
@@ -478,6 +498,16 @@ export const onDeleteAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      favorites {
+        items {
+          id
+          userID
+          adID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       pictures {
         items {
           id
@@ -544,6 +574,9 @@ export const onCreatePicture = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        favorites {
+          nextToken
+        }
         pictures {
           nextToken
         }
@@ -599,6 +632,9 @@ export const onUpdatePicture = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        favorites {
+          nextToken
+        }
         pictures {
           nextToken
         }
@@ -653,6 +689,9 @@ export const onDeletePicture = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken
@@ -729,6 +768,9 @@ export const onCreateFavorite = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        favorites {
+          nextToken
+        }
         pictures {
           nextToken
         }
@@ -802,6 +844,9 @@ export const onUpdateFavorite = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken
@@ -877,6 +922,9 @@ export const onDeleteFavorite = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        favorites {
+          nextToken
+        }
         pictures {
           nextToken
         }
@@ -950,6 +998,9 @@ export const onCreateRating = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken
@@ -1026,6 +1077,9 @@ export const onUpdateRating = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        favorites {
+          nextToken
+        }
         pictures {
           nextToken
         }
@@ -1100,6 +1154,9 @@ export const onDeleteRating = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken

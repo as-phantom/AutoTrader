@@ -47,6 +47,7 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) @key(name: "byRegion", f
   user: User @connection(fields: ["userID"])
   regionID: ID!
   region: Region! @connection(fields: ["regionID"])
+  favorites: [Favorite] @connection(keyName: "byAd", fields: ["id"])
   pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
   ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
   transmissionType: TransmissionType!

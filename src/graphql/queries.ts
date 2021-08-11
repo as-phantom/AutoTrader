@@ -188,6 +188,16 @@ export const getAd = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      favorites {
+        items {
+          id
+          userID
+          adID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       pictures {
         items {
           id
@@ -252,6 +262,9 @@ export const listAds = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        favorites {
+          nextToken
+        }
         pictures {
           nextToken
         }
@@ -304,6 +317,9 @@ export const getPicture = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken
@@ -419,6 +435,9 @@ export const getFavorite = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken
@@ -543,6 +562,9 @@ export const getRating = /* GraphQL */ `
           name
           createdAt
           updatedAt
+        }
+        favorites {
+          nextToken
         }
         pictures {
           nextToken
