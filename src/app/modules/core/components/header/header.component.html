@@ -4,7 +4,7 @@
   <ng-container *ngIf="user$ | async as user; else guestTemplate">
     <div class="profile" tabindex="0">
       <span>{{ getUserName(user) }}</span>
-      <img src="{{ user.picture }}" alt="Profile image" />
+      <img src="{{ user.picture }}" alt="image" />
       <i class="material-icons">keyboard_arrow_down</i>
 
       <div class="dropdown-menu">
