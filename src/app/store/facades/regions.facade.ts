@@ -8,6 +8,7 @@ import * as fromRoot from '../reducers';
 })
 export class RegionsFacade {
   public readonly regions$ = this.store.select(fromRoot.getRegions);
+  public readonly regionsLoadingComplete$ = this.store.select(fromRoot.getRegionsLoadingComplete);
 
   constructor(private readonly store: Store<fromRoot.State>) {}
 

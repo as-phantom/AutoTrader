@@ -8,6 +8,7 @@ import * as fromRoot from '../reducers';
 })
 export class AdsFacade {
   public readonly ads$ = this.store.select(fromRoot.getAds);
+  public readonly adsLoadingComplete$ = this.store.select(fromRoot.getAdsLoadingComplete);
 
   constructor(private readonly store: Store<fromRoot.State>) {}
 
