@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
-import { Region } from 'src/API';
+import { Ad, Region } from 'src/API';
+import { AdsFacade } from 'src/app/store/facades/ads.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
 @Component({
@@ -15,7 +16,7 @@ export class FindAdComponent implements OnInit {
   public showInfoBox: boolean = false;
   public isFormValid: boolean = false;
 
-  public makes: string[] | [] = [];
+  public ads$: Observable<Ad[] | undefined> | undefined;
   public regions$: Observable<Region[] | undefined> | undefined;
 
   public get faQuestionCircle(): IconDefinition {
@@ -31,7 +32,7 @@ export class FindAdComponent implements OnInit {
     condition: new FormControl('', []),
   });
 
-  constructor(private readonly regionsFacade: RegionsFacade) {}
+  constructor(private readonly regionsFacade: RegionsFacade, private readonly adsFacade: AdsFacade) {}
 
   public onHoverInfo(): void {
     this.showInfoBox = true;
@@ -42,10 +43,11 @@ export class FindAdComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    // this.submitted = true;
+    this.submitted = true;
   }
 
   ngOnInit(): void {
+    this.ads$ = this.adsFacade.ads$.pipe();
     this.regions$ = this.regionsFacade.regions$.pipe();
   }
 }
