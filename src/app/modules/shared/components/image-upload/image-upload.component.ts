@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { API } from 'aws-amplify';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
-import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
+import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-image-upload',
@@ -20,7 +20,7 @@ export class ImageUploadComponent implements OnInit {
   constructor(
     private readonly authFacade: AuthFacade,
     private readonly storageService: StorageService,
-    private readonly notifications: NotificationsService
+    private readonly notificationsService: NotificationsService
   ) {}
 
   public ngOnInit(): void {
@@ -70,49 +70,62 @@ export class ImageUploadComponent implements OnInit {
     return await this.storageService.uploadFileToS3(file);
   }
 
-  private async updateUserPicture(id: string, picture: string): Promise<User> {
-    const response = await API.graphql({
-      query: gql`
-        mutation UpdateUser($input: UpdateUserInput!) {
-          updateUser(input: $input) {
-            picture
+  private async updateUserPicture(user: User, picture: string | null | undefined): Promise<void> {
+    const { id } = user;
+
+    try {
+      const response = await API.graphql({
+        query: gql`
+          mutation UpdateUser($input: UpdateUserInput!) {
+            updateUser(input: $input) {
+              picture
+            }
           }
-        }
-      `,
-      variables: {
-        input: {
-          id,
-          picture,
+        `,
+        variables: {
+          input: {
+            id,
+            picture,
+          },
         },
-      },
-    });
+      });
 
-    const {
-      data: { updateUser },
-    } = response as { data: { updateUser: User } };
+      const {
+        data: { updateUser },
+      } = response as { data: { updateUser: User } };
 
-    return updateUser;
+      this.authFacade.setUser({
+        ...user,
+        picture: updateUser.picture,
+      });
+
+      this.notificationsService.success('Picture uploaded successfully!');
+    } catch {
+      this.notificationsService.error('Something went wrong! Please try again later.');
+    }
   }
 
   private async handlePictureUpload(file: File, user: User): Promise<void> {
-    let { id, picture } = user;
+    let { picture } = user;
 
     this.uploading = true;
 
     if (picture) {
-      await this.deleteExistingPictureFromS3(picture);
+      try {
+        await this.deleteExistingPictureFromS3(picture);
+      } catch {
+        this.notificationsService.error('Something went wrong! Please try again later.');
+      }
     }
 
-    picture = await this.uploadPictureToS3(file);
+    try {
+      picture = await this.uploadPictureToS3(file);
+    } catch {
+      this.notificationsService.error('Something went wrong! Please try again later.');
+    }
 
-    const updateUser: User = await this.updateUserPicture(id, picture);
-    this.notifications.success('Profile picture has been updated.');
+    await this.updateUserPicture(user, picture);
 
     this.uploading = false;
-
-    this.authFacade.setUser({
-      ...user,
-      picture: updateUser.picture,
-    });
   }
 }
