@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth } from 'aws-amplify';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './modules/core/services/auth.service';
 import { RegionsFacade } from './store/facades/regions.facade';
@@ -14,6 +15,9 @@ export class AppComponent {
   constructor(private readonly authService: AuthService, private readonly regionsFacade: RegionsFacade) {}
 
   public ngOnInit(): void {
+    // Get IAM service credentials for guest access
+    Auth.currentCredentials();
+
     // Store the cognito user
     this.authService.storeCurrentAuthenticatedUser();
 
