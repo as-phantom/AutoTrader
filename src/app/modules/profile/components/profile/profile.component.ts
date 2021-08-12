@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
+import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   public user$: Observable<User | undefined> | undefined;
   public loading: boolean = false;
 
-  constructor(private readonly authFacade: AuthFacade) {}
+  constructor(private readonly authFacade: AuthFacade, private readonly notificationsService: NotificationsService) {}
 
   public ngOnInit(): void {
     this.user$ = this.authFacade.user$.pipe(
@@ -49,31 +50,37 @@ export class ProfileComponent implements OnInit {
     const firstName: string = this.formGroup.controls.firstName.value;
     const lastName: string = this.formGroup.controls.lastName.value;
 
-    const response = await API.graphql({
-      query: gql`
-        mutation UpdateUser($input: UpdateUserInput!) {
-          updateUser(input: $input) {
-            firstName
-            lastName
+    try {
+      const response = await API.graphql({
+        query: gql`
+          mutation UpdateUser($input: UpdateUserInput!) {
+            updateUser(input: $input) {
+              firstName
+              lastName
+            }
           }
-        }
-      `,
-      variables: {
-        input: {
-          id,
-          firstName,
-          lastName,
+        `,
+        variables: {
+          input: {
+            id,
+            firstName,
+            lastName,
+          },
         },
-      },
-    });
+      });
 
-    const {
-      data: { updateUser },
-    } = response as { data: { updateUser: User } };
+      const {
+        data: { updateUser },
+      } = response as { data: { updateUser: User } };
 
-    this.authFacade.setUser({
-      ...user,
-      ...updateUser,
-    });
+      this.authFacade.setUser({
+        ...user,
+        ...updateUser,
+      });
+
+      this.notificationsService.success('Profile updated successfully!');
+    } catch (e) {
+      this.notificationsService.error('Something went wrong! Please try again later.');
+    }
   }
 }

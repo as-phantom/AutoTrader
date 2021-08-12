@@ -1,29 +1,27 @@
 <ng-container *ngIf="user$ | async as user">
-  <ng-container *ngIf="!loading; else loadingTemplate">
-    <form [formGroup]="formGroup">
-      <app-image-upload></app-image-upload>
+  <form [formGroup]="formGroup">
+    <app-image-upload></app-image-upload>
 
-      <div class="fields">
-        <mat-form-field>
-          <mat-label>First Name</mat-label>
-          <input matInput type="text" name="firstName" formControlName="firstName" />
-        </mat-form-field>
+    <div class="fields">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" name="firstName" formControlName="firstName" />
+      </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Last Name</mat-label>
-          <input matInput type="text" name="lastName" formControlName="lastName" />
-        </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" name="lastName" formControlName="lastName" />
+      </mat-form-field>
 
-        <div class="actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid" (click)="onSave(user)">
-            Save
-          </button>
-        </div>
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid" (click)="onSave(user)">
+          Save
+        </button>
       </div>
-    </form>
-  </ng-container>
+    </div>
+  </form>
 
-  <ng-template #loadingTemplate>
+  <ng-container *ngIf="loading">
     <app-loading></app-loading>
-  </ng-template>
+  </ng-container>
 </ng-container>
