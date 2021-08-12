@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
-import { Ad, Region } from 'src/API';
+import { Ad, Condition, Region } from 'src/API';
 import { AdsFacade } from 'src/app/store/facades/ads.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
@@ -15,6 +15,7 @@ export class FindAdComponent implements OnInit {
   public submitted: boolean = false;
   public showInfoBox: boolean = false;
   public isFormValid: boolean = false;
+  public condition = Condition;
 
   public ads$: Observable<Ad[] | undefined> | undefined;
   public regions$: Observable<Region[] | undefined> | undefined;

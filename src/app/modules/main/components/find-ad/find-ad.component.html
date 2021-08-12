@@ -26,8 +26,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Condition</mat-label>
         <mat-select formControlName="condition">
-          <mat-option value="new">Used</mat-option>
-          <mat-option value="used">Brand New</mat-option>
+          <mat-option [value]="condition.USED">Used</mat-option>
+          <mat-option [value]="condition.NEW">Brand New</mat-option>
         </mat-select>
       </mat-form-field>
 
