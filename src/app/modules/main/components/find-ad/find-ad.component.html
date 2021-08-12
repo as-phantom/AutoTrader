@@ -1,6 +1,6 @@
 <div class="container">
   <h6 *ngIf="showInfoBox" class="infoBox">
-    Keep in mind that the only available Makes and Models to choose from will be the one that match the existing Ads.
+    Keep in mind that the only available Makes and Models to choose from will be the ones that match the existing Ads.
   </h6>
   <section class="form-section">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
@@ -34,7 +34,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Make</mat-label>
         <mat-select formControlName="make">
-          <mat-option *ngFor="let make of makes" value="{{ make }}">{{ make }}</mat-option>
+          <mat-option *ngFor="let make of ads$ | async | sortMakes" value="{{ make }}">{{ make }}</mat-option>
         </mat-select>
       </mat-form-field>
 

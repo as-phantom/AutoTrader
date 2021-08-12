@@ -19,7 +19,7 @@ export class PlaceAdComponent implements OnInit {
 
   public readonly formGroup: FormGroup = new FormGroup({
     region: new FormControl('', []),
-    year: new FormControl('', []),
+    price: new FormControl('', []),
   });
 
   constructor(private readonly regionsFacade: RegionsFacade) {}
