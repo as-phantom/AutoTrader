@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { API } from 'aws-amplify';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
+import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
@@ -16,7 +17,11 @@ export class ImageUploadComponent implements OnInit {
   public uploading: boolean = false;
   public user$: Observable<User | undefined> | undefined;
 
-  constructor(private readonly authFacade: AuthFacade, private readonly storageService: StorageService) {}
+  constructor(
+    private readonly authFacade: AuthFacade,
+    private readonly storageService: StorageService,
+    private readonly notifications: NotificationsService
+  ) {}
 
   public ngOnInit(): void {
     this.user$ = this.authFacade.user$;
@@ -101,6 +106,7 @@ export class ImageUploadComponent implements OnInit {
     picture = await this.uploadPictureToS3(file);
 
     const updateUser: User = await this.updateUserPicture(id, picture);
+    this.notifications.success('Profile picture has been updated.');
 
     this.uploading = false;
 
