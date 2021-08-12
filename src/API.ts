@@ -72,7 +72,7 @@ export type ModelAdConnection = {
 export type Ad = {
   __typename: "Ad",
   id: string,
-  brand: string,
+  make: string,
   model: string,
   color: string,
   engine: number,
@@ -245,7 +245,7 @@ export type DeleteUserInput = {
 
 export type CreateAdInput = {
   id?: string | null,
-  brand: string,
+  make: string,
   model: string,
   color: string,
   engine: number,
@@ -265,7 +265,7 @@ export type CreateAdInput = {
 };
 
 export type ModelAdConditionInput = {
-  brand?: ModelStringInput | null,
+  make?: ModelStringInput | null,
   model?: ModelStringInput | null,
   color?: ModelStringInput | null,
   engine?: ModelFloatInput | null,
@@ -328,7 +328,7 @@ export type ModelConditionInput = {
 
 export type UpdateAdInput = {
   id: string,
-  brand?: string | null,
+  make?: string | null,
   model?: string | null,
   color?: string | null,
   engine?: number | null,
@@ -460,7 +460,7 @@ export type ModelUserConnection = {
 
 export type ModelAdFilterInput = {
   id?: ModelIDInput | null,
-  brand?: ModelStringInput | null,
+  make?: ModelStringInput | null,
   model?: ModelStringInput | null,
   color?: ModelStringInput | null,
   engine?: ModelFloatInput | null,
@@ -525,7 +525,7 @@ export type CreateRegionMutation = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -567,7 +567,7 @@ export type UpdateRegionMutation = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -609,7 +609,7 @@ export type DeleteRegionMutation = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -675,7 +675,7 @@ export type CreateUserMutation = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -746,7 +746,7 @@ export type UpdateUserMutation = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -817,7 +817,7 @@ export type DeleteUserMutation = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -858,7 +858,7 @@ export type CreateAdMutation = {
   createAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -960,7 +960,7 @@ export type UpdateAdMutation = {
   updateAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -1062,7 +1062,7 @@ export type DeleteAdMutation = {
   deleteAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -1168,7 +1168,7 @@ export type CreatePictureMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1237,7 +1237,7 @@ export type UpdatePictureMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1306,7 +1306,7 @@ export type DeletePictureMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1399,7 +1399,7 @@ export type CreateFavoriteMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1491,7 +1491,7 @@ export type UpdateFavoriteMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1583,7 +1583,7 @@ export type DeleteFavoriteMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1675,7 +1675,7 @@ export type CreateRatingMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1768,7 +1768,7 @@ export type UpdateRatingMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1861,7 +1861,7 @@ export type DeleteRatingMutation = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -1931,7 +1931,7 @@ export type GetRegionQuery = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2020,7 +2020,7 @@ export type GetUserQuery = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2096,7 +2096,7 @@ export type GetAdQuery = {
   getAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -2201,7 +2201,7 @@ export type ListAdsQuery = {
     items?:  Array< {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -2267,7 +2267,7 @@ export type GetPictureQuery = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -2339,7 +2339,7 @@ export type ListPicturesQuery = {
       ad?:  {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2403,7 +2403,7 @@ export type GetFavoriteQuery = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -2486,7 +2486,7 @@ export type ListFavoritesQuery = {
       ad?:  {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2549,7 +2549,7 @@ export type GetRatingQuery = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -2633,7 +2633,7 @@ export type ListRatingsQuery = {
       ad?:  {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2671,7 +2671,7 @@ export type OnCreateRegionSubscription = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2708,7 +2708,7 @@ export type OnUpdateRegionSubscription = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2745,7 +2745,7 @@ export type OnDeleteRegionSubscription = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2806,7 +2806,7 @@ export type OnCreateUserSubscription = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2872,7 +2872,7 @@ export type OnUpdateUserSubscription = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2938,7 +2938,7 @@ export type OnDeleteUserSubscription = {
       items?:  Array< {
         __typename: "Ad",
         id: string,
-        brand: string,
+        make: string,
         model: string,
         color: string,
         engine: number,
@@ -2974,7 +2974,7 @@ export type OnCreateAdSubscription = {
   onCreateAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -3071,7 +3071,7 @@ export type OnUpdateAdSubscription = {
   onUpdateAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -3168,7 +3168,7 @@ export type OnDeleteAdSubscription = {
   onDeleteAd?:  {
     __typename: "Ad",
     id: string,
-    brand: string,
+    make: string,
     model: string,
     color: string,
     engine: number,
@@ -3269,7 +3269,7 @@ export type OnCreatePictureSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3333,7 +3333,7 @@ export type OnUpdatePictureSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3397,7 +3397,7 @@ export type OnDeletePictureSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3485,7 +3485,7 @@ export type OnCreateFavoriteSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3572,7 +3572,7 @@ export type OnUpdateFavoriteSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3659,7 +3659,7 @@ export type OnDeleteFavoriteSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3746,7 +3746,7 @@ export type OnCreateRatingSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3834,7 +3834,7 @@ export type OnUpdateRatingSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,
@@ -3922,7 +3922,7 @@ export type OnDeleteRatingSubscription = {
     ad?:  {
       __typename: "Ad",
       id: string,
-      brand: string,
+      make: string,
       model: string,
       color: string,
       engine: number,

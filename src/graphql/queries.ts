@@ -10,7 +10,7 @@ export const getRegion = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -85,7 +85,7 @@ export const getUser = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -151,7 +151,7 @@ export const getAd = /* GraphQL */ `
   query GetAd($id: ID!) {
     getAd(id: $id) {
       id
-      brand
+      make
       model
       color
       engine
@@ -237,7 +237,7 @@ export const listAds = /* GraphQL */ `
     listAds(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        brand
+        make
         model
         color
         engine
@@ -293,7 +293,7 @@ export const getPicture = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -356,7 +356,7 @@ export const listPictures = /* GraphQL */ `
         adID
         ad {
           id
-          brand
+          make
           model
           color
           engine
@@ -411,7 +411,7 @@ export const getFavorite = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -484,7 +484,7 @@ export const listFavorites = /* GraphQL */ `
         adID
         ad {
           id
-          brand
+          make
           model
           color
           engine
@@ -538,7 +538,7 @@ export const getRating = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -612,7 +612,7 @@ export const listRatings = /* GraphQL */ `
         adID
         ad {
           id
-          brand
+          make
           model
           color
           engine

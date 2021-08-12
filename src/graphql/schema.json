@@ -580,7 +580,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "brand",
+          "name" : "make",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2171,7 +2171,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "brand",
+          "name" : "make",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4174,7 +4174,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "brand",
+          "name" : "make",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -4404,7 +4404,7 @@
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "brand",
+          "name" : "make",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4614,7 +4614,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "brand",
+          "name" : "make",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6437,23 +6437,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_publish",
         "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -6470,6 +6453,23 @@
             }
           },
           "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
         } ],
         "onOperation" : false,
         "onFragment" : false,

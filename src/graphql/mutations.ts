@@ -13,7 +13,7 @@ export const createRegion = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -51,7 +51,7 @@ export const updateRegion = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -89,7 +89,7 @@ export const deleteRegion = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -147,7 +147,7 @@ export const createUser = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -210,7 +210,7 @@ export const updateUser = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -273,7 +273,7 @@ export const deleteUser = /* GraphQL */ `
       ads {
         items {
           id
-          brand
+          make
           model
           color
           engine
@@ -309,7 +309,7 @@ export const createAd = /* GraphQL */ `
   mutation CreateAd($input: CreateAdInput!, $condition: ModelAdConditionInput) {
     createAd(input: $input, condition: $condition) {
       id
-      brand
+      make
       model
       color
       engine
@@ -394,7 +394,7 @@ export const updateAd = /* GraphQL */ `
   mutation UpdateAd($input: UpdateAdInput!, $condition: ModelAdConditionInput) {
     updateAd(input: $input, condition: $condition) {
       id
-      brand
+      make
       model
       color
       engine
@@ -479,7 +479,7 @@ export const deleteAd = /* GraphQL */ `
   mutation DeleteAd($input: DeleteAdInput!, $condition: ModelAdConditionInput) {
     deleteAd(input: $input, condition: $condition) {
       id
-      brand
+      make
       model
       color
       engine
@@ -570,7 +570,7 @@ export const createPicture = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -631,7 +631,7 @@ export const updatePicture = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -692,7 +692,7 @@ export const deletePicture = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -773,7 +773,7 @@ export const createFavorite = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -853,7 +853,7 @@ export const updateFavorite = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -933,7 +933,7 @@ export const deleteFavorite = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -1013,7 +1013,7 @@ export const createRating = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -1094,7 +1094,7 @@ export const updateRating = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
@@ -1175,7 +1175,7 @@ export const deleteRating = /* GraphQL */ `
       adID
       ad {
         id
-        brand
+        make
         model
         color
         engine
