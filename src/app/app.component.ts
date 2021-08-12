@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './modules/core/services/auth.service';
+import { AdsFacade } from './store/facades/ads.facade';
 import { RegionsFacade } from './store/facades/regions.facade';
 
 @Component({
@@ -12,7 +13,11 @@ import { RegionsFacade } from './store/facades/regions.facade';
 export class AppComponent {
   title = 'AutoTrader';
 
-  constructor(private readonly authService: AuthService, private readonly regionsFacade: RegionsFacade) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly regionsFacade: RegionsFacade,
+    private readonly adsFacade: AdsFacade
+  ) {}
 
   public ngOnInit(): void {
     // Get IAM service credentials for guest access
@@ -27,5 +32,6 @@ export class AppComponent {
 
   private loadEntities(): void {
     this.regionsFacade.loadRegions(environment.defaultAppSyncMaxPaginationLimit, null);
+    this.adsFacade.loadAds(environment.defaultAppSyncMaxPaginationLimit, null);
   }
 }

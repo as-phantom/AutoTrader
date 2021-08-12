@@ -13,4 +13,7 @@ export const loadRegionsSuccessAction = createAction(
   LOAD_REGIONS_SUCCESS,
   props<{ payload: { regions: Region[]; nextToken: string | null } }>()
 );
-export const loadRegionsErrorAction = createAction(LOAD_REGIONS_ERROR, props<{ payload: { error: Error } }>());
+export const loadRegionsErrorAction = createAction(
+  LOAD_REGIONS_ERROR,
+  props<{ payload: { error: Error } }>()
+);

@@ -16,8 +16,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SortRegionsPipe } from './pipes/sort-regions.pipe';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { SortMakesPipe } from './pipes/sort-makes.pipe';
 
-const COMPONENTS = [HomeComponent, FindAdComponent, LatestOffersComponent, PlaceAdComponent, SortRegionsPipe];
+const COMPONENTS = [
+  HomeComponent,
+  FindAdComponent,
+  LatestOffersComponent,
+  PlaceAdComponent,
+  SortRegionsPipe,
+  SortMakesPipe,
+];
 
 @NgModule({
   declarations: [...COMPONENTS],
