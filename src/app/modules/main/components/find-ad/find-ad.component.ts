@@ -48,8 +48,8 @@ export class FindAdComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ads$ = this.adsFacade.ads$.pipe();
-    this.regions$ = this.regionsFacade.regions$.pipe();
+    this.ads$ = this.adsFacade.ads$;
+    this.regions$ = this.regionsFacade.regions$;
   }
 }
 
