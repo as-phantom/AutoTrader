@@ -7,7 +7,6 @@ import { IsGuestGuard } from './modules/core/guards/isGuest.guard';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
   },
   {
