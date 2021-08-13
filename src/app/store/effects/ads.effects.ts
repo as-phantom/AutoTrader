@@ -20,7 +20,11 @@ export class AdsEffects {
               query ListAds($limit: Int, $nextToken: String) {
                 listAds(limit: $limit, nextToken: $nextToken) {
                   items {
+                    id
                     make
+                    model
+                    picture
+                    createdAt
                   }
                   nextToken
                 }

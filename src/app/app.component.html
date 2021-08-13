@@ -1,6 +1,5 @@
 <app-header></app-header>
 <main>
-  <!-- Include check for latest offers also!! -->
   <app-loading *ngIf="!regionsLoadingComplete || !makesLoadingComplete"></app-loading>
   <router-outlet *ngIf="regionsLoadingComplete && makesLoadingComplete"></router-outlet>
 </main>

@@ -6,12 +6,13 @@ import { SocialFabIconComponent } from './components/social-fab-icon/social-fab-
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AdsListComponent } from './components/ads-list/ads-list.component';
+import { AdDetailsComponent } from './components/ad-details/ad-details.component';
 
 const COMPONENTS = [SocialFabIconComponent, LoadingComponent];
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule, MatRippleModule, MatProgressSpinnerModule],
-  declarations: [...COMPONENTS, AdsListComponent],
+  declarations: [...COMPONENTS, AdsListComponent, AdDetailsComponent],
   exports: [...COMPONENTS],
 })
 export class SharedModule {}
