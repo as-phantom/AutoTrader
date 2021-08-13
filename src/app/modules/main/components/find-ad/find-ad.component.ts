@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Ad, Condition, Region } from 'src/API';
@@ -33,7 +34,16 @@ export class FindAdComponent implements OnInit {
     condition: new FormControl('', []),
   });
 
-  constructor(private readonly regionsFacade: RegionsFacade, private readonly adsFacade: AdsFacade) {}
+  constructor(
+    private readonly regionsFacade: RegionsFacade,
+    private readonly adsFacade: AdsFacade,
+    private readonly router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.ads$ = this.adsFacade.ads$;
+    this.regions$ = this.regionsFacade.regions$;
+  }
 
   public onHoverInfo(): void {
     this.showInfoBox = true;
@@ -45,14 +55,23 @@ export class FindAdComponent implements OnInit {
 
   public onSubmit(): void {
     this.submitted = true;
-  }
 
-  ngOnInit(): void {
-    this.ads$ = this.adsFacade.ads$;
-    this.regions$ = this.regionsFacade.regions$;
+    const make = this.formGroup.controls.make.value;
+    const model = this.formGroup.controls.model.value;
+    const region = this.formGroup.controls.region.value;
+    const minPrice = this.formGroup.controls.minPrice.value;
+    const maxPrice = this.formGroup.controls.maxPrice.value;
+    const condition = this.formGroup.controls.condition.value;
+
+    const queryParams = {
+      make,
+      model,
+      region,
+      minPrice,
+      maxPrice,
+      condition,
+    };
+
+    this.router.navigate(['/ads'], { queryParams });
   }
 }
-
-// 1 fetch all records, filter only two properties (make & model)
-// 2 remove duplicates makes and models in order to create key-value pairs to dynamically create a dropdown list
-// create option for each key-value pair
