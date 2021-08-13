@@ -34,7 +34,6 @@ export class LatestOffersComponent implements OnInit {
   public width: number = (screen.width | 0) - 550;
   public height: number = window.innerHeight * 0.25;
   public arrowsOutside: boolean = true;
-  public transitionTimingFunction: any = 'linear';
 
   constructor() {}
 
