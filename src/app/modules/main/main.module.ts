@@ -17,6 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SortRegionsPipe } from './pipes/sort-regions.pipe';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SortMakesPipe } from './pipes/sort-makes.pipe';
+import { SharedModule } from '../shared/shared.module';
+import { GetModelsPerMakePipe } from './pipes/get-models-per-make.pipe';
 
 const COMPONENTS = [
   HomeComponent,
@@ -25,6 +27,7 @@ const COMPONENTS = [
   PlaceAdComponent,
   SortRegionsPipe,
   SortMakesPipe,
+  GetModelsPerMakePipe,
 ];
 
 @NgModule({
@@ -40,6 +43,7 @@ const COMPONENTS = [
     FontAwesomeModule,
     IvyCarouselModule,
     MatRippleModule,
+    SharedModule,
   ],
 })
 export class MainModule {}
