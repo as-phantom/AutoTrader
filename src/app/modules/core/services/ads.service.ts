@@ -8,7 +8,7 @@ import { Ad, Condition } from 'src/API';
 @Injectable({
   providedIn: 'root',
 })
-export class LoadDataService {
+export class AdsService {
   constructor() {}
 
   public loadAdById(id: string): Observable<Ad | null> {
