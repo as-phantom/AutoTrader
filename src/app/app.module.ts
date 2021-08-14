@@ -7,7 +7,6 @@ import { CoreModule } from './modules/core/core.module';
 import { CommonModule } from '@angular/common';
 // Modules
 import { SharedModule } from './modules/shared/shared.module';
-
 // AWS
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { AmplifyService } from 'aws-amplify-angular';

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
-import { FindAdComponent } from './components/find-ad/find-ad.component';
+import { FindAdsComponent } from './components/find-ads/find-ads.component';
 import { LatestOffersComponent } from './components/latest-offers/latest-offers.component';
 import { PlaceAdComponent } from './components/place-ad/place-ad.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,7 +22,7 @@ import { GetModelsPerMakePipe } from './pipes/get-models-per-make.pipe';
 
 const COMPONENTS = [
   HomeComponent,
-  FindAdComponent,
+  FindAdsComponent,
   LatestOffersComponent,
   PlaceAdComponent,
   SortRegionsPipe,
