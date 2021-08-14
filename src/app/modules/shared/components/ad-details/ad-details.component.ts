@@ -5,28 +5,20 @@ import { Ad } from 'src/API';
 import { LoadDataService } from 'src/app/modules/core/services/load-data.service';
 
 @Component({
-  selector: 'app-ads-list',
-  templateUrl: './ads-list.component.html',
-  styleUrls: ['./ads-list.component.sass'],
+  selector: 'app-ad-details',
+  templateUrl: './ad-details.component.html',
+  styleUrls: ['./ad-details.component.sass'],
 })
-export class AdsListComponent implements OnInit, OnDestroy {
+export class AdDetailsComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-  public adsList$: Observable<Ad[] | null> | undefined;
+  public ad$: Observable<Ad | null> | undefined;
 
   constructor(private readonly route: ActivatedRoute, private readonly loadDataService: LoadDataService) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.route.queryParams.subscribe((queryParams: Params) => {
-        const { make, model, region, minPrice, maxPrice, condition } = queryParams;
-        this.adsList$ = this.loadDataService.loadAdsByFilters({
-          make,
-          model,
-          region,
-          minPrice,
-          maxPrice,
-          condition,
-        });
+      this.route.params.subscribe((params: Params) => {
+        this.ad$ = this.loadDataService.loadAdById(params.id);
       })
     );
   }
