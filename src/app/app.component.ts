@@ -34,12 +34,6 @@ export class AppComponent {
       this.regionsFacade.regionsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.regionsLoadingComplete = true))
     );
 
-    // this.subscriptions.push(
-    //   this.adsFacade.latestAdsLoadingComplete$
-    //     .pipe(filter(Boolean))
-    //     .subscribe(() => (this.latestAdsLoadingComplete = true))
-    // );
-
     // Get IAM service credentials for guest access
     Auth.currentCredentials();
 
