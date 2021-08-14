@@ -52,6 +52,7 @@ export class AdsService {
               condition
               longitude
               latitude
+              userID
             }
           }
         `,
@@ -86,7 +87,7 @@ export class AdsService {
       ...(condition ? { condition: { eq: condition } } : {}),
       ...(make ? { make: { eq: make } } : {}),
       ...(model ? { model: { eq: model } } : {}),
-      ...(region ? { regionsID: { eq: region } } : {}),
+      ...(region ? { regionID: { eq: region } } : {}),
     };
 
     return from(
