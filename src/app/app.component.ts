@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { combineLatest, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './modules/core/services/auth.service';
@@ -15,9 +15,7 @@ import { RegionsFacade } from './store/facades/regions.facade';
 export class AppComponent {
   title = 'AutoTrader';
   private readonly subscriptions: Subscription[] = [];
-  public latestAdsLoadingComplete: boolean = false;
-  public regionsLoadingComplete: boolean = false;
-  public makesLoadingComplete: boolean = false;
+  public loading: boolean[] = [true, true];
 
   constructor(
     private readonly authService: AuthService,
@@ -27,11 +25,10 @@ export class AppComponent {
 
   public ngOnInit(): void {
     this.subscriptions.push(
-      this.adsFacade.adsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.makesLoadingComplete = true))
+      this.adsFacade.adsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.loading[0] = false))
     );
-
     this.subscriptions.push(
-      this.regionsFacade.regionsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.regionsLoadingComplete = true))
+      this.regionsFacade.regionsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.loading[1] = false))
     );
 
     // Get IAM service credentials for guest access
@@ -45,7 +42,11 @@ export class AppComponent {
   }
 
   private loadEntities(): void {
-    this.regionsFacade.loadRegions(environment.defaultAppSyncMaxPaginationLimit, null);
     this.adsFacade.loadAds(environment.defaultAppSyncMaxPaginationLimit, null);
+    this.regionsFacade.loadRegions(environment.defaultAppSyncMaxPaginationLimit, null);
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

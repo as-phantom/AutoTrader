@@ -5,10 +5,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SocialFabIconComponent } from './components/social-fab-icon/social-fab-icon.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AdsListComponent } from '../ads/components/ads-list/ads-list.component';
-import { AdDetailsComponent } from '../ads/components/ad-details/ad-details.component';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { NoResultsComponent } from './components/no-results/no-results.component';
 
-const COMPONENTS = [SocialFabIconComponent, LoadingComponent, AdsListComponent, AdDetailsComponent];
+const COMPONENTS = [SocialFabIconComponent, LoadingComponent, ImageUploadComponent, NoResultsComponent];
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule, MatRippleModule, MatProgressSpinnerModule],

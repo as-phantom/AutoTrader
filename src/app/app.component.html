@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-  <app-loading *ngIf="!regionsLoadingComplete || !makesLoadingComplete"></app-loading>
-  <router-outlet *ngIf="regionsLoadingComplete && makesLoadingComplete"></router-outlet>
+  <app-loading *ngIf="loading.includes(true)"></app-loading>
+  <router-outlet *ngIf="!loading.includes(true)"></router-outlet>
 </main>
 <app-footer></app-footer>

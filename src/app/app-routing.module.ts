@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
   },
   {
+    path: 'ads',
+    loadChildren: () => import('./modules/ads/ads.module').then((m) => m.AdsModule),
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
     canActivate: [IsGuestGuard],
@@ -34,6 +38,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       // Improves the performance of preloading routes.
       preloadingStrategy: PreloadAllModules,
+      // Always scroll to top on route change.
+      scrollPositionRestoration: 'top',
     }),
   ],
   exports: [RouterModule],
