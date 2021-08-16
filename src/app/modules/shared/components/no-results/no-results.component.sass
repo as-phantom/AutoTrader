@@ -1,0 +1,47 @@
+:host
+   display: flex
+   flex-direction: column
+   justify-content: space-around
+   align-items: center
+   min-height: 67vh
+
+   ::ng-deep svg
+      font-size: 5rem
+      margin-right: 2rem
+      color: #60bd68da
+
+   .upper-section-container
+      display: flex
+      flex-direction: column
+      width: 70%
+      align-items: center
+      color: #161C40
+
+      &::before, &::after
+         content: ""
+         width: 100%
+         height: 3px
+         background: #60BD68
+
+   .header-wrapper
+      display: flex
+      align-items: center
+      justify-content: center
+      padding: 1rem
+
+      h1
+         font-weight: 500
+         font-size: 2.5rem
+
+   .list-wrapper
+      width: 50%
+      font-size: 1.3rem
+      color: #161C40
+
+      h2
+         font-weight: 500
+         letter-spacing: 1px
+         padding-left: 1rem
+
+      ul
+         font-weight: 500
