@@ -1,0 +1,43 @@
+<ng-container *ngIf="ad$ | async as ad">
+  <ng-container *ngIf="ad">
+    <div class="container">
+      <section class="pucture-section">
+        <div class="pictures">
+        </div>
+
+        <div class="info">
+          <span>{{ ad.mileage }} miles done</span>
+
+          <ul>
+            <li>{{ ad.engine }}</li>
+            <li>{{ ad.transmissionType }}</li>
+            <li>{{ ad.fuelType }}</li>
+            <li>{{ ad.condition }}</li>
+            <li>{{ ad.phone }}</li>
+          </ul>
+
+          <span>{{ ad.region.name }}</span>
+        </div>
+      </section>
+      <section class="details-section">
+        <h1>{{ ad.make }} {{ ad.model }}</h1>
+        <h2>{{ ad.year }}</h2>
+        <h3>€{{ ad.price }}</h3>
+      </section>
+
+      <!-- <ng-container *ngIf="user$ | async as user">
+      <div *ngIf="user.id === ad.userID" class="btns-container">
+        <button class="btn edit" value="{{user}}" >Edit</button>
+        <button class="btn delete">Delete</button>
+      </div>
+    </ng-container> -->
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!ad">
+  </ng-container>
+  <!-- <app-loading></app-loading> -->
+</ng-container>
+
+
+<carousel> </carousel>
