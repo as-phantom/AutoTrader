@@ -12,13 +12,15 @@
     [style.background-image]="getBackgroundPictureUrl(user.picture)"
     [class.file-dragged-over]="fileDraggedOver"
   >
-    <div *ngIf="uploading" class="spinner">
-      <mat-spinner [diameter]="24"></mat-spinner>
-    </div>
-
-    <div *ngIf="!uploading" class="drop-here">
+    <div *ngIf="!uploading; else loading" class="drop-here">
       <i class="material-icons material-icons-outlined">image</i>
       <span>Click to upload an image or drag and drop it here</span>
     </div>
   </div>
 </ng-container>
+
+<ng-template #loading>
+  <div class="spinner">
+    <mat-spinner [diameter]="24"></mat-spinner>
+  </div>
+</ng-template>

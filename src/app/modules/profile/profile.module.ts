@@ -5,13 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
-import { MyAdsComponent } from './components/my-ads/my-ads.component';
-import { FavouritesComponent } from './components/favourites/favourites.component';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-const COMPONENTS = [
+const COMPONENTS = [ProfileComponent];
+
+const MODULES = [
   CommonModule,
   ProfileRoutingModule,
   SharedModule,
@@ -23,8 +23,8 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent, MyAdsComponent, FavouritesComponent],
-  imports: [...COMPONENTS],
-  exports: [...COMPONENTS],
+  declarations: [...COMPONENTS],
+  imports: [...MODULES],
+  exports: [...MODULES],
 })
 export class ProfileModule {}

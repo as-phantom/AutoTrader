@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { FindAdsComponent } from './components/find-ads/find-ads.component';
-import { LatestOffersComponent } from './components/latest-offers/latest-offers.component';
+import { LatestAdsComponent } from './components/latest-ads/latest-ads.component';
 import { PlaceAdComponent } from './components/place-ad/place-ad.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { GetModelsPerMakePipe } from './pipes/get-models-per-make.pipe';
 const COMPONENTS = [
   HomeComponent,
   FindAdsComponent,
-  LatestOffersComponent,
+  LatestAdsComponent,
   PlaceAdComponent,
   SortRegionsPipe,
   SortMakesPipe,

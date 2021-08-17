@@ -1,4 +1,4 @@
-<ng-container *ngIf="user$ | async as user">
+<ng-container *ngIf="user$ | async as user; else loading">
   <form [formGroup]="formGroup">
     <app-image-upload></app-image-upload>
 
@@ -20,8 +20,8 @@
       </div>
     </div>
   </form>
-
-  <ng-container *ngIf="loading">
-    <app-loading></app-loading>
-  </ng-container>
 </ng-container>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
