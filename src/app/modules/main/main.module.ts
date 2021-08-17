@@ -19,12 +19,16 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SortMakesPipe } from './pipes/sort-makes.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { GetModelsPerMakePipe } from './pipes/get-models-per-make.pipe';
+import { AdDetailsComponent } from './components/ad-details/ad-details.component';
+import { AdsListComponent } from './components/ads-list/ads-list.component';
 
 const COMPONENTS = [
   HomeComponent,
   FindAdsComponent,
   LatestAdsComponent,
   PlaceAdComponent,
+  AdDetailsComponent,
+  AdsListComponent,
   SortRegionsPipe,
   SortMakesPipe,
   GetModelsPerMakePipe,
