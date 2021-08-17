@@ -882,7 +882,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "transmissionType",
+          "name" : "transmission",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -890,7 +890,22 @@
             "name" : null,
             "ofType" : {
               "kind" : "ENUM",
-              "name" : "TransmissionType",
+              "name" : "Transmission",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "currency",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "ENUM",
+              "name" : "Currency",
               "ofType" : null
             }
           },
@@ -912,7 +927,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "fuelType",
+          "name" : "fuel",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -920,7 +935,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "ENUM",
-              "name" : "FuelType",
+              "name" : "Fuel",
               "ofType" : null
             }
           },
@@ -2252,11 +2267,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "transmissionType",
+          "name" : "transmission",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelTransmissionTypeInput",
+            "name" : "ModelTransmissionInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "currency",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelCurrencyInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2270,11 +2294,11 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "fuelType",
+          "name" : "fuel",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelFuelTypeInput",
+            "name" : "ModelFuelInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2588,7 +2612,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelTransmissionTypeInput",
+        "name" : "ModelTransmissionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2596,7 +2620,7 @@
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "TransmissionType",
+            "name" : "Transmission",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2605,7 +2629,7 @@
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "TransmissionType",
+            "name" : "Transmission",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2615,7 +2639,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "ENUM",
-        "name" : "TransmissionType",
+        "name" : "Transmission",
         "description" : null,
         "fields" : null,
         "inputFields" : null,
@@ -2634,7 +2658,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelFuelTypeInput",
+        "name" : "ModelCurrencyInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2642,7 +2666,7 @@
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "FuelType",
+            "name" : "Currency",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2651,7 +2675,7 @@
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "FuelType",
+            "name" : "Currency",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2661,7 +2685,53 @@
         "possibleTypes" : null
       }, {
         "kind" : "ENUM",
-        "name" : "FuelType",
+        "name" : "Currency",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "EUR",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "USD",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelFuelInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Fuel",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Fuel",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "ENUM",
+        "name" : "Fuel",
         "description" : null,
         "fields" : null,
         "inputFields" : null,
@@ -4291,14 +4361,27 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "transmissionType",
+          "name" : "transmission",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
               "kind" : "ENUM",
-              "name" : "TransmissionType",
+              "name" : "Transmission",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "currency",
+          "description" : null,
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "ENUM",
+              "name" : "Currency",
               "ofType" : null
             }
           },
@@ -4317,14 +4400,14 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "fuelType",
+          "name" : "fuel",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
               "kind" : "ENUM",
-              "name" : "FuelType",
+              "name" : "Fuel",
               "ofType" : null
             }
           },
@@ -4485,11 +4568,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "transmissionType",
+          "name" : "transmission",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelTransmissionTypeInput",
+            "name" : "ModelTransmissionInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "currency",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelCurrencyInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -4503,11 +4595,11 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "fuelType",
+          "name" : "fuel",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelFuelTypeInput",
+            "name" : "ModelFuelInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -4695,11 +4787,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "transmissionType",
+          "name" : "transmission",
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "TransmissionType",
+            "name" : "Transmission",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "currency",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Currency",
             "ofType" : null
           },
           "defaultValue" : null
@@ -4713,11 +4814,11 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "fuelType",
+          "name" : "fuel",
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "FuelType",
+            "name" : "Fuel",
             "ofType" : null
           },
           "defaultValue" : null

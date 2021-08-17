@@ -19,9 +19,10 @@ export const getRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -94,9 +95,10 @@ export const getUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -219,9 +221,10 @@ export const getAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -271,9 +274,10 @@ export const listAds = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -327,9 +331,10 @@ export const getPicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -365,9 +370,10 @@ export const listPictures = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -445,9 +451,10 @@ export const getFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -493,9 +500,10 @@ export const listFavorites = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -572,9 +580,10 @@ export const getRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -621,9 +630,10 @@ export const listRatings = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition

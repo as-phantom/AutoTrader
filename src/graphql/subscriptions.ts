@@ -19,9 +19,10 @@ export const onCreateRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -54,9 +55,10 @@ export const onUpdateRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -89,9 +91,10 @@ export const onDeleteRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -144,9 +147,10 @@ export const onCreateUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -204,9 +208,10 @@ export const onUpdateUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -264,9 +269,10 @@ export const onDeleteUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -359,9 +365,10 @@ export const onCreateAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -444,9 +451,10 @@ export const onUpdateAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -529,9 +537,10 @@ export const onDeleteAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -583,9 +592,10 @@ export const onCreatePicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -641,9 +651,10 @@ export const onUpdatePicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -699,9 +710,10 @@ export const onDeletePicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -777,9 +789,10 @@ export const onCreateFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -854,9 +867,10 @@ export const onUpdateFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -931,9 +945,10 @@ export const onDeleteFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -1008,9 +1023,10 @@ export const onCreateRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -1086,9 +1102,10 @@ export const onUpdateRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -1164,9 +1181,10 @@ export const onDeleteRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition

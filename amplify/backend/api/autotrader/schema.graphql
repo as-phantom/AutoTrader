@@ -1,4 +1,4 @@
-enum TransmissionType {
+enum Transmission {
   AUTOMATIC
   MANUAL
 }
@@ -8,12 +8,17 @@ enum Condition {
   USED
 }
 
-enum FuelType {
+enum Fuel {
   ELECTRIC
   PETROL
   DIESEL
   CNG
   LPG
+}
+
+enum Currency {
+  EUR
+  USD
 }
 
 type Region @model {
@@ -50,9 +55,10 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) @key(name: "byRegion", f
   favorites: [Favorite] @connection(keyName: "byAd", fields: ["id"])
   pictures: [Picture] @connection(keyName: "byAd", fields: ["id"])
   ratings: [Rating] @connection(keyName: "byAd", fields: ["id"])
-  transmissionType: TransmissionType!
+  transmission: Transmission!
+  currency: Currency!
   description: String!
-  fuelType: FuelType!
+  fuel: Fuel!
   phone: String!
   picture: String!
   condition: Condition!

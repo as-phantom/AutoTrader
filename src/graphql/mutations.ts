@@ -22,9 +22,10 @@ export const createRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -60,9 +61,10 @@ export const updateRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -98,9 +100,10 @@ export const deleteRegion = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -156,9 +159,10 @@ export const createUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -219,9 +223,10 @@ export const updateUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -282,9 +287,10 @@ export const deleteUser = /* GraphQL */ `
           mileage
           userID
           regionID
-          transmissionType
+          transmission
+          currency
           description
-          fuelType
+          fuel
           phone
           picture
           condition
@@ -377,9 +383,10 @@ export const createAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -462,9 +469,10 @@ export const updateAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -547,9 +555,10 @@ export const deleteAd = /* GraphQL */ `
         }
         nextToken
       }
-      transmissionType
+      transmission
+      currency
       description
-      fuelType
+      fuel
       phone
       picture
       condition
@@ -604,9 +613,10 @@ export const createPicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -665,9 +675,10 @@ export const updatePicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -726,9 +737,10 @@ export const deletePicture = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -807,9 +819,10 @@ export const createFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -887,9 +900,10 @@ export const updateFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -967,9 +981,10 @@ export const deleteFavorite = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -1047,9 +1062,10 @@ export const createRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -1128,9 +1144,10 @@ export const updateRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
@@ -1209,9 +1226,10 @@ export const deleteRating = /* GraphQL */ `
         ratings {
           nextToken
         }
-        transmissionType
+        transmission
+        currency
         description
-        fuelType
+        fuel
         phone
         picture
         condition
