@@ -34,20 +34,22 @@ const COMPONENTS = [
   GetModelsPerMakePipe,
 ];
 
+const MODULES = [
+  CommonModule,
+  MainRoutingModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  ReactiveFormsModule,
+  MatSelectModule,
+  FontAwesomeModule,
+  IvyCarouselModule,
+  MatRippleModule,
+  SharedModule,
+];
+
 @NgModule({
   declarations: [...COMPONENTS],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    FontAwesomeModule,
-    IvyCarouselModule,
-    MatRippleModule,
-    SharedModule,
-  ],
+  imports: [...MODULES],
 })
 export class MainModule {}

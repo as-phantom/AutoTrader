@@ -17,7 +17,7 @@ export class IsGuestGuard implements CanActivate {
           return true;
         } else {
           // If user is authenticated reload the page to indicate that the app is not frozen
-          this.router.navigate([this.router.url]);
+          window.location.reload();
           return false;
         }
       })

@@ -3,12 +3,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/core/components/not-found/not-found.component';
 import { IsAuthGuard } from './modules/core/guards/isAuth.guard';
 import { IsGuestGuard } from './modules/core/guards/isGuest.guard';
-import { SetRedirectGuard } from './modules/core/guards/setRedirect.guard';
+import { SetRedirect } from './modules/core/guards/setRedirect.guard';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
   },
   {
@@ -17,13 +16,13 @@ const routes: Routes = [
     canActivate: [IsGuestGuard],
   },
   {
-    path: 'user',
-    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    path: 'profile',
+    loadChildren: () => import('./modules/profile/profile.module').then((m) => m.ProfileModule),
     canActivate: [IsAuthGuard],
   },
   {
-    path: 'profile',
-    loadChildren: () => import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
     canActivate: [IsAuthGuard],
   },
   {

@@ -72,6 +72,6 @@ export class FindAdsComponent implements OnInit {
       condition,
     };
 
-    this.router.navigate(['/ads'], { queryParams });
+    this.router.navigate(['/search'], { queryParams });
   }
 }
