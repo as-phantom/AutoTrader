@@ -5,6 +5,7 @@ import { AuthComponent } from './components/auth/auth.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: AuthComponent,
   },
 ];
