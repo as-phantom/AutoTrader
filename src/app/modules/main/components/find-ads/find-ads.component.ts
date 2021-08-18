@@ -57,7 +57,7 @@ export class FindAdsComponent implements OnInit {
   public verifyIfMakeIsPicked(): void {
     const make = this.formGroup.controls.make.value;
     if (!make) {
-      this.notificationService.error('Please chose make before choosing a model.');
+      this.notificationService.info('Please chose make before choosing a model.');
     }
   }
 
