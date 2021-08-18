@@ -6,6 +6,6 @@ import { Ad } from 'src/API';
 })
 export class GetModelsPerMakePipe implements PipeTransform {
   transform(ads: Ad[], make: string): string[] {
-    return Array.from(new Set(ads.filter((ad) => ad.make === make).map((ad) => ad.model)));
+    return Array.from(new Set(ads.filter((ad) => ad.make === make).map((ad) => ad.model))).sort((a, b) => a.localeCompare(b));
   }
 }
