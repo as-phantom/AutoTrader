@@ -14,7 +14,7 @@
         ></fa-icon>
       </div>
 
-      <mat-form-field appearance="fill" >
+      <mat-form-field appearance="fill">
         <mat-label>Region</mat-label>
         <mat-select formControlName="region">
           <mat-option *ngFor="let region of regions$ | async | sortRegions" value="{{ region.id }}">
@@ -39,7 +39,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" (click)="verifyIfMakeIsPicked()">
           <mat-label>Model</mat-label>
           <mat-select formControlName="model">
             <mat-option *ngFor="let model of ads | getModelsPerMake: formGroup.controls.make.value" value="{{ model }}">
@@ -59,9 +59,7 @@
         <input formControlName="maxPrice" matInput #first />
       </mat-form-field>
 
-      <!-- <button type="submit" class="btn" [disabled]="isFormValid">Submit</button> -->
-
-      <button type="submit" mat-ripple class="btn btn-success">Search</button>
+      <button type="submit" class="btn">Submit</button>
     </form>
   </section>
 </div>

@@ -34,7 +34,9 @@ Amplify.configure(aws_exports);
     CoreModule,
     AmplifyUIAngularModule,
     SharedModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+    }),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         // we are using the @ngrx/store runtime checks in order to avoid mistakes
