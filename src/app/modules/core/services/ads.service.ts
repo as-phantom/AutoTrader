@@ -11,58 +11,6 @@ import { Ad, Condition } from 'src/API';
 export class AdsService {
   constructor() {}
 
-  public loadAdById(id: string): Observable<Ad | null> {
-    return from(
-      API.graphql({
-        query: gql`
-          query GetAd($id: ID!) {
-            getAd(id: $id) {
-              id
-              make
-              model
-              color
-              engine
-              price
-              year
-              mileage
-              region {
-                id
-                name
-              }
-              favorites {
-                items {
-                  id
-                }
-              }
-              pictures {
-                items {
-                  url
-                }
-              }
-              ratings {
-                items {
-                  rating
-                }
-              }
-              transmissionType
-              description
-              fuelType
-              phone
-              picture
-              condition
-              longitude
-              latitude
-              userID
-            }
-          }
-        `,
-        variables: {
-          id,
-        },
-      }) as Promise<{ data: { getAd: Ad | null } }>
-    ).pipe(map(({ data: { getAd } }) => getAd));
-  }
-
   public loadAdsByFilters({
     region,
     condition,
@@ -123,14 +71,16 @@ export class AdsService {
                     rating
                   }
                 }
-                transmissionType
+                transmission
                 description
-                fuelType
+                fuel
                 phone
                 picture
                 condition
                 longitude
                 latitude
+                userID
+                currency
               }
             }
           }
@@ -149,4 +99,175 @@ export class AdsService {
       )
     );
   }
+
+  public loadAdsByUser(id: string): Observable<Ad[] | null> {
+    return from(
+      API.graphql({
+        query: gql`
+          query ListAds($filter: ModelAdFilterInput) {
+            listAds(filter: $filter) {
+              id
+              make
+              model
+              color
+              engine
+              price
+              year
+              mileage
+              region {
+                id
+                name
+              }
+              favorites {
+                items {
+                  id
+                }
+              }
+              pictures {
+                items {
+                  url
+                }
+              }
+              ratings {
+                items {
+                  rating
+                }
+              }
+              transmission
+              description
+              fuel
+              phone
+              picture
+              condition
+              longitude
+              latitude
+              userID
+              currency
+            }
+          }
+        `,
+        variables: {
+          id,
+        },
+      }) as Promise<{ data: { listAds: { items: Ad[] | null } } }>
+    ).pipe(
+      map(
+        ({
+          data: {
+            listAds: { items },
+          },
+        }) => items
+      )
+    );
+  }
+
+  public loadAdById(id: string): Observable<Ad | null> {
+    return from(
+      API.graphql({
+        query: gql`
+          query GetAd($id: ID!) {
+            getAd(id: $id) {
+              id
+              make
+              model
+              color
+              engine
+              price
+              year
+              mileage
+              region {
+                id
+                name
+              }
+              favorites {
+                items {
+                  id
+                }
+              }
+              pictures {
+                items {
+                  url
+                }
+              }
+              ratings {
+                items {
+                  rating
+                }
+              }
+              transmission
+              description
+              fuel
+              phone
+              picture
+              condition
+              longitude
+              latitude
+              userID
+              currency
+            }
+          }
+        `,
+        variables: {
+          id,
+        },
+      }) as Promise<{ data: { getAd: Ad | null } }>
+    ).pipe(map(({ data: { getAd } }) => getAd));
+  }
+
+  public editAdById(id: string): Observable<Ad | null> {
+    return from(
+      API.graphql({
+        query: gql`
+          query editAdById($id: ID!) {
+            getAd(id: $id) {
+              id
+              make
+              model
+              color
+              engine
+              price
+              year
+              mileage
+              region {
+                id
+                name
+              }
+              favorites {
+                items {
+                  id
+                }
+              }
+              pictures {
+                items {
+                  url
+                }
+              }
+              ratings {
+                items {
+                  rating
+                }
+              }
+              transmission
+              description
+              fuel
+              phone
+              picture
+              condition
+              longitude
+              latitude
+              userID
+              currency
+            }
+          }
+        `,
+        variables: {
+          id,
+        },
+      }) as Promise<{ data: { getAd: Ad | null } }>
+    ).pipe(map(({ data: { getAd } }) => getAd));
+  }
+
+  // public deleteAdById(id: string): Observable<ad | null> {
+  //   return from(API.graphql({}));
+  // }
 }
