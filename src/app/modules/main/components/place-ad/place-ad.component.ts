@@ -41,7 +41,7 @@ export class PlaceAdComponent implements OnInit {
     (() => {
       // Validates both negative values and non numeric values for price
       if (price.split('').map(isNaN).includes(true)) {
-        this.notificationService.error("Price can't contain characters neither can be a negative number.");
+        this.notificationService.error("Price can only be a positive number.");
         this.isFormValid = false;
       }
 
