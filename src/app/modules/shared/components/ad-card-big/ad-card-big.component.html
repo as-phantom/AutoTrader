@@ -1,0 +1,50 @@
+<div class="container" *ngIf="ad$ | async as ad; else loading">
+  <section class="picture-section">
+    <div class="image-container">
+      <img src="{{ ad.picture }}" />
+      <!-- <carousel></carousel> -->
+    </div>
+
+    <div class="info">
+      <h1>{{ ad.make }} {{ ad.model }}</h1>
+      <h2>{{ ad.year }}</h2>
+      <h3>{{ ad.currency | currency }} {{ ad.price }}</h3>
+
+      <ng-container *ngIf="user$ | async as user; else notOwner">
+        <ng-container *ngIf="user.id === ad.userID; else notOwner">
+          <!-- <button class="btn edit" value="{{ user }}" routerLink="/ads/edit/{{ ad.id }}">Edit</button> -->
+          <!-- <button class="btn delete" routerLink="/ads/delete/{{ ad.id }}">Delete</button> -->
+
+          <button class="btn edit">Edit</button>
+          <button class="btn delete">Delete</button>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #notOwner>
+        <button class="btn">Contact Seller</button>
+      </ng-template>
+
+      <div class="location">
+        <h2>Vehicle location</h2>
+        <fa-icon [icon]="faMapMarker"></fa-icon>
+      </div>
+
+      <div class="specs">
+        <span>{{ ad.mileage }} miles done</span>
+
+        <ul>
+          <li>{{ ad.engine }}</li>
+          <li>{{ ad.transmission }}</li>
+          <li>{{ ad.fuel }}</li>
+          <li>{{ ad.condition }}</li>
+          <li>{{ ad.phone }}</li>
+          <li>{{ ad.region.name }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
