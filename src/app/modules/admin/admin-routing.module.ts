@@ -8,6 +8,10 @@ import { MyAdsComponent } from './components/my-ads/my-ads.component';
 
 const routes: Routes = [
   {
+    path: 'my-ads',
+    component: MyAdsComponent,
+  },
+  {
     path: 'create',
     component: CreateAdComponent,
   },
@@ -22,10 +26,6 @@ const routes: Routes = [
   {
     path: 'favourites',
     component: FavouritesComponent,
-  },
-  {
-    path: 'my-ads',
-    component: MyAdsComponent,
   },
 ];
 

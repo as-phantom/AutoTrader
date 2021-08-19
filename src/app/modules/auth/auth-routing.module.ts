@@ -5,6 +5,8 @@ import { AuthComponent } from './components/auth/auth.component';
 const routes: Routes = [
   {
     path: '',
+    // When signing in, 'auth' is passed trough various urls so to achieve better performance I want
+    // the auth component to not be loaded on all of them and that's why path match full is used here
     pathMatch: 'full',
     component: AuthComponent,
   },

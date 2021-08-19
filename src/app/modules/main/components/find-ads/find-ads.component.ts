@@ -57,7 +57,7 @@ export class FindAdsComponent implements OnInit {
   public verifyIfMakeIsPicked(): void {
     const make = this.formGroup.controls.make.value;
     if (!make) {
-      this.notificationService.info('Chose make before choosing a model.');
+      this.notificationService.info('Chose make before choosing a model');
     }
   }
 
@@ -75,25 +75,25 @@ export class FindAdsComponent implements OnInit {
     (() => {
       // Validates both negative values and non numeric values for minPrice
       if (minPrice.split('').map(isNaN).includes(true)) {
-        this.notificationService.error("Min price can only be a positive number.");
+        this.notificationService.error("Min price can only be a positive number");
         this.isFormValid = false;
       }
 
       // Validates maximum min value for minPrice
       if (minPrice > 10000000) {
-        this.notificationService.error("Min price can't be over ten millions.");
+        this.notificationService.error("Min price can't be over ten millions");
         this.isFormValid = false;
       }
 
       // Validates both negative values and non numeric values for maxPrice
       if (maxPrice.split('').map(isNaN).includes(true)) {
-        this.notificationService.error("Min price can only be a positive number.");
+        this.notificationService.error("Max price can only be a positive number");
         this.isFormValid = false;
       }
 
       // Validates maximum max value for maxPrice
       if (maxPrice > 10000000) {
-        this.notificationService.error("Max price can't be over ten millions!");
+        this.notificationService.error("Max price can't be over ten millions");
         this.isFormValid = false;
       }
     })();

@@ -21,7 +21,7 @@ const routes: Routes = [
     canActivate: [IsAuthGuard],
   },
   {
-    path: 'admin',
+    path: 'user',
     loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
     canActivate: [IsAuthGuard],
   },
@@ -42,6 +42,7 @@ const routes: Routes = [
       preloadingStrategy: PreloadAllModules,
       // Always scroll to top on route change.
       scrollPositionRestoration: 'top',
+      enableTracing: true,
     }),
   ],
   exports: [RouterModule],

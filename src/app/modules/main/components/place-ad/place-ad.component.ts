@@ -13,7 +13,6 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 })
 export class PlaceAdComponent implements OnInit {
   public isFormValid: boolean | undefined;
-
   public regions$: Observable<Region[] | undefined> | undefined;
 
   public readonly formGroup: FormGroup = new FormGroup({
@@ -41,23 +40,22 @@ export class PlaceAdComponent implements OnInit {
     (() => {
       // Validates both negative values and non numeric values for price
       if (price.split('').map(isNaN).includes(true)) {
-        this.notificationService.error("Price can only be a positive number.");
+        this.notificationService.error('Price can only be a positive number');
         this.isFormValid = false;
       }
 
       // Validates maximum value for price
       if (price > 10000000) {
-        this.notificationService.error("Price can't be over ten millions.");
+        this.notificationService.error("Price can't be over ten millions");
         this.isFormValid = false;
       }
     })();
 
     if (!this.isFormValid) {
       return;
+    } else {
+      const queryParams = { price, region };
+      this.router.navigate(['user/create'], { queryParams });
     }
-
-    const queryParams = { price, region };
-
-    this.router.navigate(['admin/create'], { queryParams });
   }
 }

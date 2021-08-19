@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         )
         .subscribe((redirectUrl) => {
           if (redirectUrl) {
-            this.router.navigate([redirectUrl]);
+            this.router.navigateByUrl(redirectUrl); // Dynamic query params may be included
             this.authFacade.setRedirectUrl(undefined);
           } else {
             this.router.navigate([environment.defaultRedirectUrl]);

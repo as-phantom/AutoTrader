@@ -11,14 +11,18 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class MyAdsComponent implements OnInit {
   private readonly subscriptions: Subscription[] = [];
-  public adsList$: Observable<Ad[] | null> | undefined;
+  public myAds$: Observable<Ad[] | null> | undefined;
 
   constructor(private readonly adsService: AdsService, private readonly authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.authFacade.user$.subscribe((user) => {
-        this.adsList$ = this.adsService.loadAdsByUser(user!.id);
+        if (user) {
+          // User will always be available at this point but instead using '!'
+          // to tell the Angular i'm using logical statement for aesthetic reasons only
+          this.myAds$ = this.adsService.loadAdsByUser(user.id);
+        }
       })
     );
   }
