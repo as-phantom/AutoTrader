@@ -26,8 +26,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Condition</mat-label>
         <mat-select formControlName="condition">
+          <mat-option [value]="condition.NEW">New</mat-option>
           <mat-option [value]="condition.USED">Used</mat-option>
-          <mat-option [value]="condition.NEW">Brand New</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -51,15 +51,15 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Min-price</mat-label>
-        <input formControlName="minPrice" matInput #first />
+        <input formControlName="minPrice" matInput />
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Max-price</mat-label>
-        <input formControlName="maxPrice" matInput #first />
+        <input formControlName="maxPrice" matInput />
       </mat-form-field>
 
-      <button type="submit" class="btn">Submit</button>
+      <button type="submit" class="btn">Search</button>
     </form>
   </section>
 </div>

@@ -13,6 +13,7 @@ import { NoResultsComponent } from './components/no-results/no-results.component
 import { RatingComponent } from './components/rating/rating.component';
 import { SocialFabIconComponent } from './components/social-fab-icon/social-fab-icon.component';
 import { CurrencyPipe } from './pipes/currency.pipe';
+import { SortRegionsPipe } from '../main/pipes/sort-regions.pipe';
 
 const COMPONENTS = [
   AdCardBigComponent,
@@ -23,6 +24,7 @@ const COMPONENTS = [
   RatingComponent,
   SocialFabIconComponent,
   CurrencyPipe,
+  SortRegionsPipe,
 ];
 
 const MODULES = [CommonModule, FontAwesomeModule, MatRippleModule, MatProgressSpinnerModule, IvyCarouselModule];

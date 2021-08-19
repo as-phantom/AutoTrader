@@ -15,7 +15,7 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 })
 export class FindAdsComponent implements OnInit {
   public showInfoBox: boolean | undefined;
-  public isFormValid: boolean | undefined;
+  private isFormValid: boolean | undefined;
   public condition = Condition;
 
   public ads$: Observable<Ad[] | undefined> | undefined;
@@ -111,6 +111,6 @@ export class FindAdsComponent implements OnInit {
       condition,
     };
 
-    this.router.navigate(['/search'], { queryParams });
+    this.router.navigate(['search'], { queryParams });
   }
 }

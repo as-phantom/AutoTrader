@@ -42,7 +42,7 @@ const routes: Routes = [
       preloadingStrategy: PreloadAllModules,
       // Always scroll to top on route change.
       scrollPositionRestoration: 'top',
-      enableTracing: true,
+      // enableTracing: true,
     }),
   ],
   exports: [RouterModule],

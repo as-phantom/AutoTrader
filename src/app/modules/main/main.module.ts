@@ -14,7 +14,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SortRegionsPipe } from './pipes/sort-regions.pipe';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SortMakesPipe } from './pipes/sort-makes.pipe';
 import { SharedModule } from '../shared/shared.module';
@@ -29,7 +28,6 @@ const COMPONENTS = [
   PlaceAdComponent,
   AdDetailsComponent,
   AdsListComponent,
-  SortRegionsPipe,
   SortMakesPipe,
   GetModelsPerMakePipe,
 ];

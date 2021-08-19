@@ -10,8 +10,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const COMPONENTS = [HeaderComponent, FooterComponent, NotFoundComponent];
 
+const MODULES = [CommonModule, RouterModule, MatRippleModule, SharedModule, FontAwesomeModule];
+
 @NgModule({
-  imports: [CommonModule, RouterModule, MatRippleModule, SharedModule, FontAwesomeModule],
+  imports: [...MODULES],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
 })
