@@ -1,9 +1,9 @@
 :host
    display: flex
    flex-direction: column
-   justify-content: space-around
+   justify-content: space-evenly
    align-items: center
-   min-height: 67vh
+   min-height: 78vh
    padding-bottom: 5%
 
    ::ng-deep svg
@@ -14,9 +14,8 @@
    .upper-section-container
       display: flex
       flex-direction: column
-      width: 70%
-      align-items: center
       color: #161C40
+      width: 75%
 
       &::before, &::after
          content: ""
@@ -24,17 +23,31 @@
          height: 3px
          background: #60BD68
 
-   .header-wrapper
+   .title
       display: flex
       align-items: center
       justify-content: center
-      padding: 1rem
+      padding: 1rem 2rem
 
       h1
          font-weight: 500
          font-size: 2.5rem
+         display: flex
+         justify-content: center
+         align-items: center
 
-   .list-wrapper
+         a
+            padding: 0 10px
+            transition: .2s
+            text-decoration: none
+            color: #2e99d8
+
+            &:hover
+               padding: 0 15px
+               cursor: pointer
+               font-size: 1.2em
+
+   .search
       width: 50%
       font-size: 1.3rem
       color: #161C40

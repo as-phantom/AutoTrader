@@ -1,11 +1,23 @@
 <ng-container>
   <section class="upper-section-container">
-    <div class="header-wrapper">
+    <div class="title">
       <fa-icon class="fa-icon" [icon]="faInfoIcon"></fa-icon>
-      <h1>Sorry, we couldn't find any results matching your search</h1>
+
+      <h1 *ngIf="sender === 'app-my-ads'">
+        You haven't created any ads yet.
+        <a routerLink="user/create"> Create </a>one now?
+      </h1>
+      <h1 *ngIf="sender === 'app-favourites'">
+        You currently don't have any ads in favourites.
+        <a routerLink="/"> Search </a>for some now?
+      </h1>
+      <h1 *ngIf="sender === 'app-ads-list'">
+        There is no results matching your search.
+        <a routerLink="/"> Search </a>again?
+      </h1>
     </div>
   </section>
-  <section class="list-wrapper">
+  <section *ngIf="sender === 'app-ads-list'" class="search">
     <h2>Search tips</h2>
     <ul>
       <li>Check your spelling and try again</li>

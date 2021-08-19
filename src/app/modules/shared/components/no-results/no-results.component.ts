@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faInfoCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,6 +7,8 @@ import { faInfoCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./no-results.component.sass'],
 })
 export class NoResultsComponent implements OnInit {
+  @Input() sender: string | undefined;
+
   public get faInfoIcon(): IconDefinition {
     return faInfoCircle;
   }
