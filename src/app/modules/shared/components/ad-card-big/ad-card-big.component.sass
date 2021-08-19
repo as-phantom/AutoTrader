@@ -1,20 +1,27 @@
 .container
-   margin: 5% 20%
+   margin: 4% 10%
+   min-height: 43rem
+   border-radius: 15px
    background: white
    // background: #c7d5fb;
-   border-radius: 15px
+   // border-top-right-radius: 15px
+   // border-bottom-right-radius: 15px
 
    .picture-section
       display: flex
+      padding: .5rem
 
       .image-container
-         max-height: 35rem
          max-width: 75%
+         height: 42rem
 
          img
             max-width: 100%
-            max-height: 100%
-            border-radius: inherit
+            object-fit: cover
+            // object-fit: contain
+            height: 42rem
+
+            // max-height: 100%
 
       .info
          width: 23%
