@@ -1,0 +1,48 @@
+@use '../../../../../assets/styles/variables.sass'
+
+:host
+   width: 75%
+   background: variables.$main-color
+   border-radius: 10px
+   margin: 10.2rem 0
+   display: flex
+   color: #f0f0f0
+
+   form
+      display: block
+      text-align: center
+      background: #222b5e
+      border-radius: 10px
+      padding: 15px
+      max-width: 80%
+
+      mat-form-field 
+         margin: 0 10px
+
+      ::ng-deep
+         .mat-form-field-flex
+            border-radius: 5px
+            background: #f0f0f0
+            color: black
+
+         .btn
+            width: 10rem
+            height: 2.5rem
+            opacity: .65
+            padding: 0 20px 0
+            color: white
+            border: none
+            margin-top: 10px
+            transition: .25s
+            font-weight: 100
+            font-size: 1.5rem
+            letter-spacing: 2px
+            border-radius: 10px
+            box-shadow: 0px 0px 5px 1px #000
+            background-size: 300% auto !important
+            background: variables.$gradient-create-btn
+
+            &:hover
+               cursor: pointer
+               text-decoration: none
+               background-position: right center
