@@ -1,10 +1,12 @@
-<ng-container *ngIf="adsList$ | async as ads; else loading">
-  <!-- <ng-container *ngIf="!ads.length">
-    <app-no-results></app-no-results>
+<ng-container *ngIf="myAds$ | async as ads; else loading">
+  <ng-container *ngIf="ads.length; else noAds">
+    <h2 *ngFor="let ad of ads">{{ ad.price }}</h2>
   </ng-container>
-
-  <h2 *ngFor="let ad of ads">{{ ad.price }}</h2> -->
 </ng-container>
+
+<ng-template #noAds>
+  <app-no-results [sender]="host"></app-no-results>
+</ng-template>
 
 <ng-template #loading>
   <app-loading></app-loading>
