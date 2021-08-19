@@ -100,54 +100,60 @@ export class AdsService {
     );
   }
 
-  public loadAdsByUser(id: string): Observable<Ad[] | null> {
+  public loadAdsByUser(userID: string): Observable<Ad[] | null> {
     return from(
       API.graphql({
         query: gql`
           query ListAds($filter: ModelAdFilterInput) {
             listAds(filter: $filter) {
-              id
-              make
-              model
-              color
-              engine
-              price
-              year
-              mileage
-              region {
+              items {
                 id
-                name
-              }
-              favorites {
-                items {
+                make
+                model
+                color
+                engine
+                price
+                year
+                mileage
+                region {
                   id
+                  name
                 }
-              }
-              pictures {
-                items {
-                  url
+                favorites {
+                  items {
+                    id
+                  }
                 }
-              }
-              ratings {
-                items {
-                  rating
+                pictures {
+                  items {
+                    url
+                  }
                 }
+                ratings {
+                  items {
+                    rating
+                  }
+                }
+                transmission
+                description
+                fuel
+                phone
+                picture
+                condition
+                longitude
+                latitude
+                userID
+                currency
               }
-              transmission
-              description
-              fuel
-              phone
-              picture
-              condition
-              longitude
-              latitude
-              userID
-              currency
             }
           }
         `,
         variables: {
-          id,
+          filter: {
+            id: {
+              eq: userID,
+            },
+          },
         },
       }) as Promise<{ data: { listAds: { items: Ad[] | null } } }>
     ).pipe(
