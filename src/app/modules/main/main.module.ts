@@ -5,16 +5,6 @@ import { FindAdsComponent } from './components/find-ads/find-ads.component';
 import { LatestAdsComponent } from './components/latest-ads/latest-ads.component';
 import { PlaceAdComponent } from './components/place-ad/place-ad.component';
 import { HomeComponent } from './components/home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatRippleModule } from '@angular/material/core';
-
-// Materials
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatOptionModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SortMakesPipe } from './pipes/sort-makes.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { GetModelsPerMakePipe } from './pipes/get-models-per-make.pipe';
@@ -32,22 +22,10 @@ const COMPONENTS = [
   GetModelsPerMakePipe,
 ];
 
-const MODULES = [
-  CommonModule,
-  MainRoutingModule,
-  MatInputModule,
-  MatFormFieldModule,
-  MatOptionModule,
-  ReactiveFormsModule,
-  MatSelectModule,
-  FontAwesomeModule,
-  IvyCarouselModule,
-  MatRippleModule,
-  SharedModule,
-];
+const MODULES = [SharedModule, CommonModule, MainRoutingModule];
 
 @NgModule({
-  declarations: [...COMPONENTS],
   imports: [...MODULES],
+  declarations: [...COMPONENTS],
 })
 export class MainModule {}

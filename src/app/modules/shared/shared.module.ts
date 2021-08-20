@@ -14,6 +14,13 @@ import { RatingComponent } from './components/rating/rating.component';
 import { SocialFabIconComponent } from './components/social-fab-icon/social-fab-icon.component';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { SortRegionsPipe } from '../main/pipes/sort-regions.pipe';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 const COMPONENTS = [
   AdCardBigComponent,
@@ -27,11 +34,24 @@ const COMPONENTS = [
   SortRegionsPipe,
 ];
 
-const MODULES = [CommonModule, FontAwesomeModule, MatRippleModule, MatProgressSpinnerModule, IvyCarouselModule];
+const MODULES = [
+  CommonModule,
+  FontAwesomeModule,
+  MatRippleModule,
+  MatProgressSpinnerModule,
+  IvyCarouselModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  ReactiveFormsModule,
+  MatOptionModule,
+  MatSelectModule,
+];
 
 @NgModule({
   imports: [...MODULES],
   declarations: [...COMPONENTS],
-  exports: [...COMPONENTS],
+  exports: [...COMPONENTS, ...MODULES],
 })
 export class SharedModule {}
