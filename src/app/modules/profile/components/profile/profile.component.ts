@@ -47,8 +47,13 @@ export class ProfileComponent implements OnInit {
   private async updateUser(user: User): Promise<void> {
     const { id } = user;
 
-    const firstName: string = this.formGroup.controls.firstName.value;
-    const lastName: string = this.formGroup.controls.lastName.value;
+    const firstName: string = this.formGroup.controls.firstName.value.trim();
+    const lastName: string = this.formGroup.controls.lastName.value.trim();
+
+    if (firstName === user.firstName && lastName === user.lastName) {
+      this.notificationsService.info('These details are already saved');
+      return;
+    }
 
     try {
       const response = await API.graphql({

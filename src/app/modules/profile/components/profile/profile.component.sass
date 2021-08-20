@@ -1,15 +1,27 @@
-form
-   padding: 2rem
-   max-width: 12rem
-   align-items: center
+:host
+   padding-top: 5%
    display: flex
+   justify-content: center
 
-.fields
-   padding-left: 16px
-
-   .actions
+   form
+      padding: 1.3rem
       display: flex
-      justify-content: flex-end
+      background: white
+      border-radius: 10px
 
-      button:hover
-         background: #007cff
+      .fields
+         width: 20rem
+         padding: 0.9rem 1.5rem
+         display: flex
+         flex-direction: column
+
+         .actions
+            display: flex
+            justify-content: center
+
+            button
+               width: 60%
+               letter-spacing: 1px
+
+               &:hover
+                  background: #007cff
