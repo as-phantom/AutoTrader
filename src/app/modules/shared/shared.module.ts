@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatRippleModule } from '@angular/material/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -12,8 +12,10 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { SocialFabIconComponent } from './components/social-fab-icon/social-fab-icon.component';
-import { CurrencyPipe } from './pipes/currency.pipe';
+// Pipes
 import { SortRegionsPipe } from '../main/pipes/sort-regions.pipe';
+import { CurrencyPipe } from './pipes/currency.pipe';
+// Modules
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
