@@ -1,0 +1,6 @@
+<div class="stars">
+  <div *ngFor="let rate of ratings; let i = index" class="star" [class.filled]="isFilled(rate)" (click)="onRate(rate)">
+    <i class="material-icons">star_border</i>
+    <i class="material-icons">star</i>
+  </div>
+</div>

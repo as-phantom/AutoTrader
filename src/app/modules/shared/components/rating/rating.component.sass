@@ -1,0 +1,26 @@
+.stars
+   display: inline-flex
+   flex-direction: row-reverse
+
+   .star
+      width: 24px
+      height: 24px
+      position: relative
+      cursor: pointer
+
+   .material-icons
+      position: absolute
+      color: gold
+
+      &:last-child
+         display: none
+
+   &:hover
+      .material-icons:last-child
+         display: block
+
+      & ~ .star .material-icons:last-child
+         display: block
+
+   &.filled .material-icons:last-child
+      display: block
