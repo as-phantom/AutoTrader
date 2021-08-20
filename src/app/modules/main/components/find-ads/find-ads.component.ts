@@ -72,10 +72,10 @@ export class FindAdsComponent implements OnInit {
     const condition = this.formGroup.controls.condition.value;
 
     // Validate group controls
-    (() => {
+    ((): void => {
       // Validates both negative values and non numeric values for minPrice
       if (minPrice.split('').map(isNaN).includes(true)) {
-        this.notificationService.error("Min price can only be a positive number");
+        this.notificationService.error('Min price can only be a positive number');
         this.isFormValid = false;
       }
 
@@ -87,7 +87,7 @@ export class FindAdsComponent implements OnInit {
 
       // Validates both negative values and non numeric values for maxPrice
       if (maxPrice.split('').map(isNaN).includes(true)) {
-        this.notificationService.error("Max price can only be a positive number");
+        this.notificationService.error('Max price can only be a positive number');
         this.isFormValid = false;
       }
 
