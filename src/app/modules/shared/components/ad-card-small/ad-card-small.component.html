@@ -1,0 +1,26 @@
+<ng-container *ngIf="ad">
+  <div class="card">
+    <div class="picture" [style.background-image]="getBackgroundImage(ad)"></div>
+
+    <div class="content">
+      <div class="info">
+        <div class="heading">Make</div>
+        <div class="description">{{ ad.make }}</div>
+        <div class="heading">Model</div>
+        <div class="description">{{ ad.model }}</div>
+        <div class="heading">Price</div>
+        <div class="description">{{ ad.currency | currency }} {{ ad.price.toFixed(2) }}</div>
+        <div class="heading">Description</div>
+        <div class="description">{{ ad.description }}</div>
+      </div>
+
+      <div class="actions">
+        <app-rating [rating]="rating" [disabled]="userHasAlreadyRated" (rate)="onRate($event)"></app-rating>
+      </div>
+
+      <div class="view">
+        <button type="button" mat-raised-button color="primary" routerLink="ads/{{ ad.id }}">View</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

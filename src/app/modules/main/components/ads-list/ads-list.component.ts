@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Ad } from 'src/API';
+import { Ad, User } from 'src/API';
 import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { AuthFacade } from 'src/app/store/facades/auth.facade';
 
 @Component({
   selector: 'app-ads-list',
@@ -12,12 +13,14 @@ import { AdsService } from 'src/app/modules/core/services/ads.service';
 export class AdsListComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
   public adsList$: Observable<Ad[] | null> | undefined;
+  public user: User | undefined;
   public host: string | undefined;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly adsService: AdsService,
-    private readonly elemRef: ElementRef
+    private readonly elemRef: ElementRef,
+    private readonly authFacade: AuthFacade
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,9 @@ export class AdsListComponent implements OnInit, OnDestroy {
           maxPrice,
           condition,
         });
+      }),
+      this.authFacade.currentAuthenticatedUser$.subscribe((user: User) => {
+        this.user = user;
       })
     );
   }

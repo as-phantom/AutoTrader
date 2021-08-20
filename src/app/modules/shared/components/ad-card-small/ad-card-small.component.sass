@@ -1,0 +1,60 @@
+@import 'variables'
+@import 'mixins'
+
+.card
+   @include card()
+   padding: 16px
+   display: inline-flex
+
+   .picture
+      min-width: 200px
+      background-size: cover
+      background-position: center
+      background-repeat: no-repeat
+      border-radius: $cardBorderRadius
+
+   .content
+      flex: 1
+      padding-left: 16px
+      position: relative
+
+   .info
+      min-width: 400px
+
+      .title
+         font-size: 20px
+         font-weight: 500
+         line-height: 24px
+         padding-right: 160px
+         padding-bottom: 16px
+
+      .description
+         font-size: 14px
+         line-height: 16px
+         font-weight: 400
+         padding-bottom: 8px
+
+      .heading
+         font-size: 12px
+         line-height: 12px
+         font-weight: 500
+         color: #aeaeae
+         padding-bottom: 4px
+
+   .actions
+      position: absolute
+      right: 0
+      top: 0
+      display: flex
+      height: 24px
+
+      app-rating 
+         padding-right: 16px
+
+   .view
+      position: absolute
+      right: 0
+      bottom: 0
+
+      button
+         line-height: 24px
