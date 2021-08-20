@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { Ad, Rating, User } from '../../../../../API';
 
 @Component({
-  selector: 'app-ad-card',
+  selector: 'app-ad-card-small',
   templateUrl: './ad-card-small.component.html',
   styleUrls: ['./ad-card-small.component.sass'],
 })
