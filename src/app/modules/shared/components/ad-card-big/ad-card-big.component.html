@@ -1,9 +1,11 @@
 <div class="container" *ngIf="ad$ | async as ad; else loading">
-  <section class="picture-section">
-    <div class="image-container">
-      <img src="{{ ad.picture }}" />
-      <!-- <carousel></carousel> -->
-    </div>
+  <section>
+    <carousel
+      [images]="pictures"
+      [arrows]="pictures!.length > 1"
+      [borderRadius]="borderRadius"
+      [cellsToShow]="cellsToShow"
+    ></carousel>
 
     <div class="info">
       <h1>{{ ad.make }} {{ ad.model }}</h1>
@@ -12,17 +14,14 @@
 
       <ng-container *ngIf="user$ | async as user; else notOwner">
         <ng-container *ngIf="user.id === ad.userID; else notOwner">
-          <!-- <button class="btn edit" value="{{ user }}" routerLink="/ads/edit/{{ ad.id }}">Edit</button> -->
-          <!-- <button class="btn delete" routerLink="/ads/delete/{{ ad.id }}">Delete</button> -->
-
-          <button class="btn edit">Edit</button>
-          <button class="btn delete">Delete</button>
+          <div class="actions">
+            <fa-icon [icon]="faEdit" routerLink="/ads/edit/{{ ad.id }}"></fa-icon>
+            <fa-icon [icon]="faTrash" routerLink="/ads/delete/{{ ad.id }}"></fa-icon>
+          </div>
         </ng-container>
       </ng-container>
 
       <ng-template #notOwner>
-        <!-- <button *ngIf="!contacts" (click)="showContacts()" class="btn">Contact Seller</button> -->
-
         <mat-expansion-panel class="contacts">
           <mat-expansion-panel-header>
             <mat-panel-description>Contact Seller</mat-panel-description>
