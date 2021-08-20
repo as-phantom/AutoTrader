@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { faMapMarkerAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faHeartbeat, faPhone, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Ad, User } from 'src/API';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ad-card-big',
@@ -17,15 +16,13 @@ export class AdCardBigComponent implements OnInit {
     return faMapMarkerAlt;
   }
 
-  public arrowsOutside: boolean = true;
-  public pauseOnHover: boolean = true;
-  public autoplay: boolean = true;
-  public loop: boolean = true;
-  public height: number = window.innerHeight * 0.25;
-  public autoplayInterval: number = 4000;
-  public transitionDuration: number = 500;
-  public borderRadius: number = 10;
-  public cellsToShow: number = 3;
+  public get faHeartbeat(): IconDefinition {
+    return faHeartbeat;
+  }
+
+  public get faPhone(): IconDefinition {
+    return faPhone;
+  }
 
   constructor() {}
 

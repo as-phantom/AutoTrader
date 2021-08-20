@@ -1,5 +1,8 @@
+
+$svgSize: 1.5rem
+
 .container
-   margin: 4% 10%
+   margin: 4% 13%
    min-height: 43rem
    border-radius: 15px
    background: white
@@ -12,20 +15,18 @@
       padding: .5rem
 
       .image-container
-         max-width: 75%
+         max-width: 80%
          height: 42rem
 
          img
             max-width: 100%
             object-fit: cover
-            // object-fit: contain
             height: 42rem
-
+            // object-fit: contain
             // max-height: 100%
 
       .info
          width: 23%
-         height: 0
          display: flex
          flex-direction: column
          padding: 15px 20px
@@ -41,18 +42,14 @@
             font-size: 1em
             font-weight: 600
 
-         .btn
-            background: blue
-            color: white
+         .contacts
+            color: black
             min-height: 2.5rem
-            font-size: 1em
-            border: none
             border-radius: 10px
-            margin: 15px 0
-            letter-spacing: inherit
+            margin-top: 2rem
 
-            &:hover
-               cursor: pointer
+            p
+               font-size: 1rem
 
          .location
             display: flex
@@ -64,7 +61,7 @@
             &:hover
                cursor: pointer
 
-         fa-icon
+            fa-icon
                font-size: 1.1em
                color: green
                padding-left: 5px
@@ -72,3 +69,18 @@
          .specs
             font-size: 1rem
             margin-top: 20px
+
+            ul
+               height: 15em
+               display: flex
+               flex-direction: column
+               justify-content: space-evenly
+
+               li
+                  display: flex
+                  align-items: center
+
+                  svg, fa-icon
+                     width: $svgSize
+                     font-size: $svgSize
+                     padding-right: 10px
