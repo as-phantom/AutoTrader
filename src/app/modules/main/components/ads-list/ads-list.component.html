@@ -1,16 +1,16 @@
-<ng-container *ngIf="adsList$ | async as ads; else loading">
-  <ng-container *ngIf="!ads.length; else listAds">
-    <app-no-results [sender]="host"></app-no-results>
+
+  <ng-container *ngIf="adsList$ | async as ads; else loading">
+    <ng-container *ngIf="!ads.length; else listAds">
+      <app-no-results [sender]="host"></app-no-results>
+    </ng-container>
+
+    <ng-template #listAds>
+      <ng-container *ngFor="let ad of ads">
+        <app-ad-card-small [ad]="ad" [user]="user"></app-ad-card-small>
+      </ng-container>
+    </ng-template>
   </ng-container>
 
-  <ng-template #listAds>
-    <ng-container *ngFor="let ad of ads">
-      <!-- Form some weird reason angular gets confused with a component I had and in order to use AdCardSmall component I have to write it only as AdCard -->
-      <!-- <app-ad-card-small [ad]="ad" [user]="user"></app-ad-card-small> -->
-      <app-ad-card [ad]="ad" [user]="user"></app-ad-card>
-    </ng-container>
-  </ng-template>
-</ng-container>
 
 <ng-template #loading>
   <app-loading></app-loading>

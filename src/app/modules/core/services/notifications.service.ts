@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsService {
-  private readonly notificationsConfigurations: {
-    progressBar: boolean;
-    closeButton: boolean;
-    positionClass: string;
-    timeOut: number;
-  } = {
+  private readonly notificationsConfigurations: Partial<IndividualConfig> = {
     progressBar: true,
     closeButton: true,
     positionClass: 'toast-top-right',

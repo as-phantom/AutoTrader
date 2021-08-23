@@ -12,6 +12,7 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class AdsListComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
+
   public adsList$: Observable<Ad[] | null> | undefined;
   public user: User | undefined;
   public host: string | undefined;
@@ -38,7 +39,7 @@ export class AdsListComponent implements OnInit, OnDestroy {
           condition,
         });
       }),
-      this.authFacade.currentAuthenticatedUser$.subscribe((user: User) => {
+      this.authFacade.user$.subscribe((user) => {
         this.user = user;
       })
     );
