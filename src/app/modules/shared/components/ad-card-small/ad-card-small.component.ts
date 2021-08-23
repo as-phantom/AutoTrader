@@ -48,7 +48,7 @@ export class AdCardSmallComponent implements OnInit {
       return;
     }
     if (this.user.id === this.ad.userID) {
-      this.notificationsService.info(`You cannot rate your own ads!`);
+      this.notificationsService.info(`You cannot rate your own ads`);
 
       return;
     }
@@ -67,10 +67,11 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { updateRating } }) => {
             this.ad.ratings = updateRating?.ad?.ratings;
             this.loading = false;
-            this.notificationsService.success('Rating submitted successfully!');
+            this.notificationsService.success('Rating updated successfully');
           },
           error: () => {
-            this.notificationsService.error('Something went wrong! Please try again later.');
+            this.loading = false;
+            this.notificationsService.error('Something went wrong, try again later');
           },
         });
     } else {
@@ -84,10 +85,11 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { createRating } }) => {
             this.ad.ratings = createRating?.ad?.ratings;
             this.loading = false;
-            this.notificationsService.success('Rating submitted successfully!');
+            this.notificationsService.success('Rating submitted successfully');
           },
           error: () => {
-            this.notificationsService.error('Something went wrong! Please try again later.');
+            this.loading = false;
+            this.notificationsService.error('Something went wrong, try again later');
           },
         });
     }
