@@ -1,6 +1,19 @@
-<div class="stars">
-  <div *ngFor="let rate of ratings; let i = index" class="star" [class.filled]="isFilled(rate)" (click)="onRate(rate)">
-    <i class="material-icons">star_border</i>
-    <i class="material-icons">star</i>
-  </div>
+<div class="stars" [style.min-width.px]="maxRating * STAR_SIZE">
+  <ng-container *ngIf="!loading; else loadingTemplate">
+    <div
+      *ngFor="let rating of ratings; let i = index"
+      class="star"
+      [style.width.px]="STAR_SIZE"
+      [style.height.px]="STAR_SIZE"
+      [class.filled]="isFilled(rating)"
+      (click)="onRate(rating)"
+    >
+      <i class="material-icons">star_border</i>
+      <i class="material-icons">star</i>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <mat-spinner [diameter]="STAR_SIZE"></mat-spinner>
+  </ng-template>
 </div>
