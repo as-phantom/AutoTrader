@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { API } from 'aws-amplify';
-import gql from 'graphql-tag';
-import { from } from 'rxjs';
+import { FavoriteService } from 'src/app/modules/core/services/favorite.service';
 import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
 import { RatingService } from 'src/app/modules/core/services/rating.service';
-import { Ad, Rating, User } from '../../../../../API';
+import { Ad, Favorite, Rating, User } from '../../../../../API';
 
 @Component({
   selector: 'app-ad-card-small',
@@ -16,12 +14,14 @@ export class AdCardSmallComponent implements OnInit {
   @Input() public user: User | undefined;
   @Input() public ad!: Ad;
 
-  public loading: boolean = false;
+  public loadingRating: boolean = false;
+  public loadingAddToFavorite: boolean = false;
 
   constructor(
     private readonly notificationsService: NotificationsService,
     private readonly router: Router,
-    private readonly ratingService: RatingService
+    private readonly ratingService: RatingService,
+    private readonly favoriteService: FavoriteService
   ) {}
 
   ngOnInit(): void {}
@@ -34,11 +34,64 @@ export class AdCardSmallComponent implements OnInit {
   }
 
   public get currentUserRating(): Rating | null | undefined {
-    return this.ad?.ratings?.items?.find((i) => i?.userID === this.user?.id);
+    return this.ad?.ratings?.items?.find((r) => r?.userID === this.user?.id);
+  }
+
+  public get currentUserFavorite(): Favorite | null | undefined {
+    return this.ad?.favorites?.items?.find((f) => f?.userID === this.user?.id);
   }
 
   public getBackgroundImage(ad: Ad): string {
     return `url('${ad.picture}')`;
+  }
+
+  public onAddToFavorite(): void {
+    if (!this.user) {
+      this.router.navigate(['/auth']);
+
+      return;
+    }
+    if (this.user.id === this.ad.userID) {
+      this.notificationsService.info(`You cannot add to favorite your own ads`);
+
+      return;
+    }
+
+    this.loadingAddToFavorite = true;
+
+    if (this.currentUserFavorite) {
+      this.favoriteService.deleteFavorite(this.currentUserFavorite.id).subscribe({
+        next: ({ data: { deleteFavorite } }) => {
+          this.ad.favorites = deleteFavorite?.ad?.favorites;
+          this.loadingAddToFavorite = false;
+          this.notificationsService.success('Successfully removed from favorite');
+        },
+        error: (err) => {
+          this.loadingAddToFavorite = false;
+          this.notificationsService.error('Something went wrong, try again later');
+        },
+      });
+    } else {
+      this.favoriteService
+        .addFavorite({
+          userID: this.user.id,
+          adID: this.ad.id,
+        })
+        .subscribe({
+          next: ({ data: { createFavorite } }) => {
+            const a = this.ad.favorites;
+            const b = createFavorite?.ad?.favorites;
+            debugger;
+            this.ad.favorites = createFavorite?.ad?.favorites;
+            this.loadingAddToFavorite = false;
+            this.notificationsService.success('Successfully added to favorite');
+          },
+          error: (err) => {
+            this.loadingAddToFavorite = false;
+            this.notificationsService.error('Something went wrong, try again later');
+          },
+        });
+    }
   }
 
   public onRate(rating: number): void {
@@ -53,11 +106,11 @@ export class AdCardSmallComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    this.loadingRating = true;
 
     if (this.currentUserRating) {
       this.ratingService
-        .createRating({
+        .updateRating({
           id: this.currentUserRating?.id,
           userID: this.user.id,
           adID: this.ad.id,
@@ -66,17 +119,17 @@ export class AdCardSmallComponent implements OnInit {
         .subscribe({
           next: ({ data: { updateRating } }) => {
             this.ad.ratings = updateRating?.ad?.ratings;
-            this.loading = false;
-            this.notificationsService.success('Rating updated successfully');
+            this.loadingRating = false;
+            this.notificationsService.success('Rating submitted successfully');
           },
-          error: () => {
-            this.loading = false;
+          error: (err) => {
+            this.loadingRating = false;
             this.notificationsService.error('Something went wrong, try again later');
           },
         });
     } else {
       this.ratingService
-        .updateRating({
+        .createRating({
           userID: this.user.id,
           adID: this.ad.id,
           rating,
@@ -84,11 +137,11 @@ export class AdCardSmallComponent implements OnInit {
         .subscribe({
           next: ({ data: { createRating } }) => {
             this.ad.ratings = createRating?.ad?.ratings;
-            this.loading = false;
-            this.notificationsService.success('Rating submitted successfully');
+            this.loadingRating = false;
+            this.notificationsService.success('Rating updated successfully');
           },
-          error: () => {
-            this.loading = false;
+          error: (err) => {
+            this.loadingRating = false;
             this.notificationsService.error('Something went wrong, try again later');
           },
         });

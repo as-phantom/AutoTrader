@@ -16,8 +16,8 @@
 
       <div class="actions">
         <span>({{ rating || 0 }})</span>
-        <app-rating [rating]="currentUserRating?.rating || 0" [loading]="loading" (rate)="onRate($event)"></app-rating>
-        <app-add-to-favorite></app-add-to-favorite>
+        <app-rating [rating]="currentUserRating?.rating || 0" [loading]="loadingRating" (rate)="onRate($event)"></app-rating>
+        <app-add-to-favorite [filled]="!!currentUserFavorite" [loading]="loadingAddToFavorite" (add)="onAddToFavorite()" ></app-add-to-favorite>
       </div>
 
       <div class="view">
