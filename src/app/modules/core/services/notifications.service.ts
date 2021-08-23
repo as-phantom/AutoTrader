@@ -12,19 +12,19 @@ export class NotificationsService {
 
   constructor(private readonly toastrService: ToastrService) {}
 
-  success(message: string) {
+  public success(message: string) {
     this.toastrService.success(message, 'Success', this.notificationsConfigurations);
   }
 
-  info(message: string) {
+  public info(message: string) {
     this.toastrService.info(message, 'Info', this.notificationsConfigurations);
   }
 
-  warning(message: string) {
+  public warning(message: string) {
     this.toastrService.warning(message, 'Warning', this.notificationsConfigurations);
   }
 
-  error(message: string) {
+  public error(message: string) {
     this.toastrService.error(message, 'Error', this.notificationsConfigurations);
   }
 }
