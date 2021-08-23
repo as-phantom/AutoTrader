@@ -1,5 +1,15 @@
-<div class="favorite" [class.filled]="filled">
-   <i class="material-icons">favorite_border</i>
-   <i class="material-icons">favorite</i>
- </div>
- 
+<div
+  *ngIf="!loading; else loadingTemplate"
+  class="favorite"
+  [style.height.px]="HEART_SIZE"
+  [style.width.px]="HEART_SIZE"
+  [class.filled]="filled"
+  (click)="onAdd()"
+>
+  <i class="material-icons">favorite_border</i>
+  <i class="material-icons">favorite</i>
+</div>
+
+<ng-template #loadingTemplate>
+  <mat-spinner [diameter]="HEART_SIZE"></mat-spinner>
+</ng-template>
