@@ -59,6 +59,7 @@ export class AdsService {
                 favorites {
                   items {
                     id
+                    userID
                   }
                 }
                 pictures {
@@ -124,6 +125,7 @@ export class AdsService {
                 favorites {
                   items {
                     id
+                    userID
                   }
                 }
                 pictures {
@@ -190,6 +192,7 @@ export class AdsService {
               favorites {
                 items {
                   id
+                  userID
                 }
               }
               pictures {
