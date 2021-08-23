@@ -11,7 +11,7 @@ import { AdsFacade } from 'src/app/store/facades/ads.facade';
 export class LatestAdsComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
   public images: { path: string }[] | undefined;
-  public height: number = window.innerHeight * 0.25;
+  public height: number = 240;
 
   constructor(
     private readonly adsFacade: AdsFacade,

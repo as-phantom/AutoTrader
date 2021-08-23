@@ -86,7 +86,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     const pictures = this.formGroup.controls.pictures.value;
 
     // // Validate group controls
-    // (() => {
+    // ((): void => {
     //   // Validates both negative values and non numeric values for minPrice
     //   if (minPrice.split('').map(isNaN).includes(true)) {
     //     this.notificationService.error("Min price can only be a positive number");
