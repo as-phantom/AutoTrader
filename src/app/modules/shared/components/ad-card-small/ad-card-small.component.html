@@ -15,11 +15,13 @@
       </div>
 
       <div class="actions">
-        <app-rating [rating]="rating" [disabled]="userHasAlreadyRated" (rate)="onRate($event)"></app-rating>
+        <span>({{ rating || 0 }})</span>
+        <app-rating [rating]="currentUserRating?.rating || 0" [loading]="loading" (rate)="onRate($event)"></app-rating>
+        <app-add-to-favorite></app-add-to-favorite>
       </div>
 
       <div class="view">
-        <button type="button" mat-raised-button color="primary" routerLink="ads/{{ ad.id }}">View</button>
+        <button type="button" mat-raised-button color="primary" routerLink="/ads/{{ ad.id }}">View</button>
       </div>
     </div>
   </div>

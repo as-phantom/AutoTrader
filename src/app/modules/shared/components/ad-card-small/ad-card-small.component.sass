@@ -3,11 +3,14 @@
 
 .card
    @include card()
-   padding: 16px
-   display: inline-flex
+   padding: 10px
+   display: flex
+   margin: 0 7%
+   min-height: 15rem
+   font-size: 1.3rem
 
    .picture
-      min-width: 200px
+      min-width: 30rem
       background-size: cover
       background-position: center
       background-repeat: no-repeat
@@ -21,25 +24,18 @@
    .info
       min-width: 400px
 
-      .title
-         font-size: 20px
-         font-weight: 500
-         line-height: 24px
-         padding-right: 160px
-         padding-bottom: 16px
-
-      .description
-         font-size: 14px
-         line-height: 16px
-         font-weight: 400
-         padding-bottom: 8px
-
       .heading
-         font-size: 12px
+         font-size: 1rem
          line-height: 12px
          font-weight: 500
          color: #aeaeae
-         padding-bottom: 4px
+         padding: 1% 0 .5%
+
+      .description
+         font-size: 1.2rem
+         line-height: 16px
+         font-weight: 400
+         padding-bottom: 1%
 
    .actions
       position: absolute
@@ -49,7 +45,7 @@
       height: 24px
 
       app-rating 
-         padding-right: 16px
+      padding-right: 16px
 
    .view
       position: absolute
