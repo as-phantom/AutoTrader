@@ -11,6 +11,35 @@ export class RatingService {
   constructor() {}
 
   public createRating(input: {
+    userID: string;
+    adID: string;
+    rating: number;
+  }): Observable<{ data: { createRating: Rating | null } }> {
+    return from(
+      API.graphql({
+        query: gql`
+          mutation CreateRating($input: CreateRatingInput!) {
+            createRating(input: $input) {
+              ad {
+                ratings {
+                  items {
+                    id
+                    userID
+                    rating
+                  }
+                }
+              }
+            }
+          }
+        `,
+        variables: {
+          input,
+        },
+      }) as Promise<{ data: { createRating: Rating | null } }>
+    );
+  }
+
+  public updateRating(input: {
     id: string;
     userID: string;
     adID: string;
@@ -37,35 +66,6 @@ export class RatingService {
           input,
         },
       }) as Promise<{ data: { updateRating: Rating | null } }>
-    );
-  }
-
-  public updateRating(input: {
-    userID: string;
-    adID: string;
-    rating: number;
-  }): Observable<{ data: { createRating: Rating | null } }> {
-    return from(
-      API.graphql({
-        query: gql`
-          mutation CreateRating($input: CreateRatingInput!) {
-            createRating(input: $input) {
-              ad {
-                ratings {
-                  items {
-                    id
-                    userID
-                    rating
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          input,
-        },
-      }) as Promise<{ data: { createRating: Rating | null } }>
     );
   }
 }

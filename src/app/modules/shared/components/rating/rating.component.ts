@@ -7,7 +7,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 })
 export class RatingComponent implements OnInit, OnChanges {
   private readonly DEFAULT_MAX_RATING: number = 5;
-
   public readonly STAR_SIZE: number = 24;
 
   @Input() maxRating: number = this.DEFAULT_MAX_RATING;
@@ -35,6 +34,6 @@ export class RatingComponent implements OnInit, OnChanges {
   }
 
   public onRate(rating: number): void {
-    this.rate.emit(Math.abs(rating - this.maxRating));
+    this.rate.emit(this.maxRating - rating);
   }
 }
