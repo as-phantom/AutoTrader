@@ -68,6 +68,8 @@ export class AdsService {
                 }
                 ratings {
                   items {
+                    id
+                    userID
                     rating
                   }
                 }
@@ -150,7 +152,7 @@ export class AdsService {
         `,
         variables: {
           filter: {
-            id: {
+            userID: {
               eq: userID,
             },
           },
@@ -220,12 +222,12 @@ export class AdsService {
     ).pipe(map(({ data: { getAd } }) => getAd));
   }
 
-  public editAdById(id: string): Observable<Ad | null> {
+  public updateAd(id: string, ad: Partial<Ad>): Observable<Ad | null> {
     return from(
       API.graphql({
         query: gql`
-          query editAdById($id: ID!) {
-            getAd(id: $id) {
+          query UpdateAd($input: UpdateAdInput!) {
+            updateAd(input: $input) {
               id
               make
               model
@@ -267,13 +269,31 @@ export class AdsService {
           }
         `,
         variables: {
-          id,
+          input: {
+            id,
+            ...ad
+          }
         },
-      }) as Promise<{ data: { getAd: Ad | null } }>
-    ).pipe(map(({ data: { getAd } }) => getAd));
+      }) as Promise<{ data: { updateAd: Ad | null } }>
+    ).pipe(map(({ data: { updateAd } }) => updateAd));
   }
 
-  // public deleteAdById(id: string): Observable<ad | null> {
-  //   return from(API.graphql({}));
-  // }
+  public deleteAd(id: string): Observable<Ad | null> {
+    return from(
+      API.graphql({
+        query: gql`
+          mutation DeleteAd($input: DeleteAdInput!) {
+            deleteAd(input: $input) {
+              id
+            }
+          }
+        `,
+        variables: {
+          input: {
+            id,
+          },
+        },
+      }) as Promise<{ data: { deleteAd: Ad | null } }>
+    ).pipe(map(({ data: { deleteAd } }) => deleteAd));
+  }
 }
