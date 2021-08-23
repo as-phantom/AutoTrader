@@ -4,6 +4,7 @@ import { API } from 'aws-amplify';
 import gql from 'graphql-tag';
 import { from } from 'rxjs';
 import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
+import { RatingService } from 'src/app/modules/core/services/rating.service';
 import { Ad, Rating, User } from '../../../../../API';
 
 @Component({
@@ -17,7 +18,11 @@ export class AdCardSmallComponent implements OnInit {
 
   public loading: boolean = false;
 
-  constructor(private readonly notificationsService: NotificationsService, private readonly router: Router) {}
+  constructor(
+    private readonly notificationsService: NotificationsService,
+    private readonly router: Router,
+    private readonly ratingService: RatingService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -42,7 +47,6 @@ export class AdCardSmallComponent implements OnInit {
 
       return;
     }
-    
     if (this.user.id === this.ad.userID) {
       this.notificationsService.info(`You cannot rate your own ads!`);
 
@@ -52,78 +56,40 @@ export class AdCardSmallComponent implements OnInit {
     this.loading = true;
 
     if (this.currentUserRating) {
-      const request = API.graphql({
-        query: gql`
-          mutation UpdateRating($input: UpdateRatingInput!) {
-            updateRating(input: $input) {
-              ad {
-                ratings {
-                  items {
-                    id
-                    userID
-                    rating
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          input: {
-            id: this.currentUserRating?.id,
-            userID: this.user.id,
-            adID: this.ad.id,
-            rating,
+      this.ratingService
+        .createRating({
+          id: this.currentUserRating?.id,
+          userID: this.user.id,
+          adID: this.ad.id,
+          rating,
+        })
+        .subscribe({
+          next: ({ data: { updateRating } }) => {
+            this.ad.ratings = updateRating?.ad?.ratings;
+            this.loading = false;
+            this.notificationsService.success('Rating submitted successfully!');
           },
-        },
-      }) as Promise<{ data: { updateRating: Rating | null } }>;
-
-      from(request).subscribe({
-        next: ({ data: { updateRating } }) => {
-          this.ad.ratings = updateRating?.ad?.ratings;
-          this.loading = false;
-          this.notificationsService.success('Rating submitted successfully!');
-        },
-        error: () => {
-          this.notificationsService.error('Something went wrong! Please try again later.');
-        },
-      });
+          error: () => {
+            this.notificationsService.error('Something went wrong! Please try again later.');
+          },
+        });
     } else {
-      const request = API.graphql({
-        query: gql`
-          mutation CreateRating($input: CreateRatingInput!) {
-            createRating(input: $input) {
-              ad {
-                ratings {
-                  items {
-                    id
-                    userID
-                    rating
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          input: {
-            userID: this.user.id,
-            adID: this.ad.id,
-            rating,
+      this.ratingService
+        .updateRating({
+          userID: this.user.id,
+          adID: this.ad.id,
+          rating,
+        })
+        .subscribe({
+          next: ({ data: { createRating } }) => {
+            this.ad.ratings = createRating?.ad?.ratings;
+            this.loading = false;
+            this.notificationsService.success('Rating submitted successfully!');
           },
-        },
-      }) as Promise<{ data: { createRating: Rating | null } }>;
-
-      from(request).subscribe({
-        next: ({ data: { createRating } }) => {
-          this.ad.ratings = createRating?.ad?.ratings;
-          this.loading = false;
-          this.notificationsService.success('Rating submitted successfully!');
-        },
-        error: () => {
-          this.notificationsService.error('Something went wrong! Please try again later.');
-        },
-      });
+          error: () => {
+            this.notificationsService.error('Something went wrong! Please try again later.');
+          },
+        });
     }
   }
 }
