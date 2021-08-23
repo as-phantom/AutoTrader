@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Ad } from 'src/API';
+import { Ad, User } from 'src/API';
 import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 
@@ -13,6 +13,7 @@ export class MyAdsComponent implements OnInit {
   private readonly subscriptions: Subscription[] = [];
   public myAds$: Observable<Ad[] | null> | undefined;
   public host: string | undefined;
+  public user: User | undefined;
 
   constructor(
     private readonly adsService: AdsService,
@@ -26,8 +27,7 @@ export class MyAdsComponent implements OnInit {
     this.subscriptions.push(
       this.authFacade.user$.subscribe((user) => {
         if (user) {
-          // User will always be available at this point but instead using '!'
-          // to tell the Angular i'm using logical statement for aesthetic reasons only
+          this.user = user;
           this.myAds$ = this.adsService.loadAdsByUser(user.id);
         }
       })
