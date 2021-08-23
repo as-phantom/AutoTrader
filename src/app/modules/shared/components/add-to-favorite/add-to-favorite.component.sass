@@ -1,0 +1,18 @@
+.favorite
+   position: relative
+   width: 24px
+   height: 24px
+   color: red
+   cursor: pointer
+
+   .material-icons
+      position: absolute
+
+   .material-icons:last-child
+      display: none
+
+   &:hover .material-icons:last-child
+      display: block
+
+   &.filled .material-icons:last-child
+      display: block
