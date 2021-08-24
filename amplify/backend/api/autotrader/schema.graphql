@@ -62,8 +62,8 @@ type Ad @model @key(name: "byUser", fields: ["userID"]) @key(name: "byRegion", f
   phone: String!
   picture: String!
   condition: Condition!
-  longitude: Float!
-  latitude: Float!
+  longitude: Float
+  latitude: Float
 }
 
 type Picture @model @key(name: "byAd", fields: ["adID"]) {
