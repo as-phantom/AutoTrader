@@ -15,7 +15,7 @@ import { SocialType } from '../../../core/enums/socialType.enum';
 })
 export class AuthComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-  public socialType = SocialType;
+  public readonly socialType = SocialType;
 
   constructor(private readonly authFacade: AuthFacade, private readonly router: Router) {}
 

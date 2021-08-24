@@ -7,7 +7,7 @@ import { faInfoCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./no-results.component.sass'],
 })
 export class NoResultsComponent {
-  @Input() sender: string | undefined;
+  @Input() public sender: string | undefined;
 
   public get faInfoIcon(): IconDefinition {
     return faInfoCircle;

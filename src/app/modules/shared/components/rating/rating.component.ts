@@ -9,11 +9,11 @@ export class RatingComponent {
   private readonly DEFAULT_MAX_RATING: number = 5;
   public readonly STAR_SIZE: number = 24;
 
-  @Input() maxRating: number = this.DEFAULT_MAX_RATING;
-  @Input() rating: number = 0;
-  @Input() loading: boolean = false;
+  @Input() public maxRating: number = this.DEFAULT_MAX_RATING;
+  @Input() public rating: number = 0;
+  @Input() public loading: boolean = false;
 
-  @Output() rate: EventEmitter<number> = new EventEmitter();
+  @Output() public readonly rate: EventEmitter<number> = new EventEmitter();
 
   constructor() {}
 

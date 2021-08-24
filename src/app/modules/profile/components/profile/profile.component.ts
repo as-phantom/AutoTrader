@@ -15,12 +15,11 @@ import { NotificationsService } from '../../../core/services/notifications.servi
 })
 export class ProfileComponent implements OnInit {
   public loading: boolean = false;
-
   public user$: Observable<User | undefined> | undefined;
 
   public readonly formGroup: FormGroup = new FormGroup({
-    firstName: new FormControl('', []),
-    lastName: new FormControl('', []),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
   });
 
   constructor(private readonly authFacade: AuthFacade, private readonly notificationsService: NotificationsService) {}

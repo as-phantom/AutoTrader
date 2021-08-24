@@ -14,7 +14,7 @@ import { NotificationsService } from '../../../core/services/notifications.servi
 })
 export class ImageUploadComponent implements OnInit {
   public fileDraggedOver: boolean = false;
-  public loading: boolean = false;
+  public uploading: boolean = false;
   public user$: Observable<User | undefined> | undefined;
 
   constructor(
@@ -108,7 +108,7 @@ export class ImageUploadComponent implements OnInit {
   private async handlePictureUpload(file: File, user: User): Promise<void> {
     let { picture } = user;
 
-    this.loading = true;
+    this.uploading = true;
 
     if (picture) {
       try {
@@ -126,6 +126,6 @@ export class ImageUploadComponent implements OnInit {
 
     await this.updateUserPicture(user, picture);
 
-    this.loading = false;
+    this.uploading = false;
   }
 }

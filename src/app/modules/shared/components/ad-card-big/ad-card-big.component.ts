@@ -22,10 +22,9 @@ import {
 })
 export class AdCardBigComponent implements OnInit {
   public pictures: { path: string }[] | undefined;
-  
-  @Input() ad!: Ad;
-  @Input() user$: Observable<User | undefined> | undefined;
 
+  @Input() public ad!: Ad;
+  @Input() public user$: Observable<User | undefined> | undefined;
 
   public get faMapMarker(): IconDefinition {
     return faMapMarkerAlt;

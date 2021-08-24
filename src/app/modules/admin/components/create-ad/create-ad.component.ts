@@ -19,11 +19,10 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   public regionID: string | undefined;
   public price: number | undefined;
 
-  public condition = Condition;
-  public transmission = Transmission;
-  public currency = Currency;
-  public fuel = Fuel;
-
+  public readonly condition = Condition;
+  public readonly transmission = Transmission;
+  public readonly currency = Currency;
+  public readonly fuel = Fuel;
 
   public readonly formGroup: FormGroup = new FormGroup({
     make: new FormControl(),

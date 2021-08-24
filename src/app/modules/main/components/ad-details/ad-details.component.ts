@@ -12,7 +12,6 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class AdDetailsComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-  
   public ad$: Observable<Ad | null> | undefined;
   public user$: Observable<User | undefined> | undefined;
 

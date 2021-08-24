@@ -13,7 +13,6 @@ export class MyAdsComponent implements OnInit {
   private readonly subscriptions: Subscription[] = [];
   public host: string | undefined;
   public user: User | undefined;
-
   public ads$: Observable<Ad[] | null> | undefined;
 
   constructor(

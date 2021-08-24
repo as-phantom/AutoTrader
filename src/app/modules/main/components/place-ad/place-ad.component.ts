@@ -13,7 +13,6 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 })
 export class PlaceAdComponent implements OnInit {
   public isFormValid: boolean | undefined;
-
   public regions$: Observable<Region[] | undefined> | undefined;
 
   public readonly formGroup: FormGroup = new FormGroup({

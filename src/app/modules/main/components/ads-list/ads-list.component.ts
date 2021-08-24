@@ -14,7 +14,6 @@ export class AdsListComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
   public user: User | undefined;
   public host: string | undefined;
-  
   public adsList$: Observable<Ad[] | null> | undefined;
 
   constructor(

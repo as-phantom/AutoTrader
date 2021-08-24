@@ -10,7 +10,7 @@ export class ConfirmDialogComponent implements OnInit {
   @Output() public readonly confirm: EventEmitter<void> = new EventEmitter();
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { message: string },
+    @Inject(MAT_DIALOG_DATA) public readonly data: { message: string },
     private readonly matDialogRef: MatDialogRef<ConfirmDialogComponent>
   ) {}
 

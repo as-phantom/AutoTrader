@@ -1,95 +1,91 @@
-<div class="container">
-  <section class="form-section">
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-      <div class="title">
-        <h4>Boost your car sale</h4>
-      </div>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div>
+    <h4>Boost your car sale</h4>
+  </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Make</mat-label>
-        <input formControlName="make" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Make</mat-label>
+    <input formControlName="make" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Model</mat-label>
-        <input formControlName="model" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Model</mat-label>
+    <input formControlName="model" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Year</mat-label>
-        <input formControlName="year" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Year</mat-label>
+    <input formControlName="year" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Region</mat-label>
-        <mat-select formControlName="region">
-          <mat-option *ngFor="let region of regions$ | async | sortRegions" value="{{ region.id }}">
-            {{ region.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Region</mat-label>
+    <mat-select formControlName="region">
+      <mat-option *ngFor="let region of regions$ | async | sortRegions" value="{{ region.id }}">
+        {{ region.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Condition</mat-label>
-        <mat-select formControlName="condition">
-          <mat-option [value]="condition.NEW">New</mat-option>
-          <mat-option [value]="condition.USED">Used</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Condition</mat-label>
+    <mat-select formControlName="condition">
+      <mat-option [value]="condition.NEW">New</mat-option>
+      <mat-option [value]="condition.USED">Used</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Engine</mat-label>
-        <mat-select formControlName="engine">
-          <mat-option [value]="fuel.PETROL">Petrol</mat-option>
-          <mat-option [value]="fuel.DIESEL">Diesel</mat-option>
-          <mat-option [value]="fuel.ELECTRIC">Electric</mat-option>
-          <mat-option [value]="fuel.LPG">Lpg</mat-option>
-          <mat-option [value]="fuel.CNG">Cng</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Engine</mat-label>
+    <mat-select formControlName="engine">
+      <mat-option [value]="fuel.PETROL">Petrol</mat-option>
+      <mat-option [value]="fuel.DIESEL">Diesel</mat-option>
+      <mat-option [value]="fuel.ELECTRIC">Electric</mat-option>
+      <mat-option [value]="fuel.LPG">Lpg</mat-option>
+      <mat-option [value]="fuel.CNG">Cng</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Transmission</mat-label>
-        <mat-select formControlName="transmission">
-          <mat-option [value]="transmission.AUTOMATIC">Automatic</mat-option>
-          <mat-option [value]="transmission.MANUAL">Manual</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Transmission</mat-label>
+    <mat-select formControlName="transmission">
+      <mat-option [value]="transmission.AUTOMATIC">Automatic</mat-option>
+      <mat-option [value]="transmission.MANUAL">Manual</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Price</mat-label>
-        <input formControlName="price" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Price</mat-label>
+    <input formControlName="price" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Currency</mat-label>
-        <mat-select formControlName="currency">
-          <mat-option [value]="currency.EUR">EUR</mat-option>
-          <mat-option [value]="currency.USD">USD</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Mileage</mat-label>
+    <input formControlName="mileage" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Color</mat-label>
-        <input formControlName="color" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Color</mat-label>
+    <input formControlName="color" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Mileage</mat-label>
-        <input formControlName="mileage" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Currency</mat-label>
+    <mat-select formControlName="currency">
+      <mat-option [value]="currency.EUR">EUR</mat-option>
+      <mat-option [value]="currency.USD">USD</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Contact phone</mat-label>
-        <input formControlName="phone" matInput />
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Contact number</mat-label>
+    <input formControlName="phone" matInput />
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
 
-      <button type="submit" class="btn">Create</button>
-    </form>
-  </section>
-</div>
+  <button type="submit" class="btn">Create</button>
+</form>
