@@ -11,7 +11,7 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class MyAdsComponent implements OnInit {
   private readonly subscriptions: Subscription[] = [];
-  public myAds$: Observable<Ad[] | null> | undefined;
+  public ads$: Observable<Ad[] | null> | undefined;
   public host: string | undefined;
   public user: User | undefined;
 
@@ -28,7 +28,7 @@ export class MyAdsComponent implements OnInit {
       this.authFacade.user$.subscribe((user) => {
         if (user) {
           this.user = user;
-          this.myAds$ = this.adsService.loadAdsByUser(user.id);
+          this.ads$ = this.adsService.loadAdsByUser(user.id);
         }
       })
     );

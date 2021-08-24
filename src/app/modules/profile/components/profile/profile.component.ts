@@ -83,9 +83,9 @@ export class ProfileComponent implements OnInit {
         ...updateUser,
       });
 
-      this.notificationsService.success('Profile updated successfully!');
+      this.notificationsService.success('Profile updated successfully');
     } catch (e) {
-      this.notificationsService.error('Something went wrong! Please try again later.');
+      this.notificationsService.error('Something went wrong! Please try again later');
     }
   }
 }

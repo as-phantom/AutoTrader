@@ -8,23 +8,23 @@ import { MyAdsComponent } from './components/my-ads/my-ads.component';
 
 const routes: Routes = [
   {
-    path: 'my-ads',
+    path: 'ads/my-ads',
     component: MyAdsComponent,
   },
   {
-    path: 'create',
+    path: 'ads/create',
     component: CreateAdComponent,
   },
   {
-    path: 'edit/:id',
+    path: 'ads/edit/:id',
     component: EditAdComponent,
   },
   {
-    path: 'delete/:id',
+    path: 'ads/delete/:id',
     component: DeleteAdComponent,
   },
   {
-    path: 'favourites',
+    path: 'ads/favourites',
     component: FavouritesComponent,
   },
 ];

@@ -274,8 +274,8 @@ export class AdsService {
         variables: {
           input: {
             id,
-            ...ad
-          }
+            ...ad,
+          },
         },
       }) as Promise<{ data: { updateAd: Ad | null } }>
     ).pipe(map(({ data: { updateAd } }) => updateAd));
