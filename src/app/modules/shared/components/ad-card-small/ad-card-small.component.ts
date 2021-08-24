@@ -52,7 +52,7 @@ export class AdCardSmallComponent implements OnInit {
       return;
     }
     if (this.user.id === this.ad.userID) {
-      this.notificationsService.info(`You cannot add to favorite your own ads`);
+      this.notificationsService.info(`You cannot add your own ads`);
 
       return;
     }
@@ -79,9 +79,6 @@ export class AdCardSmallComponent implements OnInit {
         })
         .subscribe({
           next: ({ data: { createFavorite } }) => {
-            const a = this.ad.favorites;
-            const b = createFavorite?.ad?.favorites;
-            debugger;
             this.ad.favorites = createFavorite?.ad?.favorites;
             this.loadingAddToFavorite = false;
             this.notificationsService.success('Successfully added to favorite');
@@ -120,7 +117,7 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { updateRating } }) => {
             this.ad.ratings = updateRating?.ad?.ratings;
             this.loadingRating = false;
-            this.notificationsService.success('Rating submitted successfully');
+            this.notificationsService.success('Rating updated successfully');
           },
           error: (err) => {
             this.loadingRating = false;
@@ -138,7 +135,7 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { createRating } }) => {
             this.ad.ratings = createRating?.ad?.ratings;
             this.loadingRating = false;
-            this.notificationsService.success('Rating updated successfully');
+            this.notificationsService.success('Rating submitted successfully');
           },
           error: (err) => {
             this.loadingRating = false;

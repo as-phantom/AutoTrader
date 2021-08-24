@@ -55,7 +55,7 @@ export class PlaceAdComponent implements OnInit {
       return;
     } else {
       const queryParams = { price, region };
-      this.router.navigate(['user/create'], { queryParams });
+      this.router.navigate(['user/ads/create'], { queryParams });
     }
   }
 }
