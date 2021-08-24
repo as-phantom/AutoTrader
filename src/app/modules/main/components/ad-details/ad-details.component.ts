@@ -12,7 +12,7 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class AdDetailsComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-  public pictures: string[] | null[] | undefined;
+  
   public ad$: Observable<Ad | null> | undefined;
   public user$: Observable<User | undefined> | undefined;
 
@@ -27,13 +27,8 @@ export class AdDetailsComponent implements OnInit, OnDestroy {
       this.route.params.subscribe((params: Params) => {
         this.ad$ = this.adsService.loadAdById(params.id);
         this.user$ = this.authFacade.user$;
-
-        // Get the pictures so we can set them in the carousel
       })
     );
-
-    // this.ad$?.subscribe((x) => console.log(x));
-    // this.ad$?.subscribe((ad) => (this.pictures = [...ad?.pictures?.items, ad?.picture]));
   }
 
   ngOnDestroy(): void {

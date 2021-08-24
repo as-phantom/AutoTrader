@@ -10,7 +10,7 @@ import { AuthFacade } from '../../../../store/facades/auth.facade';
   styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit {
-  user$: Observable<User | undefined> | undefined;
+  public user$: Observable<User | undefined> | undefined;
 
   constructor(private readonly authFacade: AuthFacade) {}
 
@@ -18,11 +18,11 @@ export class HeaderComponent implements OnInit {
     this.user$ = this.authFacade.user$;
   }
 
-  getUserName(user: User): string {
+  public getUserName(user: User): string {
     return [user.firstName, user.lastName].join(' ');
   }
 
-  logout(): void {
+  public logout(): void {
     Auth.signOut();
   }
 }

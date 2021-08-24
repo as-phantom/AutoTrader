@@ -12,10 +12,10 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class AdsListComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-
-  public adsList$: Observable<Ad[] | null> | undefined;
   public user: User | undefined;
   public host: string | undefined;
+  
+  public adsList$: Observable<Ad[] | null> | undefined;
 
   constructor(
     private readonly route: ActivatedRoute,

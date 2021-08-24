@@ -4,6 +4,8 @@ import { Ad, User } from 'src/API';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { take } from 'rxjs/operators';
+import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { Router } from '@angular/router';
 import {
   faMapMarkerAlt,
   faHeartbeat,
@@ -12,8 +14,6 @@ import {
   faTrash,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
-import { AdsService } from 'src/app/modules/core/services/ads.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ad-card-big',
@@ -21,12 +21,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./ad-card-big.component.sass'],
 })
 export class AdCardBigComponent implements OnInit {
-  @Input() ad: Ad | null | undefined;
+  public pictures: { path: string }[] | undefined;
+  
+  @Input() ad!: Ad;
   @Input() user$: Observable<User | undefined> | undefined;
 
-  public pictures: { path: string }[] | undefined;
-  public borderRadius: number = 10;
-  public cellsToShow: number = 1;
 
   public get faMapMarker(): IconDefinition {
     return faMapMarkerAlt;
@@ -61,7 +60,7 @@ export class AdCardBigComponent implements OnInit {
     }
   }
 
-  public onDelete(id: string): void {
+  public onDelete(): void {
     const modal = this.matDialog.open(ConfirmDialogComponent, {
       data: { message: 'Are you sure you want to delete this ad?' },
       minHeight: 150,

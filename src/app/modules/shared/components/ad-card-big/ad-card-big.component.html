@@ -3,8 +3,8 @@
     <carousel
       [images]="pictures"
       [arrows]="pictures!.length > 1"
-      [borderRadius]="borderRadius"
-      [cellsToShow]="cellsToShow"
+      [borderRadius]="10"
+      [cellsToShow]="1"
     ></carousel>
 
     <div class="info">
@@ -20,7 +20,7 @@
               <fa-icon [icon]="faPen" class="edit"></fa-icon>
             </button>
 
-            <button type="button" mat-raised-button color="primary" (click)="onDelete(ad.id)">
+            <button type="button" mat-raised-button color="primary" (click)="onDelete()">
               Delete
               <fa-icon [icon]="faTrash" class="delete"></fa-icon>
             </button>

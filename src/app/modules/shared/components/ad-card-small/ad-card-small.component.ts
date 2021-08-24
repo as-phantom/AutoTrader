@@ -11,11 +11,11 @@ import { Ad, Favorite, Rating, User } from '../../../../../API';
   styleUrls: ['./ad-card-small.component.sass'],
 })
 export class AdCardSmallComponent implements OnInit {
-  @Input() public user: User | undefined;
-  @Input() public ad!: Ad;
-
   public loadingRating: boolean = false;
   public loadingAddToFavorite: boolean = false;
+
+  @Input() public user: User | undefined;
+  @Input() public ad!: Ad;
 
   constructor(
     private readonly notificationsService: NotificationsService,

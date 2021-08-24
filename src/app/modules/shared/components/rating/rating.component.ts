@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.sass'],
 })
-export class RatingComponent implements OnInit, OnChanges {
+export class RatingComponent {
   private readonly DEFAULT_MAX_RATING: number = 5;
   public readonly STAR_SIZE: number = 24;
 
@@ -16,8 +16,6 @@ export class RatingComponent implements OnInit, OnChanges {
   @Output() rate: EventEmitter<number> = new EventEmitter();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   ngOnChanges(): void {
     if (this.rating > this.maxRating) {

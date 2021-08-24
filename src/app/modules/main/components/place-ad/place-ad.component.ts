@@ -13,6 +13,7 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 })
 export class PlaceAdComponent implements OnInit {
   public isFormValid: boolean | undefined;
+
   public regions$: Observable<Region[] | undefined> | undefined;
 
   public readonly formGroup: FormGroup = new FormGroup({
@@ -27,7 +28,7 @@ export class PlaceAdComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.regions$ = this.regionsFacade.regions$.pipe();
+    this.regions$ = this.regionsFacade.regions$;
   }
 
   public onSubmit(): void {
@@ -53,9 +54,9 @@ export class PlaceAdComponent implements OnInit {
 
     if (!this.isFormValid) {
       return;
-    } else {
-      const queryParams = { price, region };
-      this.router.navigate(['user/ads/create'], { queryParams });
     }
+
+    const queryParams = { price, region };
+    this.router.navigate(['user/ads/create'], { queryParams });
   }
 }

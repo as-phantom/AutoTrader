@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthFacade } from '../../../store/facades/auth.facade';
 
@@ -7,7 +7,7 @@ import { AuthFacade } from '../../../store/facades/auth.facade';
   providedIn: 'root',
 })
 export class IsGuestGuard implements CanActivate {
-  constructor(private readonly router: Router, private readonly authFacade: AuthFacade) {}
+  constructor(private readonly authFacade: AuthFacade) {}
 
   canActivate() {
     return this.authFacade.currentAuthenticatedUser$.pipe(

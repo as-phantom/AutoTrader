@@ -14,12 +14,14 @@ import { NotificationsService } from '../../../core/services/notifications.servi
   styleUrls: ['./profile.component.sass'],
 })
 export class ProfileComponent implements OnInit {
+  public loading: boolean = false;
+
+  public user$: Observable<User | undefined> | undefined;
+
   public readonly formGroup: FormGroup = new FormGroup({
     firstName: new FormControl('', []),
     lastName: new FormControl('', []),
   });
-  public user$: Observable<User | undefined> | undefined;
-  public loading: boolean = false;
 
   constructor(private readonly authFacade: AuthFacade, private readonly notificationsService: NotificationsService) {}
 

@@ -12,9 +12,10 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class FavouritesComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-  public ads$: Observable<Ad[]> | undefined;
   public host: string | undefined;
   public user: User | undefined;
+
+  public ads$: Observable<Ad[]> | undefined;
 
   constructor(
     private readonly authFacade: AuthFacade,

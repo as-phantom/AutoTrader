@@ -11,9 +11,10 @@ import { AuthFacade } from 'src/app/store/facades/auth.facade';
 })
 export class MyAdsComponent implements OnInit {
   private readonly subscriptions: Subscription[] = [];
-  public ads$: Observable<Ad[] | null> | undefined;
   public host: string | undefined;
   public user: User | undefined;
+
+  public ads$: Observable<Ad[] | null> | undefined;
 
   constructor(
     private readonly adsService: AdsService,

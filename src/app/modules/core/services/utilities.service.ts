@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UtilitiesService {
-  static validate(value: any, validator: (v: any) => boolean): boolean {
+  public validate(value: any, validator: (v: any) => boolean): boolean {
     return validator(value);
   }
 

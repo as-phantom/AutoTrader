@@ -17,7 +17,7 @@ export class FindAdsComponent implements OnInit {
   public showInfoBox: boolean | undefined;
   private isFormValid: boolean | undefined;
   public condition = Condition;
-
+  
   public ads$: Observable<Ad[] | undefined> | undefined;
   public regions$: Observable<Region[] | undefined> | undefined;
 
