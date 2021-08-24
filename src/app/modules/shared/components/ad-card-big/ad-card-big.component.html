@@ -1,4 +1,4 @@
-<div class="container" *ngIf="ad$ | async as ad; else loading">
+<div class="container" *ngIf="ad">
   <section>
     <carousel
       [images]="pictures"
@@ -15,8 +15,15 @@
       <ng-container *ngIf="user$ | async as user; else notOwner">
         <ng-container *ngIf="user.id === ad.userID; else notOwner">
           <div class="actions">
-            <fa-icon [icon]="faEdit" routerLink="/ads/edit/{{ ad.id }}"></fa-icon>
-            <fa-icon [icon]="faTrash" routerLink="/ads/delete/{{ ad.id }}"></fa-icon>
+            <button type="button" mat-raised-button color="primary" routerLink="/user/ads/edit/{{ ad.id }}">
+              Edit
+              <fa-icon [icon]="faPen" class="edit"></fa-icon>
+            </button>
+
+            <button type="button" mat-raised-button color="primary" (click)="onDelete(ad.id)">
+              Delete
+              <fa-icon [icon]="faTrash" class="delete"></fa-icon>
+            </button>
           </div>
         </ng-container>
       </ng-container>
@@ -77,7 +84,3 @@
     </div>
   </section>
 </div>
-
-<ng-template #loading>
-  <app-loading></app-loading>
-</ng-template>

@@ -40,21 +40,24 @@ $svgSize: 1.5rem
 
          .actions
             display: flex
-            width: 100%
-            justify-content: space-around
+            justify-content: space-between
             padding: 20px 0 0
 
-            .ng-fa-icon
-               font-size: 1.5em
+            button
+               min-width: 6.5rem
+               letter-spacing: 1px
+               font-size: 1rem
 
                &:hover
-                  cursor: pointer
+                  background: #25358a
 
-               &:first-child
-                  color: #216f27
+                  .edit
+                     color: green
+                  .delete
+                     color: red
 
-               &:last-child
-                  color: #c70000
+               fa-icon
+                  transition: .2s
 
          .contacts
             color: black
