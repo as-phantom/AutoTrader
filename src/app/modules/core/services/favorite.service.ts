@@ -3,7 +3,7 @@ import { API } from 'aws-amplify';
 import gql from 'graphql-tag';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Favorite } from 'src/API';
+import { Ad, Favorite } from 'src/API';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +54,81 @@ export class FavoriteService {
           },
         },
       }) as Promise<{ data: { deleteFavorite: Favorite | null } }>
+    );
+  }
+
+  public loadFavorites(userID: string): Observable<Ad[]> {
+    return from(
+      API.graphql({
+        query: gql`
+          query ListFavorites($filter: ModelFavoriteFilterInput) {
+            listFavorites(filter: $filter) {
+              items {
+                id
+                userID
+                adID
+                ad {
+                  id
+                  make
+                  model
+                  color
+                  engine
+                  price
+                  year
+                  mileage
+                  region {
+                    id
+                    name
+                  }
+                  favorites {
+                    items {
+                      id
+                      userID
+                    }
+                  }
+                  pictures {
+                    items {
+                      url
+                    }
+                  }
+                  ratings {
+                    items {
+                      id
+                      userID
+                      rating
+                    }
+                  }
+                  transmission
+                  description
+                  fuel
+                  phone
+                  picture
+                  condition
+                  longitude
+                  latitude
+                  userID
+                  currency
+                }
+              }
+            }
+          }
+        `,
+        variables: {
+          filter: {
+            userID: {
+              eq: userID,
+            },
+          },
+        },
+      }) as Promise<{ data: { listFavorites: { items: Favorite[] | null } } }>
+    ).pipe(
+      map(
+        ({
+          data: {
+            listFavorites: { items },
+          },
+        }) => items!.map((item) => item.ad!)
+      )
     );
   }
 }
