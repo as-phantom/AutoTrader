@@ -12,16 +12,15 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
   styleUrls: ['./place-ad.component.sass'],
 })
 export class PlaceAdComponent implements OnInit {
-  public isFormValid: boolean | undefined;
   public regions$: Observable<Region[] | undefined> | undefined;
 
   public readonly formGroup: FormGroup = new FormGroup({
-    region: new FormControl(),
+    make: new FormControl(),
     price: new FormControl('', [Validators.min(0), Validators.max(10000000)]),
   });
 
   constructor(
-    private readonly notificationService: NotificationsService,
+    private readonly notificationsService: NotificationsService,
     private readonly regionsFacade: RegionsFacade,
     private readonly router: Router
   ) {}
@@ -31,31 +30,27 @@ export class PlaceAdComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.isFormValid = true;
-
+    const make = this.formGroup.controls.make.value?.trim();
     const price = this.formGroup.controls.price.value;
-    const region = this.formGroup.controls.region.value;
 
     // Validate group controls
-    (() => {
-      // Validates both negative values and non numeric values for price
-      if (price.split('').map(isNaN).includes(true)) {
-        this.notificationService.error('Price can only be a positive number');
-        this.isFormValid = false;
-      }
 
-      // Validates maximum value for price
-      if (price > 10000000) {
-        this.notificationService.error("Price can't be over ten millions");
-        this.isFormValid = false;
-      }
-    })();
-
-    if (!this.isFormValid) {
+    if (price < 0) {
+      this.notificationsService.error('Price can only be a positive number!');
       return;
     }
 
-    const queryParams = { price, region };
+    if (price > 10000000) {
+      this.notificationsService.error("Price can't be over ten millions.");
+      return;
+    }
+
+    if (make && make.split('').map(isNaN).includes(false)) {
+      this.notificationsService.error('Use a valid make.');
+      return;
+    }
+
+    const queryParams = { make, price };
     this.router.navigate(['user/ads/create'], { queryParams });
   }
 }

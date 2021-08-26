@@ -6,20 +6,15 @@
 
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
-      <mat-label>Region</mat-label>
-      <mat-select formControlName="region">
-        <mat-option *ngFor="let region of regions$ | async | sortRegions" value="{{ region.id }}">{{
-          region.name
-        }}</mat-option>
-      </mat-select>
+      <mat-label>Make</mat-label>
+      <input formControlName="make" matInput />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Price</mat-label>
-      <input formControlName="price" matInput />
+      <input formControlName="price" matInput type="number" />
     </mat-form-field>
 
-    <!-- <button type="submit" class="btn" [disabled]="isFormValid">Submit</button> -->
     <button mat-ripple type="submit" class="btn btn-success">Create</button>
   </form>
 </section>
