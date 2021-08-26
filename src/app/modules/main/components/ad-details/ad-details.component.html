@@ -1,5 +1,5 @@
 <ng-container *ngIf="ad$ | async as ad; else loading">
-  <app-ad-card-big [ad]="ad" [user$]="user$"></app-ad-card-big>
+  <app-ad-card-big [ad]="ad" [user]="user$ | async"></app-ad-card-big>
 </ng-container>
 
 <ng-template #loading>
