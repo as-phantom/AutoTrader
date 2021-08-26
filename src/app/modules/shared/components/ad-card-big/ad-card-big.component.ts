@@ -24,7 +24,7 @@ export class AdCardBigComponent implements OnInit {
   public pictures: { path: string }[] | undefined;
 
   @Input() public ad!: Ad;
-  @Input() public user$: Observable<User | undefined> | undefined;
+  @Input() public user: User | null | undefined;
 
   public get faMapMarker(): IconDefinition {
     return faMapMarkerAlt;
@@ -53,10 +53,8 @@ export class AdCardBigComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.ad) {
-      this.pictures = [{ path: this.ad.picture }];
-      this.ad.pictures?.items?.forEach((p) => this.pictures?.push({ path: p!.url }));
-    }
+    this.pictures = [{ path: this.ad.picture }];
+    this.ad.pictures?.items?.forEach((p) => this.pictures?.push({ path: p!.url }));
   }
 
   public onDelete(): void {
