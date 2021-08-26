@@ -15,7 +15,6 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 })
 export class FindAdsComponent implements OnInit {
   public showInfoBox: boolean | undefined;
-  private isFormValid: boolean | undefined;
   public condition = Condition;
   public ads$: Observable<Ad[] | undefined> | undefined;
   public regions$: Observable<Region[] | undefined> | undefined;
@@ -34,7 +33,7 @@ export class FindAdsComponent implements OnInit {
   });
 
   constructor(
-    private readonly notificationService: NotificationsService,
+    private readonly notificationsService: NotificationsService,
     private readonly regionsFacade: RegionsFacade,
     private readonly adsFacade: AdsFacade,
     private readonly router: Router
@@ -56,59 +55,45 @@ export class FindAdsComponent implements OnInit {
   public verifyIfMakeIsPicked(): void {
     const make = this.formGroup.controls.make.value;
     if (!make) {
-      this.notificationService.info('Chose make before choosing a model');
+      this.notificationsService.info('Chose make before choosing a model.');
     }
   }
 
   public onSubmit(): void {
-    this.isFormValid = true;
-
-    const make = this.formGroup.controls.make.value;
-    const model = this.formGroup.controls.model.value;
-    const region = this.formGroup.controls.region.value;
+    const make = this.formGroup.controls.make.value?.trim();
+    const model = this.formGroup.controls.model.value?.trim();
+    const region = this.formGroup.controls.region.value?.trim();
     const minPrice = this.formGroup.controls.minPrice.value;
     const maxPrice = this.formGroup.controls.maxPrice.value;
-    const condition = this.formGroup.controls.condition.value;
+    const condition = this.formGroup.controls.condition.value?.trim();
 
     // Validate group controls
-    ((): void => {
-      // Validates both negative values and non numeric values for minPrice
-      if (minPrice.split('').map(isNaN).includes(true)) {
-        this.notificationService.error('Min price can only be a positive number');
-        this.isFormValid = false;
-      }
 
-      // Validates maximum min value for minPrice
-      if (minPrice > 10000000) {
-        this.notificationService.error("Min price can't be over ten millions");
-        this.isFormValid = false;
-      }
-
-      // Validates both negative values and non numeric values for maxPrice
-      if (maxPrice.split('').map(isNaN).includes(true)) {
-        this.notificationService.error('Max price can only be a positive number');
-        this.isFormValid = false;
-      }
-
-      // Validates maximum max value for maxPrice
-      if (maxPrice > 10000000) {
-        this.notificationService.error("Max price can't be over ten millions");
-        this.isFormValid = false;
-      }
-    })();
-
-    if (!this.isFormValid) {
+    // Validates both negative values and non numeric values for minPrice
+    if (minPrice < 0) {
+      this.notificationsService.error('Min price can only be a positive number!');
       return;
     }
 
-    const queryParams = {
-      make,
-      model,
-      region,
-      minPrice,
-      maxPrice,
-      condition,
-    };
+    // Validates maximum min value for minPrice
+    if (Number(minPrice) > 10000000) {
+      this.notificationsService.error("Min price can't be over ten millions.");
+      return;
+    }
+
+    // Validates both negative values and non numeric values for maxPrice
+    if (maxPrice < 0) {
+      this.notificationsService.error('Max price can only be a positive number!');
+      return;
+    }
+
+    // Validates maximum max value for maxPrice
+    if (Number(maxPrice) > 10000000) {
+      this.notificationsService.error("Max price can't be over ten millions.");
+      return;
+    }
+
+    const queryParams = { make, model, region, minPrice, maxPrice, condition };
 
     this.router.navigate(['search'], { queryParams });
   }
