@@ -35,12 +35,12 @@ export class PlaceAdComponent implements OnInit {
 
     // Validate group controls
 
-    if (price < 0) {
+    if (price && price < 0) {
       this.notificationsService.error('Price can only be a positive number!');
       return;
     }
 
-    if (price > 10000000) {
+    if (price && price > 10000000) {
       this.notificationsService.error("Price can't be over ten millions.");
       return;
     }

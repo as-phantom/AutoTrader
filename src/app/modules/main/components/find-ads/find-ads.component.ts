@@ -69,26 +69,22 @@ export class FindAdsComponent implements OnInit {
 
     // Validate group controls
 
-    // Validates both negative values and non numeric values for minPrice
-    if (minPrice < 0) {
+    if (minPrice && minPrice < 0) {
       this.notificationsService.error('Min price can only be a positive number!');
       return;
     }
 
-    // Validates maximum min value for minPrice
-    if (Number(minPrice) > 10000000) {
+    if (minPrice && minPrice > 10000000) {
       this.notificationsService.error("Min price can't be over ten millions.");
       return;
     }
 
-    // Validates both negative values and non numeric values for maxPrice
-    if (maxPrice < 0) {
+    if (maxPrice && maxPrice < 0) {
       this.notificationsService.error('Max price can only be a positive number!');
       return;
     }
 
-    // Validates maximum max value for maxPrice
-    if (Number(maxPrice) > 10000000) {
+    if (minPrice && maxPrice > 10000000) {
       this.notificationsService.error("Max price can't be over ten millions.");
       return;
     }

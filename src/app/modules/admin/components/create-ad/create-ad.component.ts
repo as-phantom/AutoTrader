@@ -31,15 +31,15 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     make: new FormControl(),
     model: new FormControl(),
     color: new FormControl(),
-    engine: new FormControl(),
+    engine: new FormControl('', [Validators.min(1)]),
     price: new FormControl('', [Validators.min(0), Validators.max(10000000)]),
     year: new FormControl(),
-    mileage: new FormControl(),
+    mileage: new FormControl('', [Validators.min(0)]),
     transmission: new FormControl(),
     currency: new FormControl(),
     description: new FormControl(),
     fuel: new FormControl(),
-    contactNumber: new FormControl(),
+    contactNumber: new FormControl('', [Validators.minLength(5)]),
     region: new FormControl(),
     condition: new FormControl(),
   });
@@ -117,6 +117,11 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (engine < 0) {
+      this.notificationsService.error('Engine size can only be a positive number!');
+      return;
+    }
+
     if (!fuel) {
       this.notificationsService.error('Please choose fuel type.');
       return;
@@ -132,18 +137,23 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (!price) {
+    if (price < 0) {
       this.notificationsService.error('Price can only be a positive number!');
       return;
     }
 
-    if (Number(price) > 10000000) {
+    if (price > 10000000) {
       this.notificationsService.error("Price can't be over ten millions!");
       return;
     }
 
     if (!mileage) {
       this.notificationsService.error('Mileage is required!');
+      return;
+    }
+
+    if (mileage < 0) {
+      this.notificationsService.error('Mileage can only be a positive number!');
       return;
     }
 
