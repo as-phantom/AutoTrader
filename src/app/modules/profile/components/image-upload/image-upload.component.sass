@@ -1,0 +1,65 @@
+@use '../../../../../assets/styles/mixins.sass' 
+@use '../../../../../assets/styles/variables.sass'
+
+$size: 180px
+
+:host
+    display: inline-flex
+    position: relative
+
+@mixin fileDraggedOver
+    background-image: unset !important
+
+    .drop-here
+        display: flex
+
+.image-upload
+    @include mixins.card()
+    width: $size
+    height: $size
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    position: relative
+
+    .spinner
+        position: absolute
+        inset: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        background: white
+        border-radius: variables.$cardBorderRadius
+
+    .drop-here
+        position: absolute
+        inset: 0
+        background: white
+        border-radius: variables.$cardBorderRadius
+        display: none
+        flex-direction: column
+        text-align: center
+        justify-content: center
+        padding: 8px
+
+        .material-icons
+            font-size: 20px
+
+        span
+            font-size: 12px
+            padding-top: 4px
+
+    &.file-dragged-over
+        @include fileDraggedOver()
+
+input
+    opacity: 0
+    position: absolute
+    z-index: 1
+    inset: 0
+    width: $size
+    height: $size
+    cursor: pointer
+
+    &:hover ~ .image-upload
+        @include fileDraggedOver()
