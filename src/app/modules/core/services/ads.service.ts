@@ -3,7 +3,7 @@ import { API } from 'aws-amplify';
 import gql from 'graphql-tag';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Ad, Condition } from 'src/API';
+import { Ad, Condition, Picture } from 'src/API';
 
 @Injectable({
   providedIn: 'root',
@@ -298,5 +298,44 @@ export class AdsService {
         },
       }) as Promise<{ data: { deleteAd: Ad | null } }>
     ).pipe(map(({ data: { deleteAd } }) => deleteAd));
+  }
+
+  public createAd(ad: Partial<Ad>): Observable<Ad | null> {
+    return from(
+      API.graphql({
+        query: gql`
+          mutation CreateAd($input: CreateAdInput!) {
+            createAd(input: $input) {
+              id
+            }
+          }
+        `,
+        variables: {
+          input: {
+            ...ad,
+          },
+        },
+      }) as Promise<{ data: { createAd: Ad | null } }>
+    ).pipe(map(({ data: { createAd } }) => createAd));
+  }
+
+  public createPicture(adID: string, url: string): Observable<Picture | null> {
+    return from(
+      API.graphql({
+        query: gql`
+          mutation CreatePicture($input: CreatePictureInput!) {
+            createPicture(input: $input) {
+              id
+            }
+          }
+        `,
+        variables: {
+          input: {
+            adID,
+            url,
+          },
+        },
+      }) as Promise<{ data: { createPicture: Picture | null } }>
+    ).pipe(map(({ data: { createPicture } }) => createPicture));
   }
 }
