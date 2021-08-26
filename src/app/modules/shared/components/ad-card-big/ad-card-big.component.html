@@ -12,7 +12,7 @@
       <h2>{{ ad.year }}</h2>
       <h3>{{ ad.currency | currency }} {{ ad.price.toFixed(2) }}</h3>
 
-      <ng-container *ngIf="user$ | async as user; else notOwner">
+      <ng-container *ngIf="user; else notOwner">
         <ng-container *ngIf="user.id === ad.userID; else notOwner">
           <div class="actions">
             <button type="button" mat-raised-button color="primary" routerLink="/user/ads/edit/{{ ad.id }}">
