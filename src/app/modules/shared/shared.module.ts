@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 // Components
 import { AdCardBigComponent } from './components/ad-card-big/ad-card-big.component';
 import { AdCardSmallComponent } from './components/ad-card-small/ad-card-small.component';
-import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { RatingComponent } from './components/rating/rating.component';
@@ -31,7 +30,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 const COMPONENTS = [
   AdCardBigComponent,
   AdCardSmallComponent,
-  ImageUploadComponent,
   LoadingComponent,
   NoResultsComponent,
   RatingComponent,
@@ -39,6 +37,7 @@ const COMPONENTS = [
   CurrencyPipe,
   SortRegionsPipe,
   AddToFavorite,
+  ConfirmDialogComponent,
 ];
 
 const MODULES = [
@@ -60,7 +59,7 @@ const MODULES = [
 
 @NgModule({
   imports: [...MODULES],
-  declarations: [...COMPONENTS, ConfirmDialogComponent],
+  declarations: [...COMPONENTS],
   exports: [...COMPONENTS, ...MODULES],
 })
 export class SharedModule {}

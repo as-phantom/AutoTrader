@@ -52,7 +52,7 @@ export class AdCardSmallComponent implements OnInit {
       return;
     }
     if (this.user.id === this.ad.userID) {
-      this.notificationsService.info(`You cannot add your own ads`);
+      this.notificationsService.info(`You cannot add your own ads.`);
 
       return;
     }
@@ -64,11 +64,11 @@ export class AdCardSmallComponent implements OnInit {
         next: ({ data: { deleteFavorite } }) => {
           this.ad.favorites = deleteFavorite?.ad?.favorites;
           this.loadingAddToFavorite = false;
-          this.notificationsService.success('Successfully removed from favorite');
+          this.notificationsService.success('Successfully removed from favorite.');
         },
         error: (err) => {
           this.loadingAddToFavorite = false;
-          this.notificationsService.error('Something went wrong, try again later');
+          this.notificationsService.error('Something went wrong! Try again later.');
         },
       });
     } else {
@@ -81,11 +81,11 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { createFavorite } }) => {
             this.ad.favorites = createFavorite?.ad?.favorites;
             this.loadingAddToFavorite = false;
-            this.notificationsService.success('Successfully added to favorite');
+            this.notificationsService.success('Successfully added to favorite.');
           },
           error: (err) => {
             this.loadingAddToFavorite = false;
-            this.notificationsService.error('Something went wrong, try again later');
+            this.notificationsService.error('Something went wrong! Try again later.');
           },
         });
     }
@@ -98,7 +98,7 @@ export class AdCardSmallComponent implements OnInit {
       return;
     }
     if (this.user.id === this.ad.userID) {
-      this.notificationsService.info(`You cannot rate your own ads`);
+      this.notificationsService.info(`You cannot rate your own ads.`);
 
       return;
     }
@@ -117,11 +117,11 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { updateRating } }) => {
             this.ad.ratings = updateRating?.ad?.ratings;
             this.loadingRating = false;
-            this.notificationsService.success('Rating updated successfully');
+            this.notificationsService.success('Rating updated successfully.');
           },
           error: (err) => {
             this.loadingRating = false;
-            this.notificationsService.error('Something went wrong, try again later');
+            this.notificationsService.error('Something went wrong! try again later.');
           },
         });
     } else {
@@ -135,11 +135,11 @@ export class AdCardSmallComponent implements OnInit {
           next: ({ data: { createRating } }) => {
             this.ad.ratings = createRating?.ad?.ratings;
             this.loadingRating = false;
-            this.notificationsService.success('Rating submitted successfully');
+            this.notificationsService.success('Rating submitted successfully.');
           },
           error: (err) => {
             this.loadingRating = false;
-            this.notificationsService.error('Something went wrong, try again later');
+            this.notificationsService.error('Something went wrong! try again later.');
           },
         });
     }
