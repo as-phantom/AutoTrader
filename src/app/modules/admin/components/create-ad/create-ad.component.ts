@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { Condition, Currency, Fuel, Region, Transmission } from 'src/API';
+import { combineLatest, Observable, Subscription } from 'rxjs';
+import { debounceTime, switchMap, take } from 'rxjs/operators';
+import { Condition, Currency, Fuel, Region, Transmission, User } from 'src/API';
 import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
+import { StorageService } from 'src/app/modules/core/services/storage.service';
+import { AuthFacade } from 'src/app/store/facades/auth.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
 @Component({
@@ -15,9 +18,9 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 export class CreateAdComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
   public regions$: Observable<Region[] | undefined> | undefined;
-  private isFormValid: boolean | undefined;
-  public regionID: string | undefined;
-  public price: number | undefined;
+  public files: File[] | undefined;
+  public user: User | undefined;
+  public uploading: boolean | undefined;
 
   public readonly condition = Condition;
   public readonly transmission = Transmission;
@@ -29,94 +32,204 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     model: new FormControl(),
     color: new FormControl(),
     engine: new FormControl(),
-    price: new FormControl(),
+    price: new FormControl('', [Validators.min(0), Validators.max(10000000)]),
     year: new FormControl(),
     mileage: new FormControl(),
     transmission: new FormControl(),
     currency: new FormControl(),
     description: new FormControl(),
     fuel: new FormControl(),
-    phone: new FormControl(),
-    pictures: new FormControl(),
+    contactNumber: new FormControl(),
     region: new FormControl(),
     condition: new FormControl(),
   });
 
   constructor(
-    private readonly notificationService: NotificationsService,
+    private readonly notificationsService: NotificationsService,
+    private readonly storageService: StorageService,
     private readonly regionFacade: RegionsFacade,
     private readonly adsService: AdsService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly authFacade: AuthFacade,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
     this.regions$ = this.regionFacade.regions$;
+    this.authFacade.user$.pipe(take(1)).subscribe((user) => (this.user = user));
 
     this.subscriptions.push(
       this.route.queryParams.subscribe((queryParams: Params) => {
-        const { region, price } = queryParams;
-
-        this.regionID = region || undefined;
-        // Checks for empty string and for non numeric values even though this has been done in the place ad component
-        if (price !== '' && price.split('').map(isNaN).includes(true) === false) {
-          this.price = Number(queryParams.price);
-        }
+        this.formGroup.controls.price.setValue(queryParams.price);
+        this.formGroup.controls.make.setValue(queryParams.make);
       })
     );
   }
 
-  public onSubmit(): void {
-    this.isFormValid = true;
-
-    const make = this.formGroup.controls.make.value;
-    const model = this.formGroup.controls.model.value;
-    const region = this.formGroup.controls.region.value;
-    const condition = this.formGroup.controls.condition.value;
-    const color = this.formGroup.controls.color.value;
-    const engine = this.formGroup.controls.engine.value;
-    const price = this.formGroup.controls.price.value;
-    const year = this.formGroup.controls.year.value;
-    const mileage = this.formGroup.controls.mileage.value;
-    const description = this.formGroup.controls.description.value;
-    const transmission = this.formGroup.controls.transmission.value;
-    const currency = this.formGroup.controls.currency.value;
-    const fuel = this.formGroup.controls.fuel.value;
-    const phone = this.formGroup.controls.phone.value;
-    const pictures = this.formGroup.controls.pictures.value;
-
-    // // Validate group controls
-    // ((): void => {
-    //   // Validates both negative values and non numeric values for minPrice
-    //   if (minPrice.split('').map(isNaN).includes(true)) {
-    //     this.notificationService.error("Min price can only be a positive number");
-    //     this.isFormValid = false;
-    //   }
-
-    //   // Validates maximum min value for minPrice
-    //   if (minPrice > 10000000) {
-    //     this.notificationService.error("Min price can't be over ten millions");
-    //     this.isFormValid = false;
-    //   }
-
-    //   // Validates both negative values and non numeric values for maxPrice
-    //   if (maxPrice.split('').map(isNaN).includes(true)) {
-    //     this.notificationService.error("Max price can only be a positive number");
-    //     this.isFormValid = false;
-    //   }
-
-    //   // Validates maximum max value for maxPrice
-    //   if (maxPrice > 10000000) {
-    //     this.notificationService.error("Max price can't be over ten millions");
-    //     this.isFormValid = false;
-    //   }
-    // })();
-
-    // if (!this.isFormValid) {
-    //   return;
-    // }
-  }
-
   ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
+  }
+
+  public onSubmit(): void {
+    const make = this.formGroup.controls.make.value?.trim();
+    const model = this.formGroup.controls.model.value?.trim();
+    const regionID = this.formGroup.controls.region.value?.trim();
+    const condition = this.formGroup.controls.condition.value?.trim();
+    const color = this.formGroup.controls.color.value?.trim();
+    const engine = this.formGroup.controls.engine.value;
+    const price = this.formGroup.controls.price.value;
+    const year = this.formGroup.controls.year.value?.trim();
+    const mileage = this.formGroup.controls.mileage.value;
+    const description = this.formGroup.controls.description.value?.trim();
+    const transmission = this.formGroup.controls.transmission.value?.trim();
+    const currency = this.formGroup.controls.currency.value?.trim();
+    const fuel = this.formGroup.controls.fuel.value?.trim();
+    const phone = this.formGroup.controls.contactNumber.value?.trim();
+
+    // Validate group controls
+    if (!make || make.length < 3 || make.split('').map(isNaN).includes(false)) {
+      this.notificationsService.error('Valid make is required!');
+      return;
+    }
+
+    if (!model || model.length < 2) {
+      this.notificationsService.error('Valid model is required!');
+      return;
+    }
+
+    if (!year || Number(year) < 1850 || Number(year) > new Date().getFullYear()) {
+      this.notificationsService.error('Valid year is required!');
+      return;
+    }
+
+    if (!regionID) {
+      this.notificationsService.error('Please choose region.');
+      return;
+    }
+
+    if (!condition) {
+      this.notificationsService.error('Please choose condition.');
+      return;
+    }
+
+    if (!engine) {
+      this.notificationsService.error('Engine size is required!');
+      return;
+    }
+
+    if (!fuel) {
+      this.notificationsService.error('Please choose fuel type.');
+      return;
+    }
+
+    if (!transmission) {
+      this.notificationsService.error('Please choose transmission type.');
+      return;
+    }
+
+    if (!price) {
+      this.notificationsService.error('Price is required!');
+      return;
+    }
+
+    if (!price) {
+      this.notificationsService.error('Price can only be a positive number!');
+      return;
+    }
+
+    if (Number(price) > 10000000) {
+      this.notificationsService.error("Price can't be over ten millions!");
+      return;
+    }
+
+    if (!mileage) {
+      this.notificationsService.error('Mileage is required!');
+      return;
+    }
+
+    if (!color || color.split('').map(isNaN).includes(false)) {
+      this.notificationsService.error('Valid color is required!');
+      return;
+    }
+
+    if (!currency) {
+      this.notificationsService.error('Please choose the currency you prefer.');
+      return;
+    }
+
+    if (!phone) {
+      this.notificationsService.error('Contact number is required!');
+      return;
+    }
+
+    if (!description || description.length < 3) {
+      this.notificationsService.error('Description is required!');
+      return;
+    }
+
+    if (!this.files) {
+      this.notificationsService.error('At least one picture is required!');
+      return;
+    }
+
+    this.uploading = true;
+
+    this.storageService
+      .uploadFileToS3Observable(this.files.shift()!)
+      .pipe(
+        debounceTime(350),
+        switchMap((picture) =>
+          this.adsService.createAd({
+            userID: this.user!.id,
+            picture,
+            make,
+            model,
+            regionID,
+            condition,
+            color,
+            engine: Number(engine),
+            price: Number(price),
+            year: Number(year),
+            mileage: Number(mileage),
+            description,
+            transmission,
+            currency,
+            fuel,
+            phone,
+          })
+        )
+      )
+      .subscribe((ad) => {
+        if (this.files?.length) {
+          combineLatest(this.files.map((f) => this.storageService.uploadFileToS3Observable(f)))
+            .pipe(switchMap((images) => combineLatest(images.map((i) => this.adsService.createPicture(ad!.id, i!)))))
+            .subscribe({
+              next: () => {
+                this.notificationsService.success('Ad successfully created!');
+                this.uploading = false;
+                this.router.navigate(['ads', ad!.id]);
+              },
+              error: () => {
+                this.uploading = false;
+                this.notificationsService.error('Something went wrong! Try again later.');
+              },
+            });
+        }
+      });
+  }
+
+  public onUploadInput(e: Event): void {
+    const input = e.target as HTMLInputElement;
+
+    if (!input.files) {
+      return;
+    }
+
+    if (input.files.length > 5) {
+      this.notificationsService.warning('You can only upload up to 5 pictures!');
+      return;
+    }
+
+    this.files = Array.from(input.files);
   }
 }

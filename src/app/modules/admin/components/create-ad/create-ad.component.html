@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" *ngIf="!uploading; else loading">
   <div>
     <h4>Boost your car sale</h4>
   </div>
@@ -36,8 +36,13 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Engine</mat-label>
-    <mat-select formControlName="engine">
+    <mat-label>Engine Size</mat-label>
+    <input formControlName="engine" matInput type="number" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fuel</mat-label>
+    <mat-select formControlName="fuel">
       <mat-option [value]="fuel.PETROL">Petrol</mat-option>
       <mat-option [value]="fuel.DIESEL">Diesel</mat-option>
       <mat-option [value]="fuel.ELECTRIC">Electric</mat-option>
@@ -56,12 +61,12 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Price</mat-label>
-    <input formControlName="price" matInput />
+    <input formControlName="price" matInput type="number" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Mileage</mat-label>
-    <input formControlName="mileage" matInput />
+    <input formControlName="mileage" matInput type="number" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -79,13 +84,22 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Contact number</mat-label>
-    <input formControlName="phone" matInput />
+    <input formControlName="contactNumber" matInput />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
 
-  <button type="submit" class="btn">Create</button>
+  <div class="upload" (click)="uploadFile.click()">
+    <button type="button" mat-raised-button color="primary">Upload images</button>
+    <input #uploadFile type="file" accept="image/*" hidden multiple (input)="onUploadInput($event)" />
+  </div>
+
+  <button type="submit" class="btn">Create now</button>
 </form>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
