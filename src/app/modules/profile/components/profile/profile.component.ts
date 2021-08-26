@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { API } from 'aws-amplify';
-import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ProfileService } from 'src/app/modules/core/services/profile.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
 import { NotificationsService } from '../../../core/services/notifications.service';
@@ -22,7 +21,11 @@ export class ProfileComponent implements OnInit {
     lastName: new FormControl(''),
   });
 
-  constructor(private readonly authFacade: AuthFacade, private readonly notificationsService: NotificationsService) {}
+  constructor(
+    private readonly authFacade: AuthFacade,
+    private readonly notificationsService: NotificationsService,
+    private readonly profileService: ProfileService
+  ) {}
 
   public ngOnInit(): void {
     this.user$ = this.authFacade.user$.pipe(
@@ -52,41 +55,22 @@ export class ProfileComponent implements OnInit {
     const lastName: string = this.formGroup.controls.lastName.value.trim();
 
     if (firstName === user.firstName && lastName === user.lastName) {
-      this.notificationsService.info('These details are already saved');
+      this.notificationsService.info('These details are already saved.');
       return;
     }
 
-    try {
-      const response = await API.graphql({
-        query: gql`
-          mutation UpdateUser($input: UpdateUserInput!) {
-            updateUser(input: $input) {
-              firstName
-              lastName
-            }
-          }
-        `,
-        variables: {
-          input: {
-            id,
-            firstName,
-            lastName,
-          },
-        },
-      });
+    this.profileService.updateUser(id, firstName, lastName).subscribe({
+      next: (updateUser) => {
+        this.authFacade.setUser({
+          ...user,
+          ...updateUser,
+        });
 
-      const {
-        data: { updateUser },
-      } = response as { data: { updateUser: User } };
-
-      this.authFacade.setUser({
-        ...user,
-        ...updateUser,
-      });
-
-      this.notificationsService.success('Profile updated successfully');
-    } catch (e) {
-      this.notificationsService.error('Something went wrong! Please try again later');
-    }
+        this.notificationsService.success('Profile updated successfully.');
+      },
+      error: () => {
+        this.notificationsService.error('Something went wrong! Please try again later.');
+      },
+    });
   }
 }
