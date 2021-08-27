@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FavoriteService } from 'src/app/modules/core/services/favorite.service';
 import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
@@ -10,7 +10,7 @@ import { Ad, Favorite, Rating, User } from '../../../../../API';
   templateUrl: './ad-card-small.component.html',
   styleUrls: ['./ad-card-small.component.sass'],
 })
-export class AdCardSmallComponent implements OnInit {
+export class AdCardSmallComponent {
   public loadingRating: boolean = false;
   public loadingAddToFavorite: boolean = false;
 
@@ -23,8 +23,6 @@ export class AdCardSmallComponent implements OnInit {
     private readonly ratingService: RatingService,
     private readonly favoriteService: FavoriteService
   ) {}
-
-  ngOnInit(): void {}
 
   public get rating(): number {
     const totalRating: number = this.ad?.ratings?.items?.reduce((a, c) => a! + c?.rating!, 0)!;
