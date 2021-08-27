@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './modules/core/core.module';
 // Modules
 import { SharedModule } from './modules/shared/shared.module';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
 // AWS
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { AmplifyService } from 'aws-amplify-angular';
@@ -47,6 +49,7 @@ Amplify.configure(aws_exports);
       },
     }),
     EffectsModule.forRoot(effects),
+    MatBottomSheetModule,
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent],
