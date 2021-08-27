@@ -4,3 +4,5 @@
   <router-outlet *ngIf="!loading.includes(true)"></router-outlet>
 </main>
 <app-footer></app-footer>
+
+<fa-icon *ngIf="shown" (click)="scrollToTop()" [icon]="faArrow"></fa-icon>
