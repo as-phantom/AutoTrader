@@ -229,45 +229,9 @@ export class AdsService {
     return from(
       API.graphql({
         query: gql`
-          query UpdateAd($input: UpdateAdInput!) {
+          mutation UpdateAd($input: UpdateAdInput!) {
             updateAd(input: $input) {
               id
-              make
-              model
-              color
-              engine
-              price
-              year
-              mileage
-              region {
-                id
-                name
-              }
-              favorites {
-                items {
-                  id
-                }
-              }
-              pictures {
-                items {
-                  url
-                }
-              }
-              ratings {
-                items {
-                  rating
-                }
-              }
-              transmission
-              description
-              fuel
-              phone
-              picture
-              condition
-              longitude
-              latitude
-              userID
-              currency
             }
           }
         `,
@@ -277,8 +241,8 @@ export class AdsService {
             ...ad,
           },
         },
-      }) as Promise<{ data: { updateAd: Ad | null } }>
-    ).pipe(map(({ data: { updateAd } }) => updateAd));
+      }) as Promise<{ data: { ad: Ad | null } }>
+    ).pipe(map(({ data: { ad } }) => ad));
   }
 
   public deleteAd(id: string): Observable<Ad | null> {
