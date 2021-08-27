@@ -21,6 +21,7 @@ This is just an open source project and it doesn't have the feature of deleting 
 -   Ability to look up a vehicle's location and owner's contact details
 -   Ability to edit profile details
 -   Email verification and password reset via email
+-   Error handling, data validation and notifications
 -   Decent UX and UI
 -   
 
