@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" *ngIf="!uploading; else loading">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" *ngIf="!loading; else loadingTemplate">
   <div>
     <h4>Boost your car sale</h4>
   </div>
@@ -21,7 +21,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Region</mat-label>
     <mat-select formControlName="region">
-      <mat-option *ngFor="let region of regions$ | async | sortRegions" value="{{ region.id }}">
+      <mat-option *ngFor="let region of regions$ | async | sortRegions" [value]="region.id">
         {{ region.name }}
       </mat-option>
     </mat-select>
@@ -97,9 +97,12 @@
     <input #uploadFile type="file" accept="image/*" hidden multiple (input)="onUploadInput($event)" />
   </div>
 
-  <button type="submit" class="btn">Create now</button>
+  <ng-container>
+    <button *ngIf="adID" type="submit" class="btn">Update now</button>
+    <button *ngIf="!adID" type="submit" class="btn">Create now</button>
+  </ng-container>
 </form>
 
-<ng-template #loading>
+<ng-template #loadingTemplate>
   <app-loading></app-loading>
 </ng-template>

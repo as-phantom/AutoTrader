@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { combineLatest, Observable, Subscription } from 'rxjs';
-import { debounceTime, switchMap, take } from 'rxjs/operators';
-import { Condition, Currency, Fuel, Region, Transmission, User } from 'src/API';
+import { debounceTime, switchMap, take, tap } from 'rxjs/operators';
+import { Ad, Condition, Currency, Fuel, Region, Transmission, User } from 'src/API';
 import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
@@ -12,15 +12,17 @@ import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
 @Component({
   selector: 'app-create-ad',
-  templateUrl: './create-ad.component.html',
-  styleUrls: ['./create-ad.component.sass'],
+  templateUrl: './create-and-edit-ad.component.html',
+  styleUrls: ['./create-and-edit-ad.component.sass'],
 })
-export class CreateAdComponent implements OnInit, OnDestroy {
+export class CreateAndEditAdComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
-  public regions$: Observable<Region[] | undefined> | undefined;
+  public loading: boolean | undefined;
   public files: File[] | undefined;
   public user: User | undefined;
-  public uploading: boolean | undefined;
+  public adID: string | undefined;
+  public regions$: Observable<Region[] | undefined> | undefined;
+  public ad$: Observable<Ad | null> | undefined;
 
   public readonly condition = Condition;
   public readonly transmission = Transmission;
@@ -31,7 +33,7 @@ export class CreateAdComponent implements OnInit, OnDestroy {
     make: new FormControl(),
     model: new FormControl(),
     color: new FormControl(),
-    engine: new FormControl('', [Validators.min(1)]),
+    engine: new FormControl('', [Validators.min(1), Validators.max(27)]),
     price: new FormControl('', [Validators.min(0), Validators.max(10000000)]),
     year: new FormControl(),
     mileage: new FormControl('', [Validators.min(0)]),
@@ -55,15 +57,41 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.adID = this.route.snapshot.params.id;
+
     this.regions$ = this.regionFacade.regions$;
     this.authFacade.user$.pipe(take(1)).subscribe((user) => (this.user = user));
 
-    this.subscriptions.push(
-      this.route.queryParams.subscribe((queryParams: Params) => {
-        this.formGroup.controls.price.setValue(queryParams.price);
-        this.formGroup.controls.make.setValue(queryParams.make);
-      })
-    );
+    if (this.adID) {
+      this.loading = true;
+      this.adsService.loadAdById(this.adID).subscribe((ad) => {
+        if (ad) {
+          this.formGroup.controls.make.setValue(ad.make);
+          this.formGroup.controls.model.setValue(ad.model);
+          this.formGroup.controls.year.setValue(ad.year);
+          this.formGroup.controls.region.setValue(ad.region.id);
+          this.formGroup.controls.condition.setValue(ad.condition);
+          this.formGroup.controls.engine.setValue(ad.engine);
+          this.formGroup.controls.fuel.setValue(ad.fuel);
+          this.formGroup.controls.transmission.setValue(ad.transmission);
+          this.formGroup.controls.price.setValue(ad.price);
+          this.formGroup.controls.mileage.setValue(ad.mileage);
+          this.formGroup.controls.color.setValue(ad.color);
+          this.formGroup.controls.currency.setValue(ad.currency);
+          this.formGroup.controls.contactNumber.setValue(ad.phone);
+          this.formGroup.controls.description.setValue(ad.description);
+        }
+        this.loading = false;
+      });
+    } else {
+      // Creating ad
+      this.subscriptions.push(
+        this.route.queryParams.subscribe((params: Params) => {
+          this.formGroup.controls.price.setValue(params.price);
+          this.formGroup.controls.make.setValue(params.make);
+        })
+      );
+    }
   }
 
   ngOnDestroy(): void {
@@ -73,17 +101,17 @@ export class CreateAdComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     const make = this.formGroup.controls.make.value?.trim();
     const model = this.formGroup.controls.model.value?.trim();
-    const regionID = this.formGroup.controls.region.value?.trim();
-    const condition = this.formGroup.controls.condition.value?.trim();
+    const regionID = this.formGroup.controls.region.value;
+    const condition = this.formGroup.controls.condition.value;
     const color = this.formGroup.controls.color.value?.trim();
     const engine = this.formGroup.controls.engine.value;
     const price = this.formGroup.controls.price.value;
-    const year = this.formGroup.controls.year.value?.trim();
+    const year = this.formGroup.controls.year.value;
     const mileage = this.formGroup.controls.mileage.value;
     const description = this.formGroup.controls.description.value?.trim();
-    const transmission = this.formGroup.controls.transmission.value?.trim();
-    const currency = this.formGroup.controls.currency.value?.trim();
-    const fuel = this.formGroup.controls.fuel.value?.trim();
+    const transmission = this.formGroup.controls.transmission.value;
+    const currency = this.formGroup.controls.currency.value;
+    const fuel = this.formGroup.controls.fuel.value;
     const phone = this.formGroup.controls.contactNumber.value?.trim();
 
     // Validate group controls
@@ -122,6 +150,11 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if (engine > 27) {
+      this.notificationsService.error('Please enter a valid engine size!');
+      return;
+    }
+
     if (!fuel) {
       this.notificationsService.error('Please choose fuel type.');
       return;
@@ -157,7 +190,14 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (!color || color.split('').map(isNaN).includes(false)) {
+    if (
+      !color ||
+      color
+        .split('')
+        .filter((x: string) => x !== ' ')
+        .map(isNaN)
+        .includes(false)
+    ) {
       this.notificationsService.error('Valid color is required!');
       return;
     }
@@ -177,55 +217,90 @@ export class CreateAdComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (!this.files) {
+    if (!this.adID && !this.files) {
       this.notificationsService.error('At least one picture is required!');
       return;
     }
 
-    this.uploading = true;
+    this.loading = true;
 
-    this.storageService
-      .uploadFileToS3Observable(this.files.shift()!)
-      .pipe(
-        debounceTime(350),
-        switchMap((picture) =>
-          this.adsService.createAd({
-            userID: this.user!.id,
-            picture,
-            make,
-            model,
-            regionID,
-            condition,
-            color,
-            engine: Number(engine),
-            price: Number(price),
-            year: Number(year),
-            mileage: Number(mileage),
-            description,
-            transmission,
-            currency,
-            fuel,
-            phone,
-          })
+    if (this.adID) {
+      this.adsService
+        .updateAd(this.adID, {
+          userID: this.user!.id,
+          make,
+          model,
+          regionID,
+          condition,
+          color,
+          engine: Number(engine),
+          price: Number(price),
+          year: Number(year),
+          mileage: Number(mileage),
+          description,
+          transmission,
+          currency,
+          fuel,
+          phone,
+        })
+        .subscribe({
+          next: (ad) => {
+            this.loading = false;
+            this.notificationsService.success('Ad successfully updated!');
+            this.router.navigate(['ads', ad!.id]);
+          },
+          error: (err) => {
+            console.log(err);
+            
+            this.loading = false;
+            this.notificationsService.error('Something went wrong! Try again later.');
+          },
+        });
+    } else {
+      this.storageService
+        //  Taking the first photo as main one
+        .uploadFileToS3Observable(this.files?.shift()!)
+        .pipe(
+          debounceTime(350),
+          switchMap((picture) =>
+            this.adsService.createAd({
+              userID: this.user!.id,
+              picture,
+              make,
+              model,
+              regionID,
+              condition,
+              color,
+              engine: Number(engine),
+              price: Number(price),
+              year: Number(year),
+              mileage: Number(mileage),
+              description,
+              transmission,
+              currency,
+              fuel,
+              phone,
+            })
+          )
         )
-      )
-      .subscribe((ad) => {
-        if (this.files?.length) {
-          combineLatest(this.files.map((f) => this.storageService.uploadFileToS3Observable(f)))
-            .pipe(switchMap((images) => combineLatest(images.map((i) => this.adsService.createPicture(ad!.id, i!)))))
-            .subscribe({
-              next: () => {
-                this.notificationsService.success('Ad successfully created!');
-                this.uploading = false;
-                this.router.navigate(['ads', ad!.id]);
-              },
-              error: () => {
-                this.uploading = false;
-                this.notificationsService.error('Something went wrong! Try again later.');
-              },
-            });
-        }
-      });
+        .subscribe((ad) => {
+          if (this.files?.length) {
+            combineLatest(this.files.map((f) => this.storageService.uploadFileToS3Observable(f)))
+              .pipe(switchMap((images) => combineLatest(images.map((i) => this.adsService.createPicture(ad!.id, i!)))))
+              .subscribe({
+                next: () => {
+                  this.loading = false;
+                  this.notificationsService.success('Ad successfully created!');
+                  this.router.navigate(['ads', ad!.id]);
+                },
+                error: () => {
+                  this.loading = false;
+                  this.notificationsService.error('Something went wrong! Try again later.');
+                },
+              });
+          }
+        });
+    }
   }
 
   public onUploadInput(e: Event): void {
