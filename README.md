@@ -1,10 +1,8 @@
-# AutoTrader
+# Auto Trader
 
 This project was done with [Angular CLI] version 12.1.4.
 
-# Auto Trader
-
-#### System for creating and managing vehicle sales with free access.
+#### System for creating and managing vehicle sale ads with free access.
 
 # WARNING 
 
@@ -22,6 +20,7 @@ This is just an open source project and it doesn't have the feature of deleting 
 -   Ability to filter and search by various criteria
 -   Ability to look up a vehicle's location and owner's contact details
 -   Ability to edit profile details
+-   Email verification and password reset via email
 -   Decent UX and UI
 -   
 
@@ -52,7 +51,7 @@ This is just an open source project and it doesn't have the feature of deleting 
 
 ```javascript
 {
-      id: ID!
+      id: ID,
       favorites: [Favorite] @connection(keyName: "byUser", fields: ["id"]),
       ratings: [Rating] @connection(keyName: "byUser", fields: ["id"]),
       ads: [Ad] @connection(keyName: "byUser", fields: ["id"]),
@@ -88,12 +87,12 @@ This is just an open source project and it doesn't have the feature of deleting 
 }
 ```
 
--   Favorite
+-   Region
 
 ```javascript
 {
-        id: ID!
-        name: String!
+        id: ID,
+        name: String,
         ads: [Ad] @connection(keyName: "byRegion", fields: ["id"])
 }
 ```
