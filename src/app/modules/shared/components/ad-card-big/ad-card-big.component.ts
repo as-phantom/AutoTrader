@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Ad, User } from 'src/API';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -55,6 +54,12 @@ export class AdCardBigComponent implements OnInit {
   ngOnInit(): void {
     this.pictures = [{ path: this.ad.picture }];
     this.ad.pictures?.items?.forEach((p) => this.pictures?.push({ path: p!.url }));
+  }
+
+  public onEdit(): void {
+    // const modal = this.matDialog.open(EditDialogComponent, {
+    //   data: {}
+    // })
   }
 
   public onDelete(): void {
