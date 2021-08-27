@@ -1,0 +1,4 @@
+<agm-map class="map" [latitude]="data.latitude" [longitude]="data.longitude" [zoom]="12">
+  <agm-marker [latitude]="data.latitude" [longitude]="data.longitude" [markerDraggable]="true"></agm-marker>
+</agm-map>
+<button mat-button (click)="onClose()">Close</button>

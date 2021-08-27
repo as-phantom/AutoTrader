@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.1.0",
     "@angular/animations": "~12.1.0",
     "@angular/cdk": "^12.1.4",
     "@angular/common": "~12.1.0",
@@ -28,6 +29,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@ngrx/effects": "^12.3.0",
     "@ngrx/store": "^12.3.0",
+    "@types/googlemaps": "^3.39.12",
     "angular-cli-ghpages": "^1.0.0-rc.2",
     "angular-responsive-carousel": "^2.1.2",
     "aws-amplify": "^4.2.2",

@@ -23,6 +23,9 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
   public adID: string | undefined;
   public regions$: Observable<Region[] | undefined> | undefined;
   public ad$: Observable<Ad | null> | undefined;
+  private latitude: number | undefined;
+  private longitude: number | undefined;
+  private locationAccessGranted: boolean | undefined;
 
   public readonly condition = Condition;
   public readonly transmission = Transmission;
@@ -63,6 +66,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     this.authFacade.user$.pipe(take(1)).subscribe((user) => (this.user = user));
 
     if (this.adID) {
+      // Edit ad
       this.loading = true;
       this.adsService.loadAdById(this.adID).subscribe((ad) => {
         if (ad) {
@@ -98,7 +102,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
-  public onSubmit(): void {
+  public async onSubmit(): Promise<void> {
     const make = this.formGroup.controls.make.value?.trim();
     const model = this.formGroup.controls.model.value?.trim();
     const regionID = this.formGroup.controls.region.value;
@@ -113,6 +117,39 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     const currency = this.formGroup.controls.currency.value;
     const fuel = this.formGroup.controls.fuel.value;
     const phone = this.formGroup.controls.contactNumber.value?.trim();
+
+    // Location access needed
+
+    await (() => {
+      // Waiting until location access is granted ot not
+      return new Promise((resolve) => {
+        navigator.geolocation.getCurrentPosition(
+          (location) => {
+            this.latitude = location.coords.latitude;
+            this.longitude = location.coords.longitude;
+
+            this.locationAccessGranted = true;
+            resolve(true);
+          },
+          () => {
+            this.locationAccessGranted = false;
+            resolve(false);
+          }
+        );
+      });
+    })();
+
+    if (!this.locationAccessGranted) {
+      this.notificationsService.info('You need to allow access to your location!');
+
+      setTimeout(() => {
+        // Instruction to allow access to location in case of rejection obviously only for Chrome
+        const url = 'https://support.google.com/chrome/answer/142065?hl=en';
+        window.open(url, '_blank');
+      }, 3000);
+
+      return;
+    }
 
     // Validate group controls
     if (!make || make.length < 3 || make.split('').map(isNaN).includes(false)) {
@@ -242,6 +279,8 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
           currency,
           fuel,
           phone,
+          latitude: this.latitude,
+          longitude: this.longitude,
         })
         .subscribe({
           next: (ad) => {
@@ -251,7 +290,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
           },
           error: (err) => {
             console.log(err);
-            
+
             this.loading = false;
             this.notificationsService.error('Something went wrong! Try again later.');
           },
@@ -280,6 +319,8 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
               currency,
               fuel,
               phone,
+              latitude: this.latitude,
+              longitude: this.longitude,
             })
           )
         )

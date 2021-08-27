@@ -26,6 +26,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
+import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 
 const COMPONENTS = [
   AdCardBigComponent,
@@ -38,6 +42,14 @@ const COMPONENTS = [
   SortRegionsPipe,
   AddToFavorite,
   ConfirmDialogComponent,
+  MapDialogComponent,
+];
+
+const MODULES_WITH_PROVIDERS = [
+  AgmCoreModule.forRoot({
+    apiKey: environment.googleAPIKey,
+    libraries: ['places'],
+  }),
 ];
 
 const MODULES = [
@@ -55,11 +67,12 @@ const MODULES = [
   MatSelectModule,
   RouterModule,
   MatDialogModule,
+  AgmCoreModule,
 ];
 
 @NgModule({
-  imports: [...MODULES],
-  declarations: [...COMPONENTS],
+  imports: [...MODULES, ...MODULES_WITH_PROVIDERS],
+  declarations: [...COMPONENTS, BottomSheetComponent],
   exports: [...COMPONENTS, ...MODULES],
 })
 export class SharedModule {}

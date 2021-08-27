@@ -1,11 +1,6 @@
 <div class="container" *ngIf="ad">
   <section>
-    <carousel
-      [images]="pictures"
-      [arrows]="pictures!.length > 1"
-      [borderRadius]="10"
-      [cellsToShow]="1"
-    ></carousel>
+    <carousel [images]="pictures" [arrows]="pictures!.length > 1" [borderRadius]="10" [cellsToShow]="1"></carousel>
 
     <div class="info">
       <h1>{{ ad.make }} {{ ad.model }}</h1>
@@ -37,9 +32,9 @@
         </mat-expansion-panel>
       </ng-template>
 
-      <div class="location">
+      <div class="location" (click)="showOnMap()">
         <h2>Vehicle location</h2>
-        <fa-icon [icon]="faMapMarker"></fa-icon>
+        <fa-icon class="icon" [icon]="faMapMarker"></fa-icon>
       </div>
 
       <div class="specs">

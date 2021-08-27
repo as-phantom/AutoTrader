@@ -5,6 +5,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { take } from 'rxjs/operators';
 import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { Router } from '@angular/router';
+import { MapDialogComponent } from '../map-dialog/map-dialog.component';
 import {
   faMapMarkerAlt,
   faHeartbeat,
@@ -56,12 +57,6 @@ export class AdCardBigComponent implements OnInit {
     this.ad.pictures?.items?.forEach((p) => this.pictures?.push({ path: p!.url }));
   }
 
-  public onEdit(): void {
-    // const modal = this.matDialog.open(EditDialogComponent, {
-    //   data: {}
-    // })
-  }
-
   public onDelete(): void {
     const modal = this.matDialog.open(ConfirmDialogComponent, {
       data: { message: 'Are you sure you want to delete this ad?' },
@@ -73,6 +68,15 @@ export class AdCardBigComponent implements OnInit {
         .deleteAd(this.ad!.id)
         .pipe(take(1))
         .subscribe(() => this.router.navigate(['user/ads/my-ads']));
+    });
+  }
+
+  public showOnMap(): void {
+    this.matDialog.open(MapDialogComponent, {
+      data: {
+        latitude: this.ad.latitude,
+        longitude: this.ad.longitude,
+      },
     });
   }
 }
