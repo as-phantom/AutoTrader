@@ -144,7 +144,7 @@ This is just an open source project and it doesn't have the feature of deleting 
 
 #### Access control
 
--   Guests can register, view the renect ads, ad's details, search for ads.
+-   Guests can register, view the recent ads, ad's details, search for ads.
 -   Registered users can create ads, add ads to favorite, rate ads, update profile.
 -   Only the creator of a quiz can edit and delete it.
 
