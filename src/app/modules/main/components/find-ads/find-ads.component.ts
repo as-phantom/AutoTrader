@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Ad, Condition, Region } from 'src/API';
-import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
+import { notificationService } from 'src/app/modules/core/services/notifications.service';
 import { AdsFacade } from 'src/app/store/facades/ads.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
@@ -33,7 +33,7 @@ export class FindAdsComponent implements OnInit {
   });
 
   constructor(
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: notificationService,
     private readonly regionsFacade: RegionsFacade,
     private readonly adsFacade: AdsFacade,
     private readonly router: Router
@@ -55,7 +55,7 @@ export class FindAdsComponent implements OnInit {
   public verifyIfMakeIsPicked(): void {
     const make = this.formGroup.controls.make.value;
     if (!make) {
-      this.notificationsService.info('Chose make before choosing a model.');
+      this.notificationService.info('Chose make before choosing a model.');
     }
   }
 
@@ -70,22 +70,22 @@ export class FindAdsComponent implements OnInit {
     // Validate group controls
 
     if (minPrice && minPrice < 0) {
-      this.notificationsService.error('Min price can only be a positive number!');
+      this.notificationService.error('Min price can only be a positive number!');
       return;
     }
 
     if (minPrice && minPrice > 10000000) {
-      this.notificationsService.error("Min price can't be over ten millions.");
+      this.notificationService.error("Min price can't be over ten millions.");
       return;
     }
 
     if (maxPrice && maxPrice < 0) {
-      this.notificationsService.error('Max price can only be a positive number!');
+      this.notificationService.error('Max price can only be a positive number!');
       return;
     }
 
     if (minPrice && maxPrice > 10000000) {
-      this.notificationsService.error("Max price can't be over ten millions.");
+      this.notificationService.error("Max price can't be over ten millions.");
       return;
     }
 

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Ad, User } from 'src/API';
-import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { adService } from 'src/app/modules/core/services/ads.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 
 @Component({
@@ -16,7 +16,7 @@ export class MyAdsComponent implements OnInit {
   public ads$: Observable<Ad[] | null> | undefined;
 
   constructor(
-    private readonly adsService: AdsService,
+    private readonly adService: adService,
     private readonly authFacade: AuthFacade,
     private readonly elemRef: ElementRef
   ) {}
@@ -28,7 +28,7 @@ export class MyAdsComponent implements OnInit {
       this.authFacade.user$.subscribe((user) => {
         if (user) {
           this.user = user;
-          this.ads$ = this.adsService.loadAdsByUser(user.id);
+          this.ads$ = this.adService.loadAdsByUser(user.id);
         }
       })
     );

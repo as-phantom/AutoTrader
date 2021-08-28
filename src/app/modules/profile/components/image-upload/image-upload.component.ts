@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { adService } from 'src/app/modules/core/services/ads.service';
 import { ProfileService } from 'src/app/modules/core/services/profile.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { notificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-image-upload',
@@ -20,7 +20,7 @@ export class ImageUploadComponent implements OnInit {
   constructor(
     private readonly authFacade: AuthFacade,
     private readonly storageService: StorageService,
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: notificationService,
     private readonly profileService: ProfileService
   ) {}
 
@@ -81,10 +81,10 @@ export class ImageUploadComponent implements OnInit {
           picture: updateUser.picture,
         });
 
-        this.notificationsService.success('Picture uploaded successfully.');
+        this.notificationService.success('Picture uploaded successfully.');
       },
       error: () => {
-        this.notificationsService.error('Something went wrong! Please try again later.');
+        this.notificationService.error('Something went wrong! Please try again later.');
       },
     });
   }
@@ -98,7 +98,7 @@ export class ImageUploadComponent implements OnInit {
       try {
         await this.deleteExistingPictureFromS3(picture);
       } catch {
-        this.notificationsService.error('Something went wrong! Please try again later.');
+        this.notificationService.error('Something went wrong! Please try again later.');
         return;
       }
     }
@@ -106,7 +106,7 @@ export class ImageUploadComponent implements OnInit {
     try {
       picture = await this.uploadPictureToS3(file);
     } catch {
-      this.notificationsService.error('Something went wrong! Please try again later.');
+      this.notificationService.error('Something went wrong! Please try again later.');
       return;
     }
 

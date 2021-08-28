@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FavoriteService } from 'src/app/modules/core/services/favorite.service';
-import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
+import { notificationService } from 'src/app/modules/core/services/notifications.service';
 import { RatingService } from 'src/app/modules/core/services/rating.service';
 import { Ad, Favorite, Rating, User } from '../../../../../API';
 
@@ -18,7 +18,7 @@ export class AdCardSmallComponent {
   @Input() public ad!: Ad;
 
   constructor(
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: notificationService,
     private readonly router: Router,
     private readonly ratingService: RatingService,
     private readonly favoriteService: FavoriteService
@@ -50,7 +50,7 @@ export class AdCardSmallComponent {
       return;
     }
     if (this.user.id === this.ad.userID) {
-      this.notificationsService.info(`You cannot add your own ads.`);
+      this.notificationService.info(`You cannot add your own ads.`);
 
       return;
     }
@@ -62,11 +62,11 @@ export class AdCardSmallComponent {
         next: ({ data: { deleteFavorite } }) => {
           this.ad.favorites = deleteFavorite?.ad?.favorites;
           this.loadingAddToFavorite = false;
-          this.notificationsService.success('Successfully removed from favorite.');
+          this.notificationService.success('Successfully removed from favorite.');
         },
         error: (err) => {
           this.loadingAddToFavorite = false;
-          this.notificationsService.error('Something went wrong! Try again later.');
+          this.notificationService.error('Something went wrong! Try again later.');
         },
       });
     } else {
@@ -79,11 +79,11 @@ export class AdCardSmallComponent {
           next: ({ data: { createFavorite } }) => {
             this.ad.favorites = createFavorite?.ad?.favorites;
             this.loadingAddToFavorite = false;
-            this.notificationsService.success('Successfully added to favorite.');
+            this.notificationService.success('Successfully added to favorite.');
           },
           error: (err) => {
             this.loadingAddToFavorite = false;
-            this.notificationsService.error('Something went wrong! Try again later.');
+            this.notificationService.error('Something went wrong! Try again later.');
           },
         });
     }
@@ -96,7 +96,7 @@ export class AdCardSmallComponent {
       return;
     }
     if (this.user.id === this.ad.userID) {
-      this.notificationsService.info(`You cannot rate your own ads.`);
+      this.notificationService.info(`You cannot rate your own ads.`);
 
       return;
     }
@@ -115,11 +115,11 @@ export class AdCardSmallComponent {
           next: ({ data: { updateRating } }) => {
             this.ad.ratings = updateRating?.ad?.ratings;
             this.loadingRating = false;
-            this.notificationsService.success('Rating updated successfully.');
+            this.notificationService.success('Rating updated successfully.');
           },
           error: (err) => {
             this.loadingRating = false;
-            this.notificationsService.error('Something went wrong! try again later.');
+            this.notificationService.error('Something went wrong! try again later.');
           },
         });
     } else {
@@ -133,11 +133,11 @@ export class AdCardSmallComponent {
           next: ({ data: { createRating } }) => {
             this.ad.ratings = createRating?.ad?.ratings;
             this.loadingRating = false;
-            this.notificationsService.success('Rating submitted successfully.');
+            this.notificationService.success('Rating submitted successfully.');
           },
           error: (err) => {
             this.loadingRating = false;
-            this.notificationsService.error('Something went wrong! try again later.');
+            this.notificationService.error('Something went wrong! try again later.');
           },
         });
     }

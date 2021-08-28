@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { IconDefinition, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { Auth } from 'aws-amplify';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './modules/core/services/auth.service';
@@ -21,7 +21,7 @@ export class AppComponent {
   public shown: boolean | undefined;
   public topPosToStartShowing = 100;
   // For each observable that's fetching data
-  public loading: boolean[] = [true, true];
+  public loading: boolean | undefined;
   private readonly subscriptions: Subscription[] = [];
 
   public get faArrow(): IconDefinition {
@@ -36,12 +36,12 @@ export class AppComponent {
   ) {}
 
   public ngOnInit(): void {
-    this.subscriptions.push(
-      this.adsFacade.adsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.loading[0] = false))
-    );
-    this.subscriptions.push(
-      this.regionsFacade.regionsLoadingComplete$.pipe(filter(Boolean)).subscribe(() => (this.loading[1] = false))
-    );
+    this.loading = true;
+
+    combineLatest([
+      this.adsFacade.adsLoadingComplete$.pipe(filter(Boolean)),
+      this.regionsFacade.regionsLoadingComplete$.pipe(filter(Boolean)),
+    ]).subscribe(([ads, regions]) => (this.loading = false));
 
     if (!localStorage.getItem('t&c')) {
       setTimeout(() => {

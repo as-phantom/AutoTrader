@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Region } from 'src/API';
-import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
+import { notificationService } from 'src/app/modules/core/services/notifications.service';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
 @Component({
@@ -20,7 +20,7 @@ export class PlaceAdComponent implements OnInit {
   });
 
   constructor(
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: notificationService,
     private readonly regionsFacade: RegionsFacade,
     private readonly router: Router
   ) {}
@@ -36,17 +36,17 @@ export class PlaceAdComponent implements OnInit {
     // Validate group controls
 
     if (price && price < 0) {
-      this.notificationsService.error('Price can only be a positive number!');
+      this.notificationService.error('Price can only be a positive number!');
       return;
     }
 
     if (price && price > 10000000) {
-      this.notificationsService.error("Price can't be over ten millions.");
+      this.notificationService.error("Price can't be over ten millions.");
       return;
     }
 
     if (make && make.split('').map(isNaN).includes(false)) {
-      this.notificationsService.error('Use a valid make.');
+      this.notificationService.error('Use a valid make.');
       return;
     }
 

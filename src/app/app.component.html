@@ -1,7 +1,7 @@
 <app-header></app-header>
 <main>
-  <app-loading *ngIf="loading.includes(true)"></app-loading>
-  <router-outlet *ngIf="!loading.includes(true)"></router-outlet>
+  <app-loading *ngIf="loading"></app-loading>
+  <router-outlet *ngIf="!loading"></router-outlet>
 </main>
 <app-footer></app-footer>
 

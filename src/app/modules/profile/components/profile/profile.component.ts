@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 import { ProfileService } from 'src/app/modules/core/services/profile.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { notificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private readonly authFacade: AuthFacade,
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: notificationService,
     private readonly profileService: ProfileService
   ) {}
 
@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
     const lastName: string = this.formGroup.controls.lastName.value.trim();
 
     if (firstName === user.firstName && lastName === user.lastName) {
-      this.notificationsService.info('These details are already saved.');
+      this.notificationService.info('These details are already saved.');
       return;
     }
 
@@ -66,10 +66,10 @@ export class ProfileComponent implements OnInit {
           ...updateUser,
         });
 
-        this.notificationsService.success('Profile updated successfully.');
+        this.notificationService.success('Profile updated successfully.');
       },
       error: () => {
-        this.notificationsService.error('Something went wrong! Please try again later.');
+        this.notificationService.error('Something went wrong! Please try again later.');
       },
     });
   }

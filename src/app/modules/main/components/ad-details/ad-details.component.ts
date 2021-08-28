@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Ad, User } from 'src/API';
-import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { adService } from 'src/app/modules/core/services/ads.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 
 @Component({
@@ -17,14 +17,14 @@ export class AdDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly adsService: AdsService,
+    private readonly adService: adService,
     private readonly authFacade: AuthFacade
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.route.params.subscribe((params: Params) => {
-        this.ad$ = this.adsService.loadAdById(params.id);
+        this.ad$ = this.adService.loadAdById(params.id);
         this.user$ = this.authFacade.user$;
       })
     );

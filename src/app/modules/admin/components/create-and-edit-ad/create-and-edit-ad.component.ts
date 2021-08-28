@@ -4,8 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { combineLatest, Observable, Subscription } from 'rxjs';
 import { debounceTime, switchMap, take, tap } from 'rxjs/operators';
 import { Ad, Condition, Currency, Fuel, Region, Transmission, User } from 'src/API';
-import { AdsService } from 'src/app/modules/core/services/ads.service';
-import { NotificationsService } from 'src/app/modules/core/services/notifications.service';
+import { adService } from 'src/app/modules/core/services/ads.service';
+import { notificationService } from 'src/app/modules/core/services/notifications.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
@@ -50,10 +50,10 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
   });
 
   constructor(
-    private readonly notificationsService: NotificationsService,
+    private readonly notificationService: notificationService,
     private readonly storageService: StorageService,
     private readonly regionFacade: RegionsFacade,
-    private readonly adsService: AdsService,
+    private readonly adService: adService,
     private readonly route: ActivatedRoute,
     private readonly authFacade: AuthFacade,
     private readonly router: Router
@@ -68,7 +68,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     if (this.adID) {
       // Edit ad
       this.loading = true;
-      this.adsService.loadAdById(this.adID).subscribe((ad) => {
+      this.adService.loadAdById(this.adID).subscribe((ad) => {
         if (ad) {
           this.formGroup.controls.make.setValue(ad.make);
           this.formGroup.controls.model.setValue(ad.model);
@@ -140,7 +140,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     })();
 
     if (!this.locationAccessGranted) {
-      this.notificationsService.info('You need to allow access to your location!');
+      this.notificationService.info('You need to allow access to your location!');
 
       setTimeout(() => {
         // Instruction to allow access to location in case of rejection obviously only for Chrome
@@ -153,77 +153,77 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
 
     // Validate group controls
     if (!make || make.length < 3 || make.split('').map(isNaN).includes(false)) {
-      this.notificationsService.error('Valid make is required!');
+      this.notificationService.error('Valid make is required!');
       return;
     }
 
     if (!model || model.length < 2) {
-      this.notificationsService.error('Valid model is required!');
+      this.notificationService.error('Valid model is required!');
       return;
     }
 
     if (!year || Number(year) < 1850 || Number(year) > new Date().getFullYear()) {
-      this.notificationsService.error('Valid year is required!');
+      this.notificationService.error('Valid year is required!');
       return;
     }
 
     if (!regionID) {
-      this.notificationsService.error('Please choose region.');
+      this.notificationService.error('Please choose region.');
       return;
     }
 
     if (!condition) {
-      this.notificationsService.error('Please choose condition.');
+      this.notificationService.error('Please choose condition.');
       return;
     }
 
     if (!engine) {
-      this.notificationsService.error('Engine size is required!');
+      this.notificationService.error('Engine size is required!');
       return;
     }
 
     if (engine < 0) {
-      this.notificationsService.error('Engine size can only be a positive number!');
+      this.notificationService.error('Engine size can only be a positive number!');
       return;
     }
 
     if (engine > 27) {
-      this.notificationsService.error('Please enter a valid engine size!');
+      this.notificationService.error('Please enter a valid engine size!');
       return;
     }
 
     if (!fuel) {
-      this.notificationsService.error('Please choose fuel type.');
+      this.notificationService.error('Please choose fuel type.');
       return;
     }
 
     if (!transmission) {
-      this.notificationsService.error('Please choose transmission type.');
+      this.notificationService.error('Please choose transmission type.');
       return;
     }
 
     if (!price) {
-      this.notificationsService.error('Price is required!');
+      this.notificationService.error('Price is required!');
       return;
     }
 
     if (price < 0) {
-      this.notificationsService.error('Price can only be a positive number!');
+      this.notificationService.error('Price can only be a positive number!');
       return;
     }
 
     if (price > 10000000) {
-      this.notificationsService.error("Price can't be over ten millions!");
+      this.notificationService.error("Price can't be over ten millions!");
       return;
     }
 
     if (!mileage) {
-      this.notificationsService.error('Mileage is required!');
+      this.notificationService.error('Mileage is required!');
       return;
     }
 
     if (mileage < 0) {
-      this.notificationsService.error('Mileage can only be a positive number!');
+      this.notificationService.error('Mileage can only be a positive number!');
       return;
     }
 
@@ -235,34 +235,34 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
         .map(isNaN)
         .includes(false)
     ) {
-      this.notificationsService.error('Valid color is required!');
+      this.notificationService.error('Valid color is required!');
       return;
     }
 
     if (!currency) {
-      this.notificationsService.error('Please choose the currency you prefer.');
+      this.notificationService.error('Please choose the currency you prefer.');
       return;
     }
 
     if (!phone) {
-      this.notificationsService.error('Contact number is required!');
+      this.notificationService.error('Contact number is required!');
       return;
     }
 
     if (!description || description.length < 3) {
-      this.notificationsService.error('Description is required!');
+      this.notificationService.error('Description is required!');
       return;
     }
 
     if (!this.adID && !this.files) {
-      this.notificationsService.error('At least one picture is required!');
+      this.notificationService.error('At least one picture is required!');
       return;
     }
 
     this.loading = true;
 
     if (this.adID) {
-      this.adsService
+      this.adService
         .updateAd(this.adID, {
           userID: this.user!.id,
           make,
@@ -285,14 +285,14 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (ad) => {
             this.loading = false;
-            this.notificationsService.success('Ad successfully updated!');
+            this.notificationService.success('Ad successfully updated!');
             this.router.navigate(['ads', ad!.id]);
           },
           error: (err) => {
             console.log(err);
 
             this.loading = false;
-            this.notificationsService.error('Something went wrong! Try again later.');
+            this.notificationService.error('Something went wrong! Try again later.');
           },
         });
     } else {
@@ -302,7 +302,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
         .pipe(
           debounceTime(350),
           switchMap((picture) =>
-            this.adsService.createAd({
+            this.adService.createAd({
               userID: this.user!.id,
               picture,
               make,
@@ -327,16 +327,16 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
         .subscribe((ad) => {
           if (this.files?.length) {
             combineLatest(this.files.map((f) => this.storageService.uploadFileToS3Observable(f)))
-              .pipe(switchMap((images) => combineLatest(images.map((i) => this.adsService.createPicture(ad!.id, i!)))))
+              .pipe(switchMap((images) => combineLatest(images.map((i) => this.adService.createPicture(ad!.id, i!)))))
               .subscribe({
                 next: () => {
                   this.loading = false;
-                  this.notificationsService.success('Ad successfully created!');
+                  this.notificationService.success('Ad successfully created!');
                   this.router.navigate(['ads', ad!.id]);
                 },
                 error: () => {
                   this.loading = false;
-                  this.notificationsService.error('Something went wrong! Try again later.');
+                  this.notificationService.error('Something went wrong! Try again later.');
                 },
               });
           }
@@ -352,7 +352,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     }
 
     if (input.files.length > 5) {
-      this.notificationsService.warning('You can only upload up to 5 pictures!');
+      this.notificationService.warning('You can only upload up to 5 pictures!');
       return;
     }
 

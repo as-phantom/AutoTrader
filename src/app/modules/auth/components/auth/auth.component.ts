@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { Auth } from 'aws-amplify';
 import { Subscription } from 'rxjs';

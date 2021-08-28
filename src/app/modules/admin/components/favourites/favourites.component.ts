@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Ad, User } from 'src/API';
-import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { adService } from 'src/app/modules/core/services/ads.service';
 import { FavoriteService } from 'src/app/modules/core/services/favorite.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 

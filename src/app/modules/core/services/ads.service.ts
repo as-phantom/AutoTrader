@@ -8,7 +8,7 @@ import { Ad, Condition, Picture } from 'src/API';
 @Injectable({
   providedIn: 'root',
 })
-export class AdsService {
+export class adService {
   constructor() {}
 
   public loadAdsByFilters({
