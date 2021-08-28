@@ -286,7 +286,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
           next: (ad) => {
             this.loading = false;
             this.notificationService.success('Ad successfully updated!');
-            this.router.navigate(['ads', ad!.id]);
+            this.router.navigate(['ads', this.adID]);
           },
           error: (err) => {
             console.log(err);
