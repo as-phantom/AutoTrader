@@ -1,6 +1,6 @@
 # Auto Trader
 
-This project was done with [Angular CLI] version 12.1.4.
+This project was done with Angular version 12.1.4.
 
 #### System for creating and managing vehicle sale ads with free access.
 
