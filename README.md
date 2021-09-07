@@ -38,6 +38,7 @@ This is just an school project and it doesn't have the feature of deleting your 
 -   **Ads Browser/Search** - list of ads and option to search by various criteria.
 -   **Ad Details** - additional description, location, contacts, etc.
 -   **Create ad** - create new ad.
+-   **Edit ad** - edit existing ad.
 -   **Recent uploads** - latest ads created.
 -   **Profile Page** - information and options for updating details.
 
