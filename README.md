@@ -15,7 +15,7 @@ This is just an school project and it doesn't have the feature of deleting your 
 -   Ability to view ads
 -   Ability to rate ads
 -   Ability to add ads to favorite
--   Ability to browse most recent ones
+-   Ability to browse most recent ads
 -   Ability to edit and delete ads (if owner)
 -   Ability to filter and search by various criteria
 -   Ability to look up a vehicle's location and owner's contact details
