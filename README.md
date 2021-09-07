@@ -7,7 +7,7 @@ This project was done with [Angular CLI] version 12.1.4.
 # WARNING 
 
 This app might not run because free limits of AWS has been exceeded, if so please submit a issue! <br>
-This is just an open source project and it doesn't have the feature of deleting your account, use sample email when registering!
+This is just an school project and it doesn't have the feature of deleting your account, use sample email when registering!
 
 ## Functionality
 
