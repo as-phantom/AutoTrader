@@ -20,15 +20,14 @@ This is just an school project and it doesn't have the feature of deleting your 
 -   Ability to filter and search by various criteria
 -   Ability to look up a vehicle's location and owner's contact details
 -   Ability to edit profile page
--   Email verification and password reset via email
+-   Email verification and password reset functionality via email
 -   Error handling, data validation and notifications
 -   Decent UX and UI
--   
 
 ## Technologies
 
 -   HTML, SASS, Typescript, Angular, NgRx Store for state managment, RxJS for Reactive programming
--   GraphQL API (AWS), DinamoDB (AWS), Cognito Authentication Service (AWS), S3 Bucket (AWS), Identity and Access Management (IAM), Amplify 
+-   GraphQL API (AWS), DinamoDB (AWS), Cognito Authentication Service (AWS), S3 Bucket (AWS), Identity and Access Management (IAM/AWS), Amplify 
 -   Google and Facebook APIs for geolocation and authentication
 -   GitHub Pages
 
