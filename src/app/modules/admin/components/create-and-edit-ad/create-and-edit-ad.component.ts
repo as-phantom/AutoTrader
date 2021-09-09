@@ -4,8 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { combineLatest, Observable, Subscription } from 'rxjs';
 import { debounceTime, switchMap, take } from 'rxjs/operators';
 import { Ad, Condition, Currency, Fuel, Region, Transmission, User } from 'src/API';
-import { adService } from 'src/app/modules/core/services/ads.service';
-import { notificationService } from 'src/app/modules/core/services/notifications.service';
+import { AdsService } from 'src/app/modules/core/services/ads.service';
+import { NotificationService } from 'src/app/modules/core/services/notifications.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
@@ -50,10 +50,10 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
   });
 
   constructor(
-    private readonly notificationService: notificationService,
+    private readonly notificationService: NotificationService,
     private readonly storageService: StorageService,
     private readonly regionFacade: RegionsFacade,
-    private readonly adService: adService,
+    private readonly adService: AdsService,
     private readonly route: ActivatedRoute,
     private readonly authFacade: AuthFacade,
     private readonly router: Router

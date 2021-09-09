@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Ad, User } from 'src/API';
-import { adService } from 'src/app/modules/core/services/ads.service';
+import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { AuthFacade } from 'src/app/store/facades/auth.facade';
 
 @Component({
@@ -18,7 +18,7 @@ export class AdsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly adService: adService,
+    private readonly adService: AdsService,
     private readonly elemRef: ElementRef,
     private readonly authFacade: AuthFacade
   ) {}

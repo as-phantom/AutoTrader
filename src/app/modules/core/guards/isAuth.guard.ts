@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthFacade } from '../../../store/facades/auth.facade';
-import { notificationService } from '../services/notifications.service';
+import { NotificationService } from '../services/notifications.service';
 
 @Injectable({
   providedIn: 'root',

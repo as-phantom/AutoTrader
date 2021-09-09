@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { adService } from 'src/app/modules/core/services/ads.service';
+import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { ProfileService } from 'src/app/modules/core/services/profile.service';
 import { StorageService } from 'src/app/modules/core/services/storage.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
-import { notificationService } from '../../../core/services/notifications.service';
+import { NotificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-image-upload',
@@ -20,7 +20,7 @@ export class ImageUploadComponent implements OnInit {
   constructor(
     private readonly authFacade: AuthFacade,
     private readonly storageService: StorageService,
-    private readonly notificationService: notificationService,
+    private readonly notificationService: NotificationService,
     private readonly profileService: ProfileService
   ) {}
 

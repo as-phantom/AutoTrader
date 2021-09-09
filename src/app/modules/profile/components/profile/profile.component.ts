@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 import { ProfileService } from 'src/app/modules/core/services/profile.service';
 import { User } from '../../../../../API';
 import { AuthFacade } from '../../../../store/facades/auth.facade';
-import { notificationService } from '../../../core/services/notifications.service';
+import { NotificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private readonly authFacade: AuthFacade,
-    private readonly notificationService: notificationService,
+    private readonly notificationService: NotificationService,
     private readonly profileService: ProfileService
   ) {}
 

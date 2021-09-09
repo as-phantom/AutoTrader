@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: 'root' })
-export class notificationService {
+export class NotificationService {
   private readonly notificationsConfigurations: Partial<IndividualConfig> = {
     progressBar: true,
     closeButton: true,

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Region } from 'src/API';
-import { notificationService } from 'src/app/modules/core/services/notifications.service';
+import { NotificationService } from 'src/app/modules/core/services/notifications.service';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
 @Component({
@@ -20,7 +20,7 @@ export class PlaceAdComponent implements OnInit {
   });
 
   constructor(
-    private readonly notificationService: notificationService,
+    private readonly notificationService: NotificationService,
     private readonly regionsFacade: RegionsFacade,
     private readonly router: Router
   ) {}

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Ad, Condition, Region } from 'src/API';
-import { notificationService } from 'src/app/modules/core/services/notifications.service';
+import { NotificationService } from 'src/app/modules/core/services/notifications.service';
 import { AdsFacade } from 'src/app/store/facades/ads.facade';
 import { RegionsFacade } from 'src/app/store/facades/regions.facade';
 
@@ -33,7 +33,7 @@ export class FindAdsComponent implements OnInit {
   });
 
   constructor(
-    private readonly notificationService: notificationService,
+    private readonly notificationService: NotificationService,
     private readonly regionsFacade: RegionsFacade,
     private readonly adsFacade: AdsFacade,
     private readonly router: Router

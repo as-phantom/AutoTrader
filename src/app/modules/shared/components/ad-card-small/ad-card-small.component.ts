@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FavoriteService } from 'src/app/modules/core/services/favorite.service';
-import { notificationService } from 'src/app/modules/core/services/notifications.service';
+import { NotificationService } from 'src/app/modules/core/services/notifications.service';
 import { RatingService } from 'src/app/modules/core/services/rating.service';
 import { Ad, Favorite, Rating, User } from '../../../../../API';
 
@@ -18,7 +18,7 @@ export class AdCardSmallComponent {
   @Input() public ad!: Ad;
 
   constructor(
-    private readonly notificationService: notificationService,
+    private readonly notificationService: NotificationService,
     private readonly router: Router,
     private readonly ratingService: RatingService,
     private readonly favoriteService: FavoriteService

@@ -3,7 +3,7 @@ import { Ad, User } from 'src/API';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { take } from 'rxjs/operators';
-import { adService } from 'src/app/modules/core/services/ads.service';
+import { AdsService } from 'src/app/modules/core/services/ads.service';
 import { Router } from '@angular/router';
 import { MapDialogComponent } from '../map-dialog/map-dialog.component';
 import {
@@ -48,7 +48,7 @@ export class AdCardBigComponent implements OnInit {
 
   constructor(
     private readonly matDialog: MatDialog,
-    private readonly adService: adService,
+    private readonly adService: AdsService,
     private readonly router: Router
   ) {}
 
