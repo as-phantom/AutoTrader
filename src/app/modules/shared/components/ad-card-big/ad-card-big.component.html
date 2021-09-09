@@ -1,6 +1,12 @@
 <div class="container" *ngIf="ad">
   <section>
-    <carousel [images]="pictures" [arrows]="pictures!.length > 1" [borderRadius]="10" [cellsToShow]="1"></carousel>
+    <carousel
+      [images]="pictures"
+      [arrows]="pictures!.length > 1"
+      [borderRadius]="10"
+      [cellsToShow]="1"
+      [dots]="true"
+    ></carousel>
 
     <div class="info">
       <h1>{{ ad.make }} {{ ad.model }}</h1>

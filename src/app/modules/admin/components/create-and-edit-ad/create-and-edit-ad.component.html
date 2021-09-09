@@ -93,13 +93,13 @@
   </mat-form-field>
 
   <div class="upload" (click)="uploadFile.click()">
-    <button type="button" mat-raised-button color="primary">Upload images</button>
+    <button type="button" mat-raised-button color="primary">Upload photos</button>
     <input #uploadFile type="file" accept="image/*" hidden multiple (input)="onUploadInput($event)" />
   </div>
 
   <ng-container>
-    <button *ngIf="adID" type="submit" class="btn">Update now</button>
-    <button *ngIf="!adID" type="submit" class="btn">Create now</button>
+    <button *ngIf="adID" mat-raised-button type="submit" class="btn">Save</button>
+    <button *ngIf="!adID" mat-raised-button type="submit" class="btn">Create</button>
   </ng-container>
 </form>
 
