@@ -9,6 +9,8 @@ This project was done with Angular version 12.1.4.
 This app might not run because free limits of AWS has been exceeded, if so please submit a issue! <br>
 This is just an school project and it doesn't have the feature of deleting your account, use sample email when registering!
 
+### Note: Currently all ads are from Plovdiv city in case you're wondering why there no ads when city filters are applied.
+
 ## Functionality
 
 -   User registration with email, facebook or google
