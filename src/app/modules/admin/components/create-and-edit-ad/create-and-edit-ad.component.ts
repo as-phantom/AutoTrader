@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { combineLatest, Observable, Subscription } from 'rxjs';
-import { debounceTime, switchMap, take, tap } from 'rxjs/operators';
+import { debounceTime, switchMap, take } from 'rxjs/operators';
 import { Ad, Condition, Currency, Fuel, Region, Transmission, User } from 'src/API';
 import { adService } from 'src/app/modules/core/services/ads.service';
 import { notificationService } from 'src/app/modules/core/services/notifications.service';
@@ -119,9 +119,8 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     const phone = this.formGroup.controls.contactNumber.value?.trim();
 
     // Location access needed
-
     await (() => {
-      // Waiting until location access is granted ot not
+      // Wait until location access is granted ot denied
       return new Promise((resolve) => {
         navigator.geolocation.getCurrentPosition(
           (location) => {
@@ -143,7 +142,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
       this.notificationService.info('You need to allow access to your location!');
 
       setTimeout(() => {
-        // Instruction to allow access to location in case of rejection obviously only for Chrome
+        // Instruction to allow access to location in case of rejection only for Chrome
         const url = 'https://support.google.com/chrome/answer/142065?hl=en';
         window.open(url, '_blank');
       }, 3000);
@@ -262,6 +261,7 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     if (this.adID) {
+      // Update ad
       this.adService
         .updateAd(this.adID, {
           userID: this.user!.id,
@@ -282,20 +282,33 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
           latitude: this.latitude,
           longitude: this.longitude,
         })
-        .subscribe({
-          next: (ad) => {
+        .subscribe(() => {
+          if (this.files?.length) {
+            combineLatest(this.files.map((f) => this.storageService.uploadFileToS3Observable(f)))
+              .pipe(
+                switchMap((images) => combineLatest(images.map((i) => this.adService.createPicture(this.adID!, i!))))
+              )
+              .subscribe({
+                next: () => {
+                  this.loading = false;
+                  this.notificationService.success('Ad successfully updated!');
+                  this.router.navigate(['ads', this.adID]);
+                },
+                error: (err) => {
+                  console.log(err);
+
+                  this.loading = false;
+                  this.notificationService.error('Something went wrong! Try again later.');
+                },
+              });
+          } else {
             this.loading = false;
             this.notificationService.success('Ad successfully updated!');
             this.router.navigate(['ads', this.adID]);
-          },
-          error: (err) => {
-            console.log(err);
-
-            this.loading = false;
-            this.notificationService.error('Something went wrong! Try again later.');
-          },
+          }
         });
     } else {
+      // Create ad
       this.storageService
         //  Taking the first photo as main one
         .uploadFileToS3Observable(this.files?.shift()!)
@@ -339,6 +352,10 @@ export class CreateAndEditAdComponent implements OnInit, OnDestroy {
                   this.notificationService.error('Something went wrong! Try again later.');
                 },
               });
+          } else {
+            this.loading = false;
+            this.notificationService.success('Ad successfully created!');
+            this.router.navigate(['ads', ad!.id]);
           }
         });
     }
