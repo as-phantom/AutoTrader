@@ -1,15 +1,13 @@
 # Auto Trader
+### System for creating and managing vehicle sale ads with free access.
 
 This project was done with Angular version 12.1.4.
 
-#### System for creating and managing vehicle sale ads with free access.
-
 # WARNING 
-
 This app might not run because free limits of AWS has been exceeded, if so please submit a issue! <br>
 This is just an school project and it doesn't have the feature of deleting your account, use sample email when registering!
 
-### Note: Currently all ads are from Plovdiv city in case you're wondering why there no ads when city filters are applied.
+## Note: Currently all ads are from Plovdiv city in case you're wondering why there no ads when city filters are applied.
 
 ## Functionality
 
@@ -29,7 +27,7 @@ This is just an school project and it doesn't have the feature of deleting your 
 ## Technologies
 
 -   HTML, SASS, Typescript, Angular, NgRx Store for state managment, RxJS for Reactive programming
--   GraphQL API (AWS), DinamoDB (AWS), Cognito Authentication Service (AWS), S3 Bucket (AWS), Identity and Access Management (IAM/AWS), Amplify 
+-   GraphQL API (AWS), DinamoDB (AWS), Cognito Authentication Service (AWS), S3 Bucket (AWS), Identity and Access Management/IAM (AWS), Amplify 
 -   Google and Facebook APIs for geolocation and authentication
 -   GitHub Pages
 
