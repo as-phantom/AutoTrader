@@ -1,5 +1,5 @@
 # Auto Trader
-### System for creating and managing vehicle sale ads with free access.
+### System for creating and managing vehicle advertising with free access.
 
 This project was done with Angular version 12.1.4.
 
