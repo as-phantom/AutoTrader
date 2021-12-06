@@ -1,4 +1,6 @@
-# Auto Trader
+# NOTE - This app is no longer deployed! Feel free to clone it and look around if intersted.
+
+## Auto Trader
 ### System for creating and managing vehicle advertising with free access.
 
 This project was done with Angular version 12.1.4.
