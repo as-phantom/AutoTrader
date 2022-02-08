@@ -147,4 +147,3 @@ This is just an school project and it doesn't have the feature of deleting your 
 -   Guests can register, view the recent ads, ad's details, search for ads.
 -   Registered users can create ads, add ads to favorite, rate ads, update profile.
 -   Only the creator of a ad can edit and delete it.
-
