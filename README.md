@@ -3,8 +3,6 @@
 ## Auto Trader
 ### System for creating and managing vehicle advertising with free access.
 
-This project was done with Angular version 12.1.4.
-
 # WARNING 
 This app might not run because free limits of AWS has been exceeded, if so please submit a issue! <br>
 This is just an school project and it doesn't have the feature of deleting your account, use sample email when registering!
